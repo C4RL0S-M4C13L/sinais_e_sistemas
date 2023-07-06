@@ -1,0 +1,890 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Transformada de Fourier de Funções especiais &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula09_Funcoes_Especiais';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Apliacação de TFourier" href="Aula10_Aplicacao_TF.html" />
+    <link rel="prev" title="A transformada de Fourier" href="Aula08_Fourier.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula09_Funcoes_Especiais.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula09_Funcoes_Especiais.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transformada de Fourier de Funções especiais</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direto-da-definicao">Direto da Definição</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-a-1x-1-t-a-2x-2-t-a-1x-1-j-omega-a-2x-2-j-omega"><span class="math notranslate nohighlight">\(TF\{a_1x_1(t)+a_2x_2(t)\}=a_1X_1(j\omega)+a_2X_2(j\omega)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atraso-temporal">Atraso temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-t-t-0-x-j-omega-e-j-omega-t-0"><span class="math notranslate nohighlight">\(TF\{x(t-t_0)\} = X(j\omega)e^{-j\omega t_0}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justificativa">Justificativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linearidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atraso">Atraso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escala">Escala</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-at-frac-1-a-x-frac-j-omega-a"><span class="math notranslate nohighlight">\( TF\{x(at)\}=\frac{1}{|a|}X(\frac{j\omega}{a})\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversao-temporal">Reversão temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-t-x-j-omega"><span class="math notranslate nohighlight">\(TF\{x(-t)\} = X(-j\omega)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificativa-troca-de-variavel">Justificativa: troca de variável</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-derivada">Propriedade: Derivada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-x-t-to-0-quando-t-to-pm-infty">Se <span class="math notranslate nohighlight">\(x(t)\to 0\)</span> quando <span class="math notranslate nohighlight">\(t\to \pm \infty\)</span>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-t-j-omega-x-j-omega"><span class="math notranslate nohighlight">\(TF\{x^{'}(t)\}= j\omega X(j\omega) \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-integral">Propriedade: Integral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-multiplicacao-pela-variavel-livre">Propriedade: Multiplicação pela variável livre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-convolucao">Propriedade: Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Propriedade: Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-especiais-funcao-impulso">Casos Especiais - Função Impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Casos Especiais - Função Impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Casos Especiais - Função Impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-forma-geral">De forma geral,</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-especais-tf-da-constante">Casos Especais: TF da constante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-teor-modulacao">Propriedade: Teor. Modulação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Propriedade: Teor. Modulação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-da-exponencial-complexa">TF da exponencial complexa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-das-funcoes-seno-e-cosseno">TF das funções seno e cosseno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-da-serie-de-fourier">Interpretação da Série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-a-partir-da-serie-defourier">transformada de Fourier a partir da Série deFourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-periodica">Função periódica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-0-t-e-uma-funcao-periodica-com-periodo-t-0-e-seja-displaystyle-x-t-lim-t-0-to-infty-x-t-0-t"><span class="math notranslate nohighlight">\(x_{T_0}(t)\)</span> é uma função periódica com período <span class="math notranslate nohighlight">\(T_0\)</span> e seja <span class="math notranslate nohighlight">\(\displaystyle{x(t)=\lim_{T_0\to \infty}x_{T_0}(t)}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-0-t-sum-k-infty-infty-a-ke-jk-omega-0t-1">$<span class="math notranslate nohighlight">\( x_{T_0}(t)=\sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0t}  \;\;\;\;\;\;\;\;\;\;(1) \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-k-frac-1-t-0-int-t-0-2-t-0-2-x-t-0-t-e-jk-omega-0t-dt-2">$<span class="math notranslate nohighlight">\( a_k=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}x_{T_0}(t)e^{-jk\omega_0t}dt   \;\;\;\;\;\;\;(2) \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#substituindo-2-em-1">Substituindo (2) em (1):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-omega-0-frac-2-pi-t-0-frac-1-t-0-frac-omega-0-2-pi-substituindo">Como <span class="math notranslate nohighlight">\(\omega_0 = \frac{2\pi}{T_0}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{T_0}=\frac{\omega_0}{2\pi}\)</span>. Substituindo:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazendo-t-to-infty-tem-se-omega-0-to-d-omega-e-k-omega-0-to-omega">Fazendo <span class="math notranslate nohighlight">\(T \to \infty\)</span> tem-se <span class="math notranslate nohighlight">\(\omega_0 \to d\omega\)</span> e <span class="math notranslate nohighlight">\(k\omega_0 \to \omega\)</span>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-frac-1-2-pi-sum-k-infty-infty-left-int-infty-infty-x-u-e-j-omega-u-du-right-e-j-omega-t-d-omega">$<span class="math notranslate nohighlight">\( x(t)=\frac{1}{2\pi}\sum_{k=-\infty}^{\infty}\left[\int_{-\infty}^{\infty}x(u)e^{-j\omega u}du \right]e^{j\omega t}d\omega \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-riemann-sum-to-int">Integral de Riemann <span class="math notranslate nohighlight">\(\sum \to \int\)</span></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="transformada-de-fourier-de-funcoes-especiais">
+<h1>Transformada de Fourier de Funções especiais<a class="headerlink" href="#transformada-de-fourier-de-funcoes-especiais" title="Permalink to this heading">#</a></h1>
+<section id="direto-da-definicao">
+<h2>Direto da Definição<a class="headerlink" href="#direto-da-definicao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="linearidade">
+<h3>Linearidade<a class="headerlink" href="#linearidade" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="tf-a-1x-1-t-a-2x-2-t-a-1x-1-j-omega-a-2x-2-j-omega">
+<h3><span class="math notranslate nohighlight">\(TF\{a_1x_1(t)+a_2x_2(t)\}=a_1X_1(j\omega)+a_2X_2(j\omega)\)</span><a class="headerlink" href="#tf-a-1x-1-t-a-2x-2-t-a-1x-1-j-omega-a-2x-2-j-omega" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="atraso-temporal">
+<h2>Atraso temporal<a class="headerlink" href="#atraso-temporal" title="Permalink to this heading">#</a></h2>
+<section id="tf-x-t-t-0-x-j-omega-e-j-omega-t-0">
+<h3><span class="math notranslate nohighlight">\(TF\{x(t-t_0)\} = X(j\omega)e^{-j\omega t_0}\)</span><a class="headerlink" href="#tf-x-t-t-0-x-j-omega-e-j-omega-t-0" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="justificativa">
+<h3>Justificativa<a class="headerlink" href="#justificativa" title="Permalink to this heading">#</a></h3>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3>Linearidade<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt = \int_{-\infty}^{\infty}(a_1x_1(t)+a_2x_2(t))e^{-j\omega t}dt=
+a_1\int_{-\infty}^{\infty}x_1(t)e^{-j\omega t}dt + a_2\int_{-\infty}^{\infty}x_2(t)e^{-j\omega t}dt= a_1X_1(j\omega)+a_2X_2(j\omega)\)</span></p>
+</section>
+<section id="atraso">
+<h3>Atraso<a class="headerlink" href="#atraso" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty}x(t-t_0)e^{-j\omega t}dt\)</span>,</p>
+<p>fazendo <span class="math notranslate nohighlight">\(t'= t-t_0\)</span> tem-se, <span class="math notranslate nohighlight">\(t=t'+t_0\)</span> e <span class="math notranslate nohighlight">\(dt'=dt\)</span></p>
+<p>tem-se: <span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty}x(t')e^{-j\omega (t'+t_0)}dt' = e^{-j\omega t_0}X(j\omega)\)</span></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="escala">
+<h2>Escala<a class="headerlink" href="#escala" title="Permalink to this heading">#</a></h2>
+<section id="tf-x-at-frac-1-a-x-frac-j-omega-a">
+<h3><span class="math notranslate nohighlight">\( TF\{x(at)\}=\frac{1}{|a|}X(\frac{j\omega}{a})\)</span><a class="headerlink" href="#tf-x-at-frac-1-a-x-frac-j-omega-a" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="reversao-temporal">
+<h2>Reversão temporal<a class="headerlink" href="#reversao-temporal" title="Permalink to this heading">#</a></h2>
+<section id="tf-x-t-x-j-omega">
+<h3><span class="math notranslate nohighlight">\(TF\{x(-t)\} = X(-j\omega)\)</span><a class="headerlink" href="#tf-x-t-x-j-omega" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="justificativa-troca-de-variavel">
+<h2>Justificativa: troca de variável<a class="headerlink" href="#justificativa-troca-de-variavel" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="propriedade-derivada">
+<h2>Propriedade: Derivada<a class="headerlink" href="#propriedade-derivada" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="se-x-t-to-0-quando-t-to-pm-infty">
+<h3>Se <span class="math notranslate nohighlight">\(x(t)\to 0\)</span> quando <span class="math notranslate nohighlight">\(t\to \pm \infty\)</span>:<a class="headerlink" href="#se-x-t-to-0-quando-t-to-pm-infty" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="tf-x-t-j-omega-x-j-omega">
+<h3><span class="math notranslate nohighlight">\(TF\{x^{'}(t)\}= j\omega X(j\omega) \)</span><a class="headerlink" href="#tf-x-t-j-omega-x-j-omega" title="Permalink to this heading">#</a></h3>
+<p>Justificativa:</p>
+<p><span class="math notranslate nohighlight">\( TF\{x^{'}(t)\}=\int_{-\infty}^{\infty}x^{'}(t)e^{-j\omega t}dt \)</span></p>
+<p>Aplicando a <strong>integral por partes</strong></p>
+<p><span class="math notranslate nohighlight">\(TF\{x^{'}(t)\}=x(t)e^{-j\omega t}|_{-\infty}^{\infty} + j\omega \int_{-\infty}^{\infty}x(t)e^{-j\omega t} dt \)</span></p>
+<p><span class="math notranslate nohighlight">\(TF\{x^{'}(t)\}= j\omega X(j\omega)\)</span></p>
+<p>De forma recorrente: <span class="math notranslate nohighlight">\(TF\{x^{(n)}(t)\} = (j\omega)^nX(j\omega)\)</span></p>
+</section>
+</section>
+<section id="propriedade-integral">
+<h2>Propriedade: Integral<a class="headerlink" href="#propriedade-integral" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Se <span class="math notranslate nohighlight">\(\omega \neq 0\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(TF\{\int_{-\infty}^{t}x(\tau)d\tau\}=\frac{1}{j\omega}X(j\omega) \)</span></p>
+<p>Justificativa:</p>
+<p><span class="math notranslate nohighlight">\( \phi(t) = \int_{-\infty}^{t}x(\tau)d\tau \  \ :. \ \ \phi^{'}(t)=x(t)  \)</span></p>
+<p><span class="math notranslate nohighlight">\(TF\{\phi^{'}(t)\} = TF\{x(t)\} = j\omega \Phi(j\omega)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Phi(j\omega)=\frac{1}{j\omega}X(j\omega)\)</span></p>
+</section>
+<section id="propriedade-multiplicacao-pela-variavel-livre">
+<h2>Propriedade: Multiplicação pela variável livre<a class="headerlink" href="#propriedade-multiplicacao-pela-variavel-livre" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><span class="math notranslate nohighlight">\(TF\{-jtx(t)\}=\frac{d}{d\omega}X(j\omega)\)</span></p>
+<p>Justificativa:</p>
+<p><span class="math notranslate nohighlight">\( X(j\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{d}{d\omega}X(j\omega)=\frac{d}{d\omega}\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt \)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{d}{d\omega}X(j\omega)=\int_{-\infty}^{\infty}x(t)\frac{d}{d\omega}\{e^{-j\omega t}\}dt \)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{d}{d\omega}X(j\omega)=\int_{-\infty}^{\infty}(-jtx(t))e^{-j\omega t}dt \)</span></p>
+<p><span class="math notranslate nohighlight">\( \frac{d}{d\omega}X(j\omega)= TF\{-jtx(t)\} \)</span></p>
+</section>
+<section id="propriedade-convolucao">
+<h2>Propriedade: Convolução<a class="headerlink" href="#propriedade-convolucao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><span class="math notranslate nohighlight">\( TF\{x_1(t)\}=X_1(j\omega)\)</span></p>
+<p><span class="math notranslate nohighlight">\( TF\{x_2(t)\}=X_2(j\omega)\)</span></p>
+<p><span class="math notranslate nohighlight">\( TF\{x_1(t)*x_2(t)\}=X_1(j\omega).X_2(j\omega)\)</span></p>
+<p>Justificativa:</p>
+<div class="math notranslate nohighlight">
+\[ TF\{x_1(t)*x_2(t)\} = \int_{-\infty}^{\infty} \color{red}{\int_{-\infty}^{\infty}x_1(\tau)x_2(t-\tau)d\tau}\; e^{-j\omega t} dt \]</div>
+<p>Mudando a ordem das integrais:</p>
+<div class="math notranslate nohighlight">
+\[ TF\{x_1(t)*x_2(t)\} = \color{red}{\int_{-\infty}^{\infty} x_1(\tau)} \int_{-\infty}^{\infty}\color{red}{x_2(t-\tau)}e^{-j\omega t}dt \color{red}{d\tau} \]</div>
+<p>Usando a propriedade do deslocamento temporal:</p>
+<p><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}x_2(t-\tau)e^{-j\omega t}dt = X_2(\omega)e^{-j\omega \tau} \)</span></p>
+<p><span class="math notranslate nohighlight">\(
+\begin{align}
+TF\{x_1(t)*x_2(t)\} &amp; =  \int_{-\infty}^{\infty}x_1(\tau)X_2(\omega)e^{-j\omega \tau} d\tau\\
+                    &amp; = X_2(\omega)\int_{-\infty}^{\infty}x_1(\tau)e^{-j\omega \tau}d\tau \\
+                    &amp; = X_2(\omega).X_1(\omega) = X_1(\omega).X_2(\omega)
+\end{align}\)</span></p>
+</section>
+<section id="id2">
+<h2>Propriedade: Convolução<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>De forma equivalente mostra-se que</p>
+<div class="math notranslate nohighlight">
+\[ TF^{-1}\{X_1(j\omega)*X_2(j\omega)\}=x_1(t).x_2(t)\]</div>
+</section>
+<section id="casos-especiais-funcao-impulso">
+<h2>Casos Especiais - Função Impulso<a class="headerlink" href="#casos-especiais-funcao-impulso" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ TF\{\delta(t)\}=1 \]</div>
+<p>Justificativa:</p>
+<p>i. aplicação da definição</p>
+<p>ii. uso das propriedades</p>
+<div class="math notranslate nohighlight">
+\[ x(t)*\delta(t)=x(t)\]</div>
+<div class="math notranslate nohighlight">
+\[ X(j\omega)TF\{\delta(t)\} = X(j\omega)\]</div>
+<div class="math notranslate nohighlight">
+\[ TF\{\delta(t)\} = 1 \; \text{ou} \]</div>
+<div class="math notranslate nohighlight">
+\[ TF^{-1}\{1\}=\delta(t) \]</div>
+</section>
+<section id="id3">
+<h2>Casos Especiais - Função Impulso<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Mostre que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\delta(t)= \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{j\omega t}d\omega\]</div>
+<p>Justificativa</p>
+<div class="math notranslate nohighlight">
+\[ \delta(t) = TF^{-1}\{1\}=\frac{1}{2\pi}\int_{-\infty}^{\infty}1.e^{j\omega t}d\omega\]</div>
+<div class="math notranslate nohighlight">
+\[= \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{j\omega t}d\omega \]</div>
+</section>
+<section id="id4">
+<h2>Casos Especiais - Função Impulso<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Mostre que $<span class="math notranslate nohighlight">\(\delta(t)=\frac{1}{\pi}\int_{0}^{\infty}\cos(\omega t)d\omega\)</span>$</p></li>
+</ul>
+<p>Justificativa:</p>
+<div class="math notranslate nohighlight">
+\[ \delta(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{j\omega t}d\omega = \]</div>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2\pi}\int_{-\infty}^{\infty}(cos(\omega t)+jsen(\omega t))d\omega \]</div>
+<p><span class="math notranslate nohighlight">\(sen(\omega t)\)</span> é ímpar. Logo:</p>
+<div class="math notranslate nohighlight">
+\[ \delta(t) = \frac{1}{\pi}\int_{0}^{\infty}\cos(\omega t)d\omega \]</div>
+</section>
+<section id="de-forma-geral">
+<h2>De forma geral,<a class="headerlink" href="#de-forma-geral" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ \delta(y) = \frac{1}{2\pi}\int_{-\infty}^{\infty}e^{jxy}dx\]</div>
+<div class="math notranslate nohighlight">
+\[ \delta(y) = \frac{1}{\pi}\int_{0}^{\infty}\cos(xy)dx\]</div>
+</section>
+<section id="casos-especais-tf-da-constante">
+<h2>Casos Especais: TF da constante<a class="headerlink" href="#casos-especais-tf-da-constante" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Determine a <span class="math notranslate nohighlight">\( TF\{1\}\)</span>, <span class="math notranslate nohighlight">\(x(t)=1\)</span></p></li>
+</ul>
+<p>Justificativa</p>
+<div class="math notranslate nohighlight">
+\[ TF\{1\} = \int_{-\infty}^{\infty}1.e^{-j\omega t}dt = 2\pi \underbrace{\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{j(-\omega)t}dt}_{\text{$\delta(-\omega)$}} \]</div>
+<div class="math notranslate nohighlight">
+\[ TF\left\{1\right\} = 2\pi\delta(-\omega) \ \ \text{e como $\delta(\omega)=\delta(-\omega)$ (par)} \rightarrow TF\left\{1\right\} = 2\pi \delta(\omega) \]</div>
+<div class="math notranslate nohighlight">
+\[ TF^{-1}\left\{2\pi \delta(\omega)\right\} = 2\pi\frac{1}{2\pi}\int_{-\infty}^{\infty}\delta(\omega)e^{j\omega}d\omega = 1 \]</div>
+</section>
+<section id="propriedade-teor-modulacao">
+<h2>Propriedade: Teor. Modulação<a class="headerlink" href="#propriedade-teor-modulacao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Seja <span class="math notranslate nohighlight">\(X(j\omega)=TF\{x(t)\}\)</span>, determine <span class="math notranslate nohighlight">\(TF\{x(t)e^{j\omega_0t}\}\)</span></p></li>
+</ul>
+<p>Justificativa:</p>
+<div class="math notranslate nohighlight">
+\[ TF\{x(t)e^{j\omega_0t}\} = \int_{-\infty}^{\infty}x(t)e^{j\omega_0t}e^{-j\omega t}dt \]</div>
+<div class="math notranslate nohighlight">
+\[ TF\{x(t)e^{j\omega_0t}\} = \int_{-\infty}^{\infty}x(t)e^{-j(\omega-\omega_0)t}dt = X(\omega-\omega_0)\]</div>
+</section>
+<section id="id5">
+<h2>Propriedade: Teor. Modulação<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Determine <span class="math notranslate nohighlight">\(TF\{x(t)cos\omega_0 t\}\)</span></p></li>
+</ul>
+<p>Justificativa:</p>
+<p>usando a relação de Euler</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{2}X(\omega-\omega_0)+\frac{1}{2}X(\omega+\omega_0)\]</div>
+</section>
+<section id="tf-da-exponencial-complexa">
+<h2>TF da exponencial complexa<a class="headerlink" href="#tf-da-exponencial-complexa" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Determine <span class="math notranslate nohighlight">\(TF\left\{e^{j\omega_0t}\right\}\)</span></p></li>
+</ul>
+<p>Justificativa:</p>
+<div class="math notranslate nohighlight">
+\[ TF\{1\}=\delta(\omega) \]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned} TF\{x(t)e^{j\omega_0t}\} = X(\omega-\omega_0)$$ Portanto, é possível concluir que\\$$ TF\{e^{j\omega_0t}\}=2\pi \delta(\omega-\omega_0)\end{aligned}\end{align} \]</div>
+</section>
+<section id="tf-das-funcoes-seno-e-cosseno">
+<h2>TF das funções seno e cosseno<a class="headerlink" href="#tf-das-funcoes-seno-e-cosseno" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Determine a TF para <span class="math notranslate nohighlight">\(cos(\omega_0t)\)</span> e <span class="math notranslate nohighlight">\(sen(\omega_0t)\)</span></p></li>
+</ul>
+<p>Justificativa:</p>
+<div class="math notranslate nohighlight">
+\[ \cos\omega_0t = \frac{1}{2}(e^{j\omega_0t}+e^{-j\omega_0t}) \]</div>
+<div class="math notranslate nohighlight">
+\[ TF\{\cos\omega_0t\} = \frac{1}{2}TF\{e^{j\omega_0t}\}+\frac{1}{2}TF\{e^{-j\omega_0t}\}\]</div>
+<div class="math notranslate nohighlight">
+\[ TF\{cos\omega_0t\} = \pi\delta(\omega-\omega_0)+\pi\delta(\omega+\omega_0)\]</div>
+<p>De forma análoga:</p>
+<div class="math notranslate nohighlight">
+\[ TF\{sen\omega_0t\} = \frac{1}{2j}TF\{e^{j\omega_0t}\}-\frac{1}{2j}TF\{e^{-j\omega_0t}\} \]</div>
+<div class="math notranslate nohighlight">
+\[ TF\{sen\omega_0t\} = -j\pi\delta(\omega-\omega_0)+j\pi\delta(\omega+\omega_0) \]</div>
+</section>
+<section id="interpretacao-da-serie-de-fourier">
+<h2>Interpretação da Série de Fourier<a class="headerlink" href="#interpretacao-da-serie-de-fourier" title="Permalink to this heading">#</a></h2>
+<p><img alt="fig4.1.png" src="_images/interpretacaoSF.jpg" /></p>
+</section>
+<section id="transformada-de-fourier-a-partir-da-serie-defourier">
+<h2>transformada de Fourier a partir da Série deFourier<a class="headerlink" href="#transformada-de-fourier-a-partir-da-serie-defourier" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="funcao-periodica">
+<h3>Função periódica<a class="headerlink" href="#funcao-periodica" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="x-t-0-t-e-uma-funcao-periodica-com-periodo-t-0-e-seja-displaystyle-x-t-lim-t-0-to-infty-x-t-0-t">
+<h3><span class="math notranslate nohighlight">\(x_{T_0}(t)\)</span> é uma função periódica com período <span class="math notranslate nohighlight">\(T_0\)</span> e seja <span class="math notranslate nohighlight">\(\displaystyle{x(t)=\lim_{T_0\to \infty}x_{T_0}(t)}\)</span><a class="headerlink" href="#x-t-0-t-e-uma-funcao-periodica-com-periodo-t-0-e-seja-displaystyle-x-t-lim-t-0-to-infty-x-t-0-t" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="x-t-0-t-sum-k-infty-infty-a-ke-jk-omega-0t-1">
+<h3>$<span class="math notranslate nohighlight">\( x_{T_0}(t)=\sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0t}  \;\;\;\;\;\;\;\;\;\;(1) \)</span>$<a class="headerlink" href="#x-t-0-t-sum-k-infty-infty-a-ke-jk-omega-0t-1" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="a-k-frac-1-t-0-int-t-0-2-t-0-2-x-t-0-t-e-jk-omega-0t-dt-2">
+<h3>$<span class="math notranslate nohighlight">\( a_k=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}x_{T_0}(t)e^{-jk\omega_0t}dt   \;\;\;\;\;\;\;(2) \)</span>$<a class="headerlink" href="#a-k-frac-1-t-0-int-t-0-2-t-0-2-x-t-0-t-e-jk-omega-0t-dt-2" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="substituindo-2-em-1">
+<h3>Substituindo (2) em (1):<a class="headerlink" href="#substituindo-2-em-1" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x_{T_0}(t) = \sum_{k=-\infty}^{\infty}\left[\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}x_{T_0}(u)e^{-jk\omega_0u}du \right]e^{jk\omega_0t} \]</div>
+</section>
+<section id="como-omega-0-frac-2-pi-t-0-frac-1-t-0-frac-omega-0-2-pi-substituindo">
+<h3>Como <span class="math notranslate nohighlight">\(\omega_0 = \frac{2\pi}{T_0}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{T_0}=\frac{\omega_0}{2\pi}\)</span>. Substituindo:<a class="headerlink" href="#como-omega-0-frac-2-pi-t-0-frac-1-t-0-frac-omega-0-2-pi-substituindo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x_{T_0}(t) = \sum_{k=-\infty}^{\infty}\frac{\omega_0}{2\pi}\left[\int_{-T_0/2}^{T_0/2}x_{T_0}(u)e^{-jk\omega_0 u}du\right]e^{jk\omega_0t} =\]</div>
+<div class="math notranslate nohighlight">
+\[\;\;\;\;\;\;\;=\frac{1}{2\pi}\sum_{k=-\infty}^{\infty}\left[\int_{-T_0/2}^{T_0/2}x_{T_0}(u)e^{-jk\omega_0 u}du\right]e^{j\omega_0 t}\omega_0\]</div>
+</section>
+<section id="fazendo-t-to-infty-tem-se-omega-0-to-d-omega-e-k-omega-0-to-omega">
+<h3>Fazendo <span class="math notranslate nohighlight">\(T \to \infty\)</span> tem-se <span class="math notranslate nohighlight">\(\omega_0 \to d\omega\)</span> e <span class="math notranslate nohighlight">\(k\omega_0 \to \omega\)</span>.<a class="headerlink" href="#fazendo-t-to-infty-tem-se-omega-0-to-d-omega-e-k-omega-0-to-omega" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="x-t-frac-1-2-pi-sum-k-infty-infty-left-int-infty-infty-x-u-e-j-omega-u-du-right-e-j-omega-t-d-omega">
+<h3>$<span class="math notranslate nohighlight">\( x(t)=\frac{1}{2\pi}\sum_{k=-\infty}^{\infty}\left[\int_{-\infty}^{\infty}x(u)e^{-j\omega u}du \right]e^{j\omega t}d\omega \)</span>$<a class="headerlink" href="#x-t-frac-1-2-pi-sum-k-infty-infty-left-int-infty-infty-x-u-e-j-omega-u-du-right-e-j-omega-t-d-omega" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="integral-de-riemann-sum-to-int">
+<h3>Integral de Riemann <span class="math notranslate nohighlight">\(\sum \to \int\)</span><a class="headerlink" href="#integral-de-riemann-sum-to-int" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\underbrace{\int_{-\infty}^{\infty}x(u)e^{-j\omega u}du}_{X(j\omega)} e^{j\omega t} d\omega \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\displaystyle X(j\omega) = \int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt \\
+\\
+\displaystyle x(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega
+\end{cases} 
+\end{split}\]</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula08_Fourier.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">A transformada de Fourier</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula10_Aplicacao_TF.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Apliacação de TFourier</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direto-da-definicao">Direto da Definição</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-a-1x-1-t-a-2x-2-t-a-1x-1-j-omega-a-2x-2-j-omega"><span class="math notranslate nohighlight">\(TF\{a_1x_1(t)+a_2x_2(t)\}=a_1X_1(j\omega)+a_2X_2(j\omega)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atraso-temporal">Atraso temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-t-t-0-x-j-omega-e-j-omega-t-0"><span class="math notranslate nohighlight">\(TF\{x(t-t_0)\} = X(j\omega)e^{-j\omega t_0}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justificativa">Justificativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linearidade</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atraso">Atraso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#escala">Escala</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-at-frac-1-a-x-frac-j-omega-a"><span class="math notranslate nohighlight">\( TF\{x(at)\}=\frac{1}{|a|}X(\frac{j\omega}{a})\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversao-temporal">Reversão temporal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-t-x-j-omega"><span class="math notranslate nohighlight">\(TF\{x(-t)\} = X(-j\omega)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificativa-troca-de-variavel">Justificativa: troca de variável</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-derivada">Propriedade: Derivada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-x-t-to-0-quando-t-to-pm-infty">Se <span class="math notranslate nohighlight">\(x(t)\to 0\)</span> quando <span class="math notranslate nohighlight">\(t\to \pm \infty\)</span>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-x-t-j-omega-x-j-omega"><span class="math notranslate nohighlight">\(TF\{x^{'}(t)\}= j\omega X(j\omega) \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-integral">Propriedade: Integral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-multiplicacao-pela-variavel-livre">Propriedade: Multiplicação pela variável livre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-convolucao">Propriedade: Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Propriedade: Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-especiais-funcao-impulso">Casos Especiais - Função Impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Casos Especiais - Função Impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Casos Especiais - Função Impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de-forma-geral">De forma geral,</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-especais-tf-da-constante">Casos Especais: TF da constante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedade-teor-modulacao">Propriedade: Teor. Modulação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Propriedade: Teor. Modulação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-da-exponencial-complexa">TF da exponencial complexa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-das-funcoes-seno-e-cosseno">TF das funções seno e cosseno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-da-serie-de-fourier">Interpretação da Série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-a-partir-da-serie-defourier">transformada de Fourier a partir da Série deFourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-periodica">Função periódica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-0-t-e-uma-funcao-periodica-com-periodo-t-0-e-seja-displaystyle-x-t-lim-t-0-to-infty-x-t-0-t"><span class="math notranslate nohighlight">\(x_{T_0}(t)\)</span> é uma função periódica com período <span class="math notranslate nohighlight">\(T_0\)</span> e seja <span class="math notranslate nohighlight">\(\displaystyle{x(t)=\lim_{T_0\to \infty}x_{T_0}(t)}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-0-t-sum-k-infty-infty-a-ke-jk-omega-0t-1">$<span class="math notranslate nohighlight">\( x_{T_0}(t)=\sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0t}  \;\;\;\;\;\;\;\;\;\;(1) \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-k-frac-1-t-0-int-t-0-2-t-0-2-x-t-0-t-e-jk-omega-0t-dt-2">$<span class="math notranslate nohighlight">\( a_k=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}x_{T_0}(t)e^{-jk\omega_0t}dt   \;\;\;\;\;\;\;(2) \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#substituindo-2-em-1">Substituindo (2) em (1):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-omega-0-frac-2-pi-t-0-frac-1-t-0-frac-omega-0-2-pi-substituindo">Como <span class="math notranslate nohighlight">\(\omega_0 = \frac{2\pi}{T_0}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{T_0}=\frac{\omega_0}{2\pi}\)</span>. Substituindo:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazendo-t-to-infty-tem-se-omega-0-to-d-omega-e-k-omega-0-to-omega">Fazendo <span class="math notranslate nohighlight">\(T \to \infty\)</span> tem-se <span class="math notranslate nohighlight">\(\omega_0 \to d\omega\)</span> e <span class="math notranslate nohighlight">\(k\omega_0 \to \omega\)</span>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-frac-1-2-pi-sum-k-infty-infty-left-int-infty-infty-x-u-e-j-omega-u-du-right-e-j-omega-t-d-omega">$<span class="math notranslate nohighlight">\( x(t)=\frac{1}{2\pi}\sum_{k=-\infty}^{\infty}\left[\int_{-\infty}^{\infty}x(u)e^{-j\omega u}du \right]e^{j\omega t}d\omega \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-riemann-sum-to-int">Integral de Riemann <span class="math notranslate nohighlight">\(\sum \to \int\)</span></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

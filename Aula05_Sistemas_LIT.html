@@ -1,0 +1,1194 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Sistemas Lineares e Invariantes no tempo - LTI &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula05_Sistemas_LIT';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Equações Diferenciais Lineares" href="Aula06_EDO.html" />
+    <link rel="prev" title="Sistemas e suas classes" href="Aula04_Sistemas_Classes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula05_Sistemas_LIT.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula05_Sistemas_LIT.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sistemas Lineares e Invariantes no tempo - LTI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-do-estudo">Importância do estudo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisoes-das-propriedades-de-um-sistema">Revisões das propriedades de um sistema</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-linear-e-invariante-no-tempo-lti">Sistema Linear e Invariante no tempo <strong>LTI</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-um-sistema-lti-sao-validas-as-seguintes-propriedades">Para um sistema LTI são válidas as seguintes propriedades:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sistemas lineares e invariantes no tempo - LTI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lti">Sistemas LTI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao">Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-grafica">Interpretação gráfica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao-de-duas-exponenciais">Convolução de duas exponenciais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-convolucao">Exemplos de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-dos-sistemas-lti-continuos">Propriedades dos Sistemas LTI Contínuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comutativa">Comutativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#associativa">Associativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributiva">Distributiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-dos-sistemas-lti">Propriedades dos Sistemas LTI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversibilidade">Inversibilidade</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-grafica-da-integral-de-convolucao">Interpretação Gráfica da Integral de Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-atraves-da-resposta-ao-impulso-a-integral-de-convolucao">Representação através da resposta ao impulso: A integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-em-degraus-de-x-t">Representação em degraus de x(t)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-convolucao">Integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Representação em degraus de x(t)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-de-sistemas-lti">Propriedades de Sistemas LTI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causalidade">Causalidade</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-sinais-causais-h-t-0-t-0"><span class="math notranslate nohighlight">\(\Rightarrow\)</span> sinais causais: <span class="math notranslate nohighlight">\(h(t) = 0\)</span>, <span class="math notranslate nohighlight">\(t&lt;0\)</span>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estabilidade">Estabilidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-ao-degrau-unitario">Resposta ao degrau unitário</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medida-da-resposta-ao-impulso">Medida da resposta ao impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excitacao-com-onda-quadrada">Excitação com onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-1">Exemplo 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas-da-onda-quadrada">Respostas da onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-da-resposta-da-onda-quadrada">Diferenciação da resposta da onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-2">Exemplo 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-da-onda-quadrada">Resposta da onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-diferenciada">Resposta diferenciada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-3">Exemplo 3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-experimental">Set-up experimental</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-ao-impulso">Resposta ao impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-ao-impulso-em-salas">Resposta ao impulso em salas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reverberacao">Reverberação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-discretos">Sistemas Discretos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Convolução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-soma-de-convolucao-tempo-discreto">A soma de convolução - tempo discreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Comutativa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Distributiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-em-paralelo">Sistemas em paralelo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-equivalentes">Sistemas equivalentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Estabilidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Causalidade</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sistemas-lineares-e-invariantes-no-tempo-lti">
+<h1>Sistemas Lineares e Invariantes no tempo - LTI<a class="headerlink" href="#sistemas-lineares-e-invariantes-no-tempo-lti" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="importancia-do-estudo">
+<h2>Importância do estudo<a class="headerlink" href="#importancia-do-estudo" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Muitos sistemas físicos são bem modelados com LTI.</p></li>
+<li><p>Existe conjunto de ferramentas matemáticas para caracterizá-los:</p>
+<p>1- <strong>Resposta ao impulso</strong> e a <strong>integral de convolução</strong>;</p>
+<p>2- <strong>Equações diferenciais lineares</strong> com coeficientes constantes;</p>
+</li>
+</ul>
+</section>
+<section id="revisoes-das-propriedades-de-um-sistema">
+<h2>Revisões das propriedades de um sistema<a class="headerlink" href="#revisoes-das-propriedades-de-um-sistema" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="sistema-linear-e-invariante-no-tempo-lti">
+<h3>Sistema Linear e Invariante no tempo <strong>LTI</strong>:<a class="headerlink" href="#sistema-linear-e-invariante-no-tempo-lti" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[y(t) = H[x(t)] \]</div>
+<div class="math notranslate nohighlight">
+\[x(t) \stackrel{H[.]}{\rightarrow} y(t) \]</div>
+</section>
+<section id="para-um-sistema-lti-sao-validas-as-seguintes-propriedades">
+<h3>Para um sistema LTI são válidas as seguintes propriedades:<a class="headerlink" href="#para-um-sistema-lti-sao-validas-as-seguintes-propriedades" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Linearidade:</strong> é válido o princípio da superposição:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H[a_1x_1(t)]+\dots+a_M[x_M(t)] = a_1H[x_1(t)+\dots+a_MH[x_M(t)] \]</div>
+<div class="math notranslate nohighlight">
+\[ y(T) = a_1y_1(t)+\dots+a_My_M(t) \]</div>
+<ul class="simple">
+<li><p><strong>Invariância no tempo:</strong> Deslocamento na entrada <span class="math notranslate nohighlight">\(\rightarrow\)</span> deslocamento na saída:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ y(t) = H[x(t)] \to y(t-t_0) = H[x(t-t_0)] \]</div>
+</section>
+</section>
+<section id="id1">
+<h2>Sistemas lineares e invariantes no tempo - LTI<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="definicao">
+<h3>Definição<a class="headerlink" href="#definicao" title="Permalink to this heading">#</a></h3>
+<p>Resposta ao impulso é o sinal de saída quando se aplica na entrada a função impulso unitário.<br>
+Denota-se essa resposta por h(t) ou h[n].</p>
+</section>
+<section id="sistemas-lti">
+<h3>Sistemas LTI<a class="headerlink" href="#sistemas-lti" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Quando o sistema é LTI a resposta h(t) ou h[n] caracteriza totalmente o sistema.</p></li>
+<li><p>Pode-se determinar a resposta do sistema para <strong>qualquer</strong> entrada.</p></li>
+</ul>
+</section>
+</section>
+<section id="convolucao">
+<h2>Convolução<a class="headerlink" href="#convolucao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>A integral de convolução - tempo contínuo:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \int_{-\infty}^{\infty}x(\tau)\delta(t-\tau)d\tau \]</div>
+<div class="math notranslate nohighlight">
+\[ y(t) = T\{x(t) \} \]</div>
+<p>Considerando:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h(t) = T\{\delta(t)\}\)</span></p></li>
+<li><p>o sistema invariante no tempo, <span class="math notranslate nohighlight">\(T\{\delta(t-\tau)\} = h(t-\tau)\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ y(t) = T \left\{ \int_{-\infty}^{\infty}x(\tau)\delta(t-\tau)d\tau \right\} \]</div>
+<div class="math notranslate nohighlight">
+\[ y(t) =  \int_{-\infty}^{\infty}T\{x(\tau)\delta(t-\tau)\}d\tau \]</div>
+<div class="math notranslate nohighlight">
+\[ y(t) =  \int_{-\infty}^{\infty}x(\tau)T\{\delta(t-\tau)\}d\tau \]</div>
+<div class="math notranslate nohighlight">
+\[ y(t) =  \int_{-\infty}^{\infty}x(\tau)h(t-\tau)d\tau \equiv x(t)*h(t) \]</div>
+</section>
+<section id="interpretacao-grafica">
+<h2>Interpretação gráfica<a class="headerlink" href="#interpretacao-grafica" title="Permalink to this heading">#</a></h2>
+<section id="convolucao-de-duas-exponenciais">
+<h3>Convolução de duas exponenciais<a class="headerlink" href="#convolucao-de-duas-exponenciais" title="Permalink to this heading">#</a></h3>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.3.png" /></p>
+</section>
+</section>
+<section id="exemplos-de-convolucao">
+<h2>Exemplos de convolução<a class="headerlink" href="#exemplos-de-convolucao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.1.png" /></p>
+</section>
+<section id="propriedades-dos-sistemas-lti-continuos">
+<h2>Propriedades dos Sistemas LTI Contínuos<a class="headerlink" href="#propriedades-dos-sistemas-lti-continuos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="comutativa">
+<h3>Comutativa<a class="headerlink" href="#comutativa" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t) ∗ h(t) = h(t) ∗ x(t) = \int_{-\infty}^{\infty} h(\tau)x(t-\tau)d\tau \]</div>
+</section>
+<section id="associativa">
+<h3>Associativa<a class="headerlink" href="#associativa" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t) ∗ [h_1 (t) ∗ h_2 (t)] = [x(t) ∗ h_1 (t)] ∗ h_2 (t) \]</div>
+</section>
+<section id="distributiva">
+<h3>Distributiva<a class="headerlink" href="#distributiva" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t) ∗ [h_1 (t) + h_2 (t)] = x(t) ∗ h_1 (t) + x(t) ∗ h_2 (t) \]</div>
+<p><img alt="fig4.1.png" src="_images/fig5.8.png" /></p>
+</section>
+</section>
+<section id="propriedades-dos-sistemas-lti">
+<h2>Propriedades dos Sistemas LTI<a class="headerlink" href="#propriedades-dos-sistemas-lti" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="inversibilidade">
+<h3>Inversibilidade<a class="headerlink" href="#inversibilidade" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig5.9.png" /></p>
+<div class="math notranslate nohighlight">
+\[ y_i (t) = h(t) ∗ h_i (t) ∗ x(t) = x(t) \]</div>
+<div class="math notranslate nohighlight">
+\[ h(t) ∗ h i (t) = δ(t) \]</div>
+<p><img alt="fig4.1.png" src="_images/fig5.10.png" /></p>
+</section>
+</section>
+<section id="interpretacao-grafica-da-integral-de-convolucao">
+<h2>Interpretação Gráfica da Integral de Convolução<a class="headerlink" href="#interpretacao-grafica-da-integral-de-convolucao" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="representacao-atraves-da-resposta-ao-impulso-a-integral-de-convolucao">
+<h2>Representação através da resposta ao impulso: A integral de convolução<a class="headerlink" href="#representacao-atraves-da-resposta-ao-impulso-a-integral-de-convolucao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Definição:</p>
+<ul>
+<li><p>Resposta ao impulso de um sistema LTI é o sinal de saída quando aplica-se na entrada a função impulso unitário. Denota-se por h(t).</p></li>
+</ul>
+</li>
+<li><p>Representação de uma função através da função \delta(t):</p></li>
+<li><p>Considere:</p>
+<ul>
+<li><p>x(t) um sinal qualquer;</p></li>
+<li><p>Uma aproximação em <span class="math notranslate nohighlight">\(\widehat x\)</span> degraus em que cada degrau possa ser representado pelo seguinte pulso:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\delta_{\Delta}(t) =
+\begin{cases}
+\displaystyle \frac{1}{\Delta\tau}, 0 \leq t &lt; \Delta\tau \\
+\\
+\displaystyle 0, c.c
+\end{cases} 
+\end{split}\]</div>
+</section>
+<section id="representacao-em-degraus-de-x-t">
+<h2>Representação em degraus de x(t)<a class="headerlink" href="#representacao-em-degraus-de-x-t" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.11t.png" /></p>
+<p>Desde que <span class="math notranslate nohighlight">\(\Delta\tau\delta_\Delta\)</span> tenha aplitude 1 então x(t) pode ser aproximada por:</p>
+<div class="math notranslate nohighlight">
+\[ \widehat x = \sum_{k=-\infty}^{\infty}x=(k\Delta\tau)\delta_\Delta(t-k\Delta\tau)\Delta\tau \]</div>
+</section>
+<section id="integral-de-convolucao">
+<h2>Integral de convolução<a class="headerlink" href="#integral-de-convolucao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Seja h(t) a resposta de um sistema LTI ao impulso unitário:</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\delta(t) \stackrel{H[.]}{\rightarrow} h(t)\)</span></p>
+<ul class="simple">
+<li><p>Suponha que seja aplicado no sistema um sinal x(t) em que:</p>
+<ul>
+<li><p>x(t) seja uma aproximação em degraus (como anteriormente), assim, para um instante particular <span class="math notranslate nohighlight">\(k\Delta\tau\)</span> tem aplicado na entrada do sistema o seguinte pulso:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ x(k\Delta\tau)\delta_\Delta(t-k\Delta\tau)\Delta\tau \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;acAw5WGtzuk&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="600"
+            height="300"
+            src="https://www.youtube.com/embed/acAw5WGtzuk"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+<section id="id2">
+<h2>Representação em degraus de x(t)<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Conforme <span class="math notranslate nohighlight">\(\Delta\tau \rightarrow\)</span> 0, a aproximação torna-se cada vez melhor.</p></li>
+<li><p>No limite tem-se que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ x(t) = \lim_{\Delta\tau\to\infty}\sum_{k=-\infty}^{\infty}x(k\Delta\tau)\delta_\Delta(t-k\Delta\tau)\Delta\tau \]</div>
+<ul class="simple">
+<li><p>No limite, note ainda que:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(k\Delta\tau \rightarrow\)</span> um valor qualquer <span class="math notranslate nohighlight">\(\tau\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta_\Delta \rightarrow\)</span> <span class="math notranslate nohighlight">\(\delta(t)\)</span> função impulso unitário;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta\tau \rightarrow d\tau\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>Portanto, a somatória torna-se uma integral do tipo:</p>
+<p>\begin{equation} x(t) = \int_{-\infty}^{\infty}x(\tau)\delta(t-\tau)d\tau \end{equation}</p>
+<p><strong><span class="math notranslate nohighlight">\(x(t)\)</span> pode ser representado por uma soma de impulsos deslocados</strong></p>
+</section>
+<section id="id3">
+<h2>Integral de convolução<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Definindo:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\widehat h(t)\)</span> como a resposta do LTI ao pulso <span class="math notranslate nohighlight">\(\delta_\Delta(t)\)</span>, então a resposta do sistema ao pulso <span class="math notranslate nohighlight">\(x(k\Delta\tau)\delta_\Delta(t-k\Delta\tau)\Delta\tau\)</span> será:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \widehat y(t) = \sum_{k=-\infty}^{\infty}x(k\Delta\tau)\widehat h(t-k\Delta\tau)\Delta\tau \]</div>
+<p><strong>isto é, a saída é a soma de todas as contribuições individuais de cada pulso deslocado.</strong></p>
+</section>
+<section id="id4">
+<h2>Integral de convolução<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Novamente, conforme <span class="math notranslate nohighlight">\(\Delta\tau \rightarrow 0\)</span> a aproximação torna-se cada vez melhor.</p>
+<ul>
+<li><p>e no limite tem-se que:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ y(t) = \int_{-\infty}^{\infty}x(\tau)h(t-\tau)d\tau \]</div>
+<ul class="simple">
+<li><p>a equação acima é conhecida como <strong>integral de convolução</strong> ou integral de superposição.</p></li>
+<li><p>corresponde à representação de um sistema LTI em termos de sua resposta ao impulso <strong>h(t)</strong>.</p></li>
+<li><p>ela é represemtada por: <span class="math notranslate nohighlight">\(y(t) = x(t) * h(t)\)</span></p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig5.12.png" /></p>
+</section>
+<section id="propriedades-de-sistemas-lti">
+<h2>Propriedades de Sistemas LTI<a class="headerlink" href="#propriedades-de-sistemas-lti" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="causalidade">
+<h2>Causalidade<a class="headerlink" href="#causalidade" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Um sistema é causal se a saída depende somente dos valores presentes ou passados da entrada.</p></li>
+</ul>
+<p>A seguinte condição deve ser satisfeita: h(t) = 0, t&lt;0.</p>
+<p>Para a integral de convolução tem-se:</p>
+<div class="math notranslate nohighlight">
+\[ y(t) = \int_{-\infty}^{0^-}h(\tau)x(t-\tau)d\tau + \int_{0}^{\infty}h(\tau)x(t-\tau)d\tau \]</div>
+<section id="rightarrow-sinais-causais-h-t-0-t-0">
+<h3><span class="math notranslate nohighlight">\(\Rightarrow\)</span> sinais causais: <span class="math notranslate nohighlight">\(h(t) = 0\)</span>, <span class="math notranslate nohighlight">\(t&lt;0\)</span>.<a class="headerlink" href="#rightarrow-sinais-causais-h-t-0-t-0" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="estabilidade">
+<h2>Estabilidade<a class="headerlink" href="#estabilidade" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Um sistema é estável se para toda entrada limitada a saída também é limitada. (BIBO)</p>
+<p>Seja <span class="math notranslate nohighlight">\(|x(t)|\leq M_x &lt; \infty\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|y(t)| = \left| \int_{-\infty}^{\infty} h(\tau)x(t-\tau)d\tau \right| \leq \int_{-\infty}^{\infty}|h(\tau)| |x(t-\tau)|d\tau \\ \leq M_x\int_{-\infty}^{\infty}|h(\tau)|d\tau &lt; \infty  \end{split}\]</div>
+<p>Portanto, <span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty}|h(\tau)|d\tau &lt; \infty\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(h(t)\)</span> deve ser absolutamente somável</p>
+</section>
+<section id="resposta-ao-degrau-unitario">
+<h2>Resposta ao degrau unitário<a class="headerlink" href="#resposta-ao-degrau-unitario" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Informações sobre o comportamento do sistema para mudanças abruptas no sinal.</p></li>
+<li><p>Está relacionada com a resposta ao impulso.</p></li>
+</ul>
+<p>Seja: <span class="math notranslate nohighlight">\(s(t) = h(t) * u(t)\)</span>
+$<span class="math notranslate nohighlight">\( s(t) =  \int_{-\infty}^{\infty}h(\tau)u(t-\tau)d\tau = \int_{-\infty}^{t}h(\tau)u(t-\tau)d\tau + \int_{t^+}^{\infty}h(\tau)u(t-\tau)d\tau \)</span>$</p>
+<p>Sabendo que <span class="math notranslate nohighlight">\(u(t-\tau) = 1\)</span> para <span class="math notranslate nohighlight">\(t \geq \tau\)</span> e 0 c.c., então: <span class="math notranslate nohighlight">\(s(t) = \int_{-\infty}^{t}h(\tau)d\tau \to h(t) = \frac{d}{dt}s(t)\)</span></p>
+<section id="exemplo">
+<h3>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this heading">#</a></h3>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Encontre a resposta ao degrau unitário para um circuito RC tal que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ h(t) = \frac{1}{RC}e^{-t/RC}u(t) \]</div>
+<div class="math notranslate nohighlight">
+\[ s(t) = \int_{-\infty}^{t} \frac{1}{RC}e^{-\tau/RC}u(\tau)d\tau = \frac{1}{RC}\int_{0}^{t} e^{-\tau/RC}d\tau = \left[1 - e^{-t/RC}\right]u(t) \]</div>
+</section>
+</section>
+<section id="medida-da-resposta-ao-impulso">
+<h2>Medida da resposta ao impulso<a class="headerlink" href="#medida-da-resposta-ao-impulso" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.13.png" /></p>
+</section>
+<section id="excitacao-com-onda-quadrada">
+<h2>Excitação com onda quadrada<a class="headerlink" href="#excitacao-com-onda-quadrada" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.14.png" /></p>
+</section>
+<section id="exemplo-1">
+<h2>Exemplo 1<a class="headerlink" href="#exemplo-1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.15.png" /></p>
+</section>
+<section id="respostas-da-onda-quadrada">
+<h2>Respostas da onda quadrada<a class="headerlink" href="#respostas-da-onda-quadrada" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.16.png" /></p>
+</section>
+<section id="diferenciacao-da-resposta-da-onda-quadrada">
+<h2>Diferenciação da resposta da onda quadrada<a class="headerlink" href="#diferenciacao-da-resposta-da-onda-quadrada" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.17.png" /></p>
+</section>
+<section id="exemplo-2">
+<h2>Exemplo 2<a class="headerlink" href="#exemplo-2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.18.png" /></p>
+</section>
+<section id="resposta-da-onda-quadrada">
+<h2>Resposta da onda quadrada<a class="headerlink" href="#resposta-da-onda-quadrada" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.19.png" /></p>
+</section>
+<section id="resposta-diferenciada">
+<h2>Resposta diferenciada<a class="headerlink" href="#resposta-diferenciada" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.20.png" /></p>
+</section>
+<section id="exemplo-3">
+<h2>Exemplo 3<a class="headerlink" href="#exemplo-3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Algoritmo para determinação do amortecimento de materiais cerâmicos pela técnica das frequências naturais de vibração via excitação por impulso</p></li>
+</ul>
+<section id="set-up-experimental">
+<h3>Set-up experimental<a class="headerlink" href="#set-up-experimental" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig5.21.png" /></p>
+</section>
+</section>
+<section id="resposta-ao-impulso">
+<h2>Resposta ao impulso<a class="headerlink" href="#resposta-ao-impulso" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.22.png" /></p>
+</section>
+<section id="resposta-ao-impulso-em-salas">
+<h2>Resposta ao impulso em salas<a class="headerlink" href="#resposta-ao-impulso-em-salas" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig5.23.png" /></p>
+</section>
+<section id="reverberacao">
+<h2>Reverberação<a class="headerlink" href="#reverberacao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>As intensidades dos ecos são sensiveis à geometria dos ambientes e ao materiais que o compõem.</p></li>
+<li><p>A reverberação é um processo linear e invariante no tempo e, sendo assim, caracterizado pela resposta ao impulso.</p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig5.24.png" /></p>
+</section>
+<section id="sistemas-discretos">
+<h2>Sistemas Discretos<a class="headerlink" href="#sistemas-discretos" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="id5">
+<h2>Convolução<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="a-soma-de-convolucao-tempo-discreto">
+<h3>A soma de convolução - tempo discreto<a class="headerlink" href="#a-soma-de-convolucao-tempo-discreto" title="Permalink to this heading">#</a></h3>
+<p>Sabendo que:</p>
+<div class="math notranslate nohighlight">
+\[ x[n] = \sum_{k=-\infty}^{\infty}x[k]\delta[n-k] \]</div>
+<p>Tem-se</p>
+<div class="math notranslate nohighlight">
+\[ y[n] = T\left\{ \sum_{k=-\infty}^{\infty}x[k]\delta[n-k]\right\} \]</div>
+<div class="math notranslate nohighlight">
+\[ y=[n] = \sum_{k=-\infty}^{\infty}x[k]T\delta[n-k] = \sum_{k=-\infty}^{\infty}x[k]h[n-k] \equiv x[n]*h[n] \]</div>
+</section>
+</section>
+<section id="id6">
+<h2>Comutativa<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[ x[n]*h[n] = h[n]*x[n] \]</div>
+<p><img alt="fig4.1.png" src="_images/fig5.4.png" /></p>
+</section>
+<section id="id7">
+<h2>Distributiva<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[ y[n] = x[n]*(h_1[n]+h_2[n]) = x[n]*h_1[n]+x[n]*h_2[n] \]</div>
+<section id="sistemas-em-paralelo">
+<h3>Sistemas em paralelo<a class="headerlink" href="#sistemas-em-paralelo" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig5.5.png" /></p>
+</section>
+</section>
+<section id="sistemas-equivalentes">
+<h2>Sistemas equivalentes<a class="headerlink" href="#sistemas-equivalentes" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Caso paralelo: <span class="math notranslate nohighlight">\(h_{eq} = h_1[n] + h_2[n\)</span></p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig5.6.png" /></p>
+<ul class="simple">
+<li><p>Caso série: <span class="math notranslate nohighlight">\(h_{eq} = h_1[n]*h_2[n]\)</span></p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig5.7.png" /></p>
+</section>
+<section id="id8">
+<h2>Estabilidade<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Sistemas LIT são estáveis se e somente se:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \sum_{k=-\infty}^{\infty}|h(k)|&lt;\infty \]</div>
+<p>Justificativa:</p>
+<div class="math notranslate nohighlight">
+\[ |y[n]| = \left|\sum_{k=-\infty}^{\infty} h[n]x[n-k] \right| \leq \sum_{k=-\infty}^{\infty} |h[n]| |x[n-k]| \]</div>
+<p>Se <span class="math notranslate nohighlight">\(x[n]\)</span> é limitado (<span class="math notranslate nohighlight">\(x[n] \leq B_x\)</span>) então</p>
+<div class="math notranslate nohighlight">
+\[ B_x \geq \sum_{k=-\infty}^{\infty}|h(k)| \]</div>
+</section>
+<section id="id9">
+<h2>Causalidade<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Sistemas LIT são causais se somente se <span class="math notranslate nohighlight">\(h[n = 0\)</span>, <span class="math notranslate nohighlight">\(n&lt;0\)</span>.</p></li>
+</ul>
+<p>Justificativa:</p>
+<div class="math notranslate nohighlight">
+\[ y(n_0) = \sum_{k=-\infty}^{\infty} h(k)x(n_0-k) \]</div>
+<div class="math notranslate nohighlight">
+\[ = \sum_{k=0}^{\infty} h(k)x(n_0-k) + \sum_{k=-\infty}^{-1} h(k)x(n_0-k) \]</div>
+<p>O primeiro somatório corresponde aos valores correntes e passados do sinal de entrada. Por outro lado, o segundo somatório envolve os sinais em tempos futuros. Para que a saída <span class="math notranslate nohighlight">\(y(\mu_0\)</span>) dependa apenas dos valores <span class="math notranslate nohighlight">\(n \leq n_0\)</span> a resposta impulsiva do sistema deverá ter <span class="math notranslate nohighlight">\(h(n) = 0\)</span>, <span class="math notranslate nohighlight">\(n &lt; 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>O gráfico das duas funções</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span> <span class="o">=</span> <span class="mi">50</span>  
+<span class="n">T</span> <span class="o">=</span> <span class="mi">5</span>    
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$f_1(t)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f2</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$f_2(t)$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6c5d1bee10&gt;]
+</pre></div>
+</div>
+<img alt="_images/36c7d337a149201478e77e7e59b6aff30c4cca6e3ceb21cbf39f59e5db5c2651.png" src="_images/36c7d337a149201478e77e7e59b6aff30c4cca6e3ceb21cbf39f59e5db5c2651.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">flipped</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">tau</span><span class="p">:</span> <span class="n">f2</span><span class="p">(</span><span class="n">t0</span><span class="o">-</span><span class="n">tau</span><span class="p">)</span>
+<span class="n">product</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">tau</span><span class="p">:</span> <span class="n">f1</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">*</span><span class="n">f2</span><span class="p">(</span><span class="n">t0</span><span class="o">-</span><span class="n">tau</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f_1(\tau)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">flipped</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f_2(t_0-\tau)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">product</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f_1(\tau)f_2(t_0-\tau)$&#39;</span><span class="p">)</span>
+
+
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Resultado da convolução: $f_1(t)*f_2(t)|_{t_0=</span><span class="si">%.0f</span><span class="s2">} = </span><span class="si">%.2f</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">simps</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">Resultado da convolução: $f_1(t)*f_2(t)|_{t_0=1} = 0.19$</div><img alt="_images/351eae35e1fc44aa94d0b6505aa209a1031fd70f68d449d7f55e2732bbad0fcb.png" src="_images/351eae35e1fc44aa94d0b6505aa209a1031fd70f68d449d7f55e2732bbad0fcb.png" />
+</div>
+</div>
+<p>Como vemos, a curva verde <span class="math notranslate nohighlight">\(f_2(t_0−\tau)\)</span> foi deslocada por <span class="math notranslate nohighlight">\(t_0\)</span></p>
+<p>para a direita e, em seguida, espelhado horizontalmente. O valor da integral de convolução corresponde à área sombreada em vermelho, que é o produto de ambas as curvas.</p>
+<p>Podemos agora escrever uma pequena função que ilustra a integral de convolução para diferentes deslocamentos no tempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">showConvolution</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">t0</span><span class="p">):</span>
+    <span class="n">convolution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">t_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="n">prod</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">tau</span><span class="p">:</span> <span class="n">f1</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">f2</span><span class="p">(</span><span class="n">t_</span><span class="o">-</span><span class="n">tau</span><span class="p">)</span>
+        <span class="n">convolution</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">simps</span><span class="p">(</span><span class="n">prod</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
+    
+    <span class="n">f_shift</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">f2</span><span class="p">(</span><span class="n">t0</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">prod</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">tau</span><span class="p">:</span> <span class="n">f1</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">f2</span><span class="p">(</span><span class="n">t0</span><span class="o">-</span><span class="n">tau</span><span class="p">)</span>
+   
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f_1(\tau)$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">f_shift</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f_2(t_0-\tau)$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">prod</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f_1(\tau)f_2(t_0-\tau)$&#39;</span><span class="p">)</span>
+    
+   
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">convolution</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$(f_1*f_2)(t)$&#39;</span><span class="p">)</span>
+    
+    <span class="n">current_value</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">simps</span><span class="p">(</span><span class="n">prod</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">current_value</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>  <span class="c1"># plot the point</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showConvolution</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">t0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bd0f2ef3ca301587b9c439f618c5b7b55b683f914a90f2a34a8f52d366b4fe41.png" src="_images/bd0f2ef3ca301587b9c439f618c5b7b55b683f914a90f2a34a8f52d366b4fe41.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula04_Sistemas_Classes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sistemas e suas classes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula06_EDO.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Equações Diferenciais Lineares</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importancia-do-estudo">Importância do estudo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisoes-das-propriedades-de-um-sistema">Revisões das propriedades de um sistema</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-linear-e-invariante-no-tempo-lti">Sistema Linear e Invariante no tempo <strong>LTI</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-um-sistema-lti-sao-validas-as-seguintes-propriedades">Para um sistema LTI são válidas as seguintes propriedades:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sistemas lineares e invariantes no tempo - LTI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lti">Sistemas LTI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao">Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-grafica">Interpretação gráfica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao-de-duas-exponenciais">Convolução de duas exponenciais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-convolucao">Exemplos de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-dos-sistemas-lti-continuos">Propriedades dos Sistemas LTI Contínuos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comutativa">Comutativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#associativa">Associativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributiva">Distributiva</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-dos-sistemas-lti">Propriedades dos Sistemas LTI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversibilidade">Inversibilidade</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-grafica-da-integral-de-convolucao">Interpretação Gráfica da Integral de Convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-atraves-da-resposta-ao-impulso-a-integral-de-convolucao">Representação através da resposta ao impulso: A integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-em-degraus-de-x-t">Representação em degraus de x(t)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-convolucao">Integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Representação em degraus de x(t)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Integral de convolução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-de-sistemas-lti">Propriedades de Sistemas LTI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causalidade">Causalidade</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-sinais-causais-h-t-0-t-0"><span class="math notranslate nohighlight">\(\Rightarrow\)</span> sinais causais: <span class="math notranslate nohighlight">\(h(t) = 0\)</span>, <span class="math notranslate nohighlight">\(t&lt;0\)</span>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estabilidade">Estabilidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-ao-degrau-unitario">Resposta ao degrau unitário</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medida-da-resposta-ao-impulso">Medida da resposta ao impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excitacao-com-onda-quadrada">Excitação com onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-1">Exemplo 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#respostas-da-onda-quadrada">Respostas da onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-da-resposta-da-onda-quadrada">Diferenciação da resposta da onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-2">Exemplo 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-da-onda-quadrada">Resposta da onda quadrada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-diferenciada">Resposta diferenciada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-3">Exemplo 3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-experimental">Set-up experimental</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-ao-impulso">Resposta ao impulso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-ao-impulso-em-salas">Resposta ao impulso em salas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reverberacao">Reverberação</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-discretos">Sistemas Discretos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Convolução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-soma-de-convolucao-tempo-discreto">A soma de convolução - tempo discreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Comutativa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Distributiva</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-em-paralelo">Sistemas em paralelo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-equivalentes">Sistemas equivalentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Estabilidade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Causalidade</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

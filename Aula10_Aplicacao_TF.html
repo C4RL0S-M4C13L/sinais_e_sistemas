@@ -1,0 +1,1235 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Apliacação de TFourier &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula10_Aplicacao_TF';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Diagrama de Bode" href="Aula11_Diagrama_de_Bode.html" />
+    <link rel="prev" title="Transformada de Fourier de Funções especiais" href="Aula09_Funcoes_Especiais.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula10_Aplicacao_TF.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula10_Aplicacao_TF.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Apliacação de TFourier</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisao-de-serie-de-fourier">1. Revisão de Série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amostragem">2. Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-fourier">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao">Representação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Representação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinacao-dos-coeficientes">Determinação dos coeficientes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Determinação dos coeficientes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observacoes">Observações</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equacoes">Equações</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-tranformada-de-fourier">A tranformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-para-sinais-periodicos">Transformada de Fourier para sinais periódicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-fourier">A transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Transformada de Fourier para sinais periódicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes">Condições</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onda-quadrada">Onda quadrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-dos-coeficientes-a-k">Gráficos dos coeficientes <span class="math notranslate nohighlight">\(a_k\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espectro-de-amplitude">Espectro de amplitude</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espectro-de-fase">Espectro de fase</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onda-dente-de-serra">Onda dente de serra</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-serie-de-fourier">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversao-no-tempo">Reversão no tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressao-expansao">Compressão/expansão</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-os-sinais">Operações com os sinais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-de-parseval">Relação de Parseval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#densidade-espectral-de-potencia">Densidade Espectral de Potência</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simetrias-na-funcao">Simetrias na função</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-trigonometrica-de-fourier">Série trigonométrica de Fourier</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Propriedades da série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Propriedades da série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Propriedades da série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-matematica">Representação Matemática</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-a-transformada-de-fourier-tem-se">Calculando a transformada de Fourier tem-se:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes-de-nyquist">Condições de Nyquist</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperacao-de-x-t">Recuperação de x(t)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-da-amostragem">Teorema da Amostragem</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apliacacao-de-tfourier">
+<h1>Apliacação de TFourier<a class="headerlink" href="#apliacacao-de-tfourier" title="Permalink to this heading">#</a></h1>
+<section id="revisao-de-serie-de-fourier">
+<h2>1. Revisão de Série de Fourier<a class="headerlink" href="#revisao-de-serie-de-fourier" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="amostragem">
+<h2>2. Amostragem<a class="headerlink" href="#amostragem" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="series-de-fourier">
+<h2>Séries de Fourier<a class="headerlink" href="#series-de-fourier" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="representacao">
+<h3>Representação<a class="headerlink" href="#representacao" title="Permalink to this heading">#</a></h3>
+<p>Anteriormente foi apresentado dois tipos de sinais periódicos:</p>
+<div class="math notranslate nohighlight">
+\[ cos(\omega_0t) \rightarrow \text{sinal senoidal} \]</div>
+<div class="math notranslate nohighlight">
+\[ e^{j\omega_0t} = cos(\omega_0t) + jsen(\omega_0t) \]</div>
+<p>Conjunto de exponenciais complexas relacionadas harmonicamente:</p>
+<div class="math notranslate nohighlight">
+\[\phi_k(t) = e^{jk\omega_0t}, \ \ k=0, \pm 1, \pm 2, \dots \]</div>
+<div class="math notranslate nohighlight">
+\[ w_k = |k|\omega_0 \rightarrow \text{frequência de cada harmônico} \]</div>
+<div class="math notranslate nohighlight">
+\[ T_k = \frac{T_0}{|k|} \rightarrow \text{período de cada harmônico} \]</div>
+</section>
+</section>
+<section id="id1">
+<h2>Séries de Fourier<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id2">
+<h3>Representação<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Uma combinação linear do conjunto de sinais periódico pode ser escrita da seguinte maneira:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \sum_{k=-\infty}^{\infty} a_ke^{jk\omega_0t} \]</div>
+<p>Série de Fourier para sinais periódicos:</p>
+<div class="math notranslate nohighlight">
+\[ a_k = A_k e^{j\Phi_k} \rightarrow \text{coeficiente da série} \rightarrow \text{complexos} \]</div>
+<div class="math notranslate nohighlight">
+\[ k=0 \rightarrow \text{termo constante ou dc} \]</div>
+<div class="math notranslate nohighlight">
+\[ k=1 \rightarrow \omega_0 \rightarrow \text{primeiro harmônico (freq. fundamental)} \]</div>
+<div class="math notranslate nohighlight">
+\[ k = 2 \rightarrow \text{segundo harmônico} \]</div>
+</section>
+</section>
+<section id="id3">
+<h2>Séries de Fourier<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="exemplo">
+<h3>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t) = \sum_{k=-3}^{3}a_k e^{jk\omega_0t}, \omega_0 = 2\pi \]</div>
+<div class="math notranslate nohighlight">
+\[ a_0=\frac{1}{2}, a_1=a_{\_1}=\frac{1}{4}, a_2=a_{\_2}=\frac{1}{2}, a_3=a_{\_3}=\frac{1}{3}\]</div>
+<p>Expandindo a equação acima e agrupando os sinais de mesma frequência tem-se:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \frac{1}{2}+\frac{1}{4}\left(e^{j2\pi t}+e^{-j2\pi t} \right)+ \frac{1}{2}\left(e^{j4\pi t}+e^{-j4\pi t} \right)+ \frac{1}{3}\left(e^{j6\pi t}+e^{-j6\pi t} \right) \]</div>
+<div class="math notranslate nohighlight">
+\[x(t) = \frac{1}{2} + \frac{1}{2}cos(2\pi t)+cos(4\pi t)+\frac{2}{3}cos(6\pi t) \]</div>
+</section>
+</section>
+<section id="id4">
+<h2>Séries de Fourier<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id5">
+<h3>Exemplo<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig8.4.png" /></p>
+</section>
+</section>
+<section id="id6">
+<h2>Séries de Fourier<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="determinacao-dos-coeficientes">
+<h3>Determinação dos coeficientes<a class="headerlink" href="#determinacao-dos-coeficientes" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t) = \sum_{k=-\infty}^{\infty} a_k e^{jk\omega_0t} \]</div>
+<p>Multiplicando ambos os lados da equação acima por <span class="math notranslate nohighlight">\(e^{-jn\omega_0 t}\)</span></p>
+<div class="math notranslate nohighlight">
+\[ x(t)e^{-jn\omega_0 t} = \sum_{k=-\infty}^{\infty} a_ke^{jk\omega_0t}e^{-jn\omega_0 t} \]</div>
+<p>Integrando em um período:</p>
+<div class="math notranslate nohighlight">
+\[ \int_{0}^{T_0}x(t)e^{-jn\omega t}dt = \int_{0}^{T_0} \sum_{k=-\infty}^{\infty} a_ke^{j(k-n)\omega_0t}dt \]</div>
+</section>
+</section>
+<section id="id7">
+<h2>Séries de Fourier<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id8">
+<h3>Determinação dos coeficientes<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>Trocando a ordem da integral com o somatório:</p>
+<div class="math notranslate nohighlight">
+\[ \int_{0}^{T_0}x(t)e^{-jn\omega_0t}dt = \sum_{k=-\infty}^{\infty}a_k \int_{0}^{T_0}e^{j(k-n)\omega_0t}dt \]</div>
+<p>Como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \int_{0}^{T_0}e^{j(k-n)\omega_0t}dt = \begin{cases}
+\displaystyle 0, k\neq n \\
+\\
+\displaystyle T_0, k=n
+\end{cases} 
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} e^{jk\omega_0t}= \begin{cases}
+\displaystyle \rightarrow \text{funções ortogonais} \\
+\\
+\displaystyle \rightarrow \text{base para funções periódicas}
+\end{cases} \end{split}\]</div>
+<p>Portanto:</p>
+<div class="math notranslate nohighlight">
+\[ a_k=\frac{1}{T_0}\int_{0}^{T_0}x(t)e^{-jk\omega_0t}dt \]</div>
+</section>
+</section>
+<section id="id9">
+<h2>Séries de Fourier<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="observacoes">
+<h3>Observações<a class="headerlink" href="#observacoes" title="Permalink to this heading">#</a></h3>
+<p>O intervalo de integração não precisa ser o anterior, basta que seja em um período qualquer.</p>
+</section>
+<section id="equacoes">
+<h3>Equações<a class="headerlink" href="#equacoes" title="Permalink to this heading">#</a></h3>
+<p>Par de equações que definem a série exponencial de Fourier:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \sum_{k=-\infty}^{\infty} a_ke^{jk\omega_0t} \ \ \ \text{equação de síntese} \]</div>
+<div class="math notranslate nohighlight">
+\[ a_k = \frac{1}{T_0} \int_{T_0}x(t)e^{-jk\omega_0t}dt \ \ \ \text{equação de análise} \]</div>
+</section>
+</section>
+<section id="a-tranformada-de-fourier">
+<h2>A tranformada de Fourier<a class="headerlink" href="#a-tranformada-de-fourier" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="transformada-de-fourier-para-sinais-periodicos">
+<h3>Transformada de Fourier para sinais periódicos<a class="headerlink" href="#transformada-de-fourier-para-sinais-periodicos" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Um sinal periódico não é absolutamente integrável portanto, a princípio ele não possui transformada de Fourier.</p></li>
+<li><p>A série e a transformada são relacionadas. Podemos obter a transformada diretamente da série utilizando a função impulso.</p></li>
+</ul>
+</section>
+</section>
+<section id="a-transformada-de-fourier">
+<h2>A transformada de Fourier<a class="headerlink" href="#a-transformada-de-fourier" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id10">
+<h3>Transformada de Fourier para sinais periódicos<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p>Seja:</p>
+<div class="math notranslate nohighlight">
+\[ X(\omega) = 2\pi \delta(w-\omega_0) \rightarrow x(t) = e^{j\omega_0t} \]</div>
+<p>Seja <span class="math notranslate nohighlight">\(X(\omega)\)</span> uma combinação linear de impulsos, isto é,</p>
+<div class="math notranslate nohighlight">
+\[ X(\omega) = 2\pi \sum_{k=-\infty}^{\infty}a_k\delta(w-k\omega_0) \rightarrow x(t) = \sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0t} \]</div>
+<p>Transformada de Fourier para sinais periódicos:</p>
+<div class="math notranslate nohighlight">
+\[ X(\omega) = \sum_{k=-\infty}^{\infty} 2\pi a_k \delta(w-k\omega_0) \]</div>
+<div class="math notranslate nohighlight">
+\[ X(f) = \sum_{k=-\infty}^{\infty} a_k\delta(f-kf_0) \]</div>
+</section>
+</section>
+<section id="id11">
+<h2>Séries de Fourier<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="condicoes">
+<h3>Condições<a class="headerlink" href="#condicoes" title="Permalink to this heading">#</a></h3>
+<p>A convergência da série é grantida se as condições de Dirichlet forem satisfeitas:</p>
+<ul class="simple">
+<li><p>x(t) é um sinal limitado (absolutamente somável em um período);</p></li>
+<li><p>apresenta um número finito de máximos e mínimos em um período;</p></li>
+<li><p>Apresenta um número finito de descontinuidades em um período.</p></li>
+</ul>
+<p>Se o sinal satisfazer as condições acima e não for contínuo então a série convergirá para o ponto médio de x(t) em cada descontinuidade.</p>
+</section>
+</section>
+<section id="id12">
+<h2>Séries de Fourier<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id13">
+<h3>Exemplo<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\( x(t) = \frac{1}{2} + sen(\omega_0t) + 2cos(\omega_0t)+cos\left(2\omega_0t + \frac{\pi}{4}\right) \)</span>$</p>
+<p><img alt="fig4.1.png" src="_images/fig8.5.png" /></p>
+</section>
+</section>
+<section id="id14">
+<h2>Séries de Fourier<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="onda-quadrada">
+<h3>Onda quadrada<a class="headerlink" href="#onda-quadrada" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split} x(t) = 
+\begin{cases}
+\displaystyle 1, |t| &lt; \tau \\
+\\
+\displaystyle 0, \tau &lt; |t|
+\end{cases} \end{split}\]</div>
+<p><img alt="fig4.1.png" src="_images/fig8.6.png" /></p>
+<div class="math notranslate nohighlight">
+\[ a_k = \frac{1}{T_0}\int_{-\tau}^{\tau}e^{-jk\omega_0t}dt \rightarrow a_k = \frac{1}{k\pi}sen(k\omega_0\tau),\ k \neq 0; \ a_0=\frac{2\tau}{T_0} \]</div>
+<div class="math notranslate nohighlight">
+\[ T_0=4\tau \rightarrow \ \ \ a_k=\frac{sen(k\pi/2)}{k\pi},\ k\neq 0 \]</div>
+<div class="math notranslate nohighlight">
+\[ T_0=8\tau \rightarrow \ \ \ a_k=\frac{sen(k\pi/4)}{k\pi},\ k\neq 0 \]</div>
+<p><strong>Observação:</strong> Neste caso particular os coeficientes s]ao reais.</p>
+</section>
+</section>
+<section id="id15">
+<h2>Séries de Fourier<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="graficos-dos-coeficientes-a-k">
+<h3>Gráficos dos coeficientes <span class="math notranslate nohighlight">\(a_k\)</span><a class="headerlink" href="#graficos-dos-coeficientes-a-k" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig8.7.png" /></p>
+</section>
+</section>
+<section id="id16">
+<h2>Séries de Fourier<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="espectro-de-amplitude">
+<h3>Espectro de amplitude<a class="headerlink" href="#espectro-de-amplitude" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig8.8.png" /></p>
+</section>
+<section id="espectro-de-fase">
+<h3>Espectro de fase<a class="headerlink" href="#espectro-de-fase" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig8.9.png" /></p>
+</section>
+</section>
+<section id="id17">
+<h2>Séries de Fourier<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="onda-dente-de-serra">
+<h3>Onda dente de serra<a class="headerlink" href="#onda-dente-de-serra" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t) = t, \ |t| &lt; 1 \]</div>
+<div class="math notranslate nohighlight">
+\[ \rightarrow t_0 = 2s\omega_0 = \pi \text{rad/s} \]</div>
+<p><img alt="fig4.1.png" src="_images/fig8.11.png" /></p>
+<div class="math notranslate nohighlight">
+\[ a_k = \frac{(-1)^k}{k\pi}j = \frac{j}{k\pi}cos(k\pi) \ \ \ a_0 = 0 \]</div>
+</section>
+</section>
+<section id="propriedades-da-serie-de-fourier">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#propriedades-da-serie-de-fourier" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Sejam dois sinais periódicos <span class="math notranslate nohighlight">\(x(t)\)</span> e <span class="math notranslate nohighlight">\(y(t)\)</span> com período <span class="math notranslate nohighlight">\(T_0\)</span> e frequência <span class="math notranslate nohighlight">\(\omega_0=2\pi/T_0\)</span> tais que:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) \stackrel{SF} \leftrightarrow a_k \ \ \ y(t) \stackrel{SF} \leftrightarrow b_k \]</div>
+<section id="linearidade">
+<h3>Linearidade<a class="headerlink" href="#linearidade" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ z(t) = Ax(t) + By(t) \stackrel{SF} \leftrightarrow c_k = Aa_k + Bb_k \]</div>
+<p>A e B constantes.</p>
+</section>
+</section>
+<section id="id18">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="deslocamento-no-tempo">
+<h3>Deslocamento no tempo<a class="headerlink" href="#deslocamento-no-tempo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ y(t) = x(t-t_d) \stackrel{SF} \leftrightarrow b_k = e^{-jk\omega_0t_d}a_k \]</div>
+<p><strong>Observação:</strong> <span class="math notranslate nohighlight">\(|b_k| = |a_k|\)</span></p>
+</section>
+<section id="reversao-no-tempo">
+<h3>Reversão no tempo<a class="headerlink" href="#reversao-no-tempo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ y(t) = x(-t) \stackrel{SF} \leftrightarrow b_k = a_{\_k} \]</div>
+</section>
+</section>
+<section id="id19">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="compressao-expansao">
+<h3>Compressão/expansão<a class="headerlink" href="#compressao-expansao" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ y(t) = x(\alpha t)\stackrel{SF} \leftrightarrow y(t) = \sum_{k=-\infty}^{\infty}a_k e^{jk\alpha \omega_0t} \]</div>
+<p>Muda somente a frequência fundamental (<span class="math notranslate nohighlight">\(\alpha \omega_0\)</span>) e seus harmônicos.</p>
+<div class="math notranslate nohighlight">
+\[b_k = a_k \]</div>
+</section>
+</section>
+<section id="id20">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="operacoes-com-os-sinais">
+<h3>Operações com os sinais<a class="headerlink" href="#operacoes-com-os-sinais" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(z(t) = x(t)y(t) \stackrel{SF} \leftrightarrow c_k = \sum_{l=-\infty}^{\infty}a_lb_{k-1}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y(t) = x^*(t) \stackrel{SF} \leftrightarrow b_k = a^*_{-k}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y(t) = \int_{-\infty}^{t}x(\tau)d\tau \stackrel{SF} \leftrightarrow b_k = \frac{1}{jk\omega_0}a_k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y(t) = \frac{d}{dt}x(t)\stackrel{SF} \leftrightarrow b_k = jk\omega_0a_k\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="id21">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="relacao-de-parseval">
+<h3>Relação de Parseval<a class="headerlink" href="#relacao-de-parseval" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ P = \frac{1}{T_0} \int_{T_0}|x(t)|^2dt = \sum_{k=-\infty}^{\infty}|a_k|^2 \]</div>
+</section>
+<section id="densidade-espectral-de-potencia">
+<h3>Densidade Espectral de Potência<a class="headerlink" href="#densidade-espectral-de-potencia" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ P= \sum_{k=-\infty}^{\infty}a_ka^*_k = \sum_{k=-\infty}^{\infty} |a_k|^2 \]</div>
+<p><img alt="fig4.1.png" src="_images/fig8.12.png" /></p>
+</section>
+</section>
+<section id="id22">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="simetrias-na-funcao">
+<h3>Simetrias na função<a class="headerlink" href="#simetrias-na-funcao" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Função par: os coeficientes <span class="math notranslate nohighlight">\(a_k\)</span> são reais.</p></li>
+<li><p>Função impar: os coeficientes <span class="math notranslate nohighlight">\(a_k\)</span> são imaginários.</p></li>
+</ul>
+</section>
+</section>
+<section id="id23">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="serie-trigonometrica-de-fourier">
+<h3>Série trigonométrica de Fourier<a class="headerlink" href="#serie-trigonometrica-de-fourier" title="Permalink to this heading">#</a></h3>
+<p>Para sinais reais os coeficientes <span class="math notranslate nohighlight">\(a_k\)</span> aparecem na forma de números complexos conjugados tais que:</p>
+<div class="math notranslate nohighlight">
+\[ a_k = A_ke^{j\phi_k} \]</div>
+<p>Portanto x(t) pode ser escrita na seguinte forma (forma compacta):</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = A_0 + 2\sum_{k=1}^{\infty}\{A_kcos(k\omega_0t+\phi_k)\} \ \ \ \text{em que:} \ A_0 = a_0 \]</div>
+</section>
+</section>
+<section id="id24">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Considerando os coeficientes <span class="math notranslate nohighlight">\(a_k\)</span> na forma retangular, isto é,</p>
+<div class="math notranslate nohighlight">
+\[a_k = B_k + jC_k \]</div>
+<p>Então:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = a_0 + 2 \sum_{k=1}^{\infty}\{B_kcos(k\omega_0t)-C_ksen(k\omega_0t)\} \]</div>
+<div class="math notranslate nohighlight">
+\[ B_k = \frac{1}{T_0}\int_{T_0}x(t)cos(k\omega_0t)dt \]</div>
+<div class="math notranslate nohighlight">
+\[ k = 1,2,\dots \]</div>
+<div class="math notranslate nohighlight">
+\[ C_k = \frac{1}{T_0} \int_{T_0}x(t)sen(k\omega_0t)dt \]</div>
+</section>
+<section id="id25">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Relação com os coeficientes da série exponencial:</p>
+<div class="math notranslate nohighlight">
+\[ A_0 = a_0; \ \ A_k =\sqrt{B_k^2+c_k^2}; \ \ \phi_k = arctan \left(\frac{C_k}{B_k} \right) \]</div>
+<p>Exemplo:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \left|cos\left(\frac{\pi t}{2}\right) \right| \]</div>
+<p><img alt="fig4.1.png" src="_images/fig8.13.png" /></p>
+</section>
+<section id="id26">
+<h2>Propriedades da série de Fourier<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[ x(t) = sen(\omega_0t) = cos\left(\omega_0t - \frac{\pi}{2}\right) = \frac{1}{2} \left(e^{j(\omega_0t-\pi/2)}+e^{-j(\omega_0t-\pi/2)}\right) \]</div>
+<p><img alt="fig4.1.png" src="_images/fig8.14.png" /></p>
+<p><img alt="fig4.1.png" src="_images/fig8.15.png" /></p>
+</section>
+<section id="id27">
+<h2>Amostragem<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig9.1.png" /></p>
+</section>
+<section id="id28">
+<h2>Amostragem<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="introducao">
+<h3>Introdução<a class="headerlink" href="#introducao" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A teoria da Amostragem é a base matemática para se obter um sinal x[n] discreto no tempo a partir de um sinal x(t) contínuo no tempo.</p></li>
+<li><p>A obtenção de uma sequência de amostras x[n] a partir de um sinal x(t) contínuo no tempo pode ser representada pela seguinte relação:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ x[n] = x(t)|_{t=nT_a} = x(nT_a) \]</div>
+<ul class="simple">
+<li><p>Em que:</p>
+<ul>
+<li><p>n é um número inteiro;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_a\)</span> é o perído de amostragem do sinal;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_a\)</span> = 1/<span class="math notranslate nohighlight">\(T_a\)</span> é a frequência de amostragem</p></li>
+</ul>
+</li>
+<li><p>Na prática a operação de amostragem é executada por um conversor AD (analógico-digital) que inclui também a quantização das amplitudes das amostras.</p></li>
+</ul>
+</section>
+</section>
+<section id="id29">
+<h2>Amostragem<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="representacao-matematica">
+<h3>Representação Matemática<a class="headerlink" href="#representacao-matematica" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig9.2.png" /></p>
+<ul class="simple">
+<li><p>O sinal s[t] é um trem de impulsos periódicos tal que:</p></li>
+</ul>
+<p>\begin{equation} s(t)=\sum_{n=-\infty}^{\infty} \delta(t-nT_a) \end{equation}</p>
+<ul class="simple">
+<li><p>Como o sinal amostrado é o produto de s(t) por x(t), então:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ x_a(t)=x(nT_a) \overset{\text{def}}{=} x(t)s(t) =  \sum_{n=-\infty}^{\infty}x(t)\delta(t-nT_a) \]</div>
+</section>
+</section>
+<section id="id30">
+<h2>Amostragem<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="calculando-a-transformada-de-fourier-tem-se">
+<h3>Calculando a transformada de Fourier tem-se:<a class="headerlink" href="#calculando-a-transformada-de-fourier-tem-se" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ X_a(j\omega)=\frac{1}{2\pi}X(j\omega)*S(j\omega) \ \ \ \ \text{(Teor. da Convolução)} \]</div>
+<div class="math notranslate nohighlight">
+\[ S(\omega) = TF\{s(t)\} = \frac{2\pi}{T_a}\sum_{k=-\infty}^{\infty} \delta(\omega-k\omega_a), \ \ \text{em que:} \ \omega_a=\frac{2\pi}{T_a} \]</div>
+<div class="math notranslate nohighlight">
+\[ X_a(\omega) = \frac{1}{T_a}\sum_{k=-\infty}^{\infty} X(\omega-k\omega_a) \;\;\;\;\;\;\;\; \left \{ X(\omega-\omega_0) = X(\omega)*\delta(\omega-\omega_0) \right\} \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X_a(\omega)\)</span> consiste de cópias regularmente espaçadas de <span class="math notranslate nohighlight">\(X(\omega)\)</span>.</p></li>
+<li><p>O espaçamento é dado por múltiplos inteiros de <span class="math notranslate nohighlight">\(\omega_a\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="id31">
+<h2>Amostragem<a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig9.5.png" /></p>
+</section>
+<section id="id32">
+<h2>Amostragem<a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig9.6.png" /></p>
+<ul class="simple">
+<li><p>Observe que para não haver superposição de Espectros:</p></li>
+</ul>
+<p>\begin{equation} \omega_a - \omega_M &gt; \omega_M \rightarrow \omega_a &gt; 2\omega_M \end{equation}</p>
+<ul class="simple">
+<li><p>Se a condição acima é satisfeita as réplicas de <span class="math notranslate nohighlight">\(X(\omega)\)</span> não irão se superporem.</p></li>
+<li><p>Em cada período tem-se uma réplica exata de <span class="math notranslate nohighlight">\(X(\omega)\)</span>.</p></li>
+<li><p>Portanto o sinal x(t) pode ser recuperado a partir de <span class="math notranslate nohighlight">\(x_a(nT_a)\)</span> através de um filtro passa-baixas com corte em <span class="math notranslate nohighlight">\(\omega_c = \frac{\omega_a}{ 2}\)</span></p></li>
+</ul>
+</section>
+<section id="id33">
+<h2>Amostragem<a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="condicoes-de-nyquist">
+<h3>Condições de Nyquist<a class="headerlink" href="#condicoes-de-nyquist" title="Permalink to this heading">#</a></h3>
+<p>1- O sinal deve ter banda limitada;</p>
+<p>2- A relação entre <span class="math notranslate nohighlight">\(F_s\)</span> (1/T) e wmax deve satisfazer o teorema da amostragem</p>
+<p><img alt="fig4.1.png" src="_images/fig9.3.png" /></p>
+<p><img alt="fig4.1.png" src="_images/fig9.4.png" /></p>
+</section>
+</section>
+<section id="id34">
+<h2>Amostragem<a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="recuperacao-de-x-t">
+<h3>Recuperação de x(t)<a class="headerlink" href="#recuperacao-de-x-t" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig9.7.png" /></p>
+<ul class="simple">
+<li><p>Se a condiçõ <span class="math notranslate nohighlight">\(\Omega_a &gt; 2\Omega_M\)</span> não é satisfeita, as rélicas de <span class="math notranslate nohighlight">\(X(\Omega)\)</span> se sobrepõem, modificando o espectro do sinal original.</p></li>
+<li><p>O sinal na banda básica aparecerá distorcido e não poderá ser recuperado. Este efeito é conhecido como <span class="math notranslate nohighlight">\(\textit{aliasing}\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="id35">
+<h2>Amostragem<a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="teorema-da-amostragem">
+<h3>Teorema da Amostragem<a class="headerlink" href="#teorema-da-amostragem" title="Permalink to this heading">#</a></h3>
+<p>A discussão anterior forma a base para se enunciar o teorema da amostragem:</p>
+<ul class="simple">
+<li><p>Um sinal x(t), contínuo no tempo e limitado em banda tal que a frequência máxima de seu espectro seja <span class="math notranslate nohighlight">\(\Omega_M\)</span>, isto é,</p></li>
+</ul>
+<p>\begin{equation} X(\Omega) = 0, |\Omega| &gt; |\Omega_M|, \end{equation}</p>
+<p>pode ser recuperado unicamente a partir de suas amostras <span class="math notranslate nohighlight">\(x[n] = x[nT_a]\)</span>, tomadas em intervalos regularmente espaçados tais que:</p>
+<p>\begin{equation} \Omega_a = \frac{2\pi}{T_a} &gt; 2\Omega_M \ \ \ \text{ou} \ \ \ F_a &gt; 2F_M \end{equation}</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Omega_M\)</span> ou <span class="math notranslate nohighlight">\(F_M\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> Frequência de Nyquist.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Omega_a\)</span> ou <span class="math notranslate nohighlight">\(F_a\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> Taxa de Nyquist.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula09_Funcoes_Especiais.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Transformada de Fourier de Funções especiais</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula11_Diagrama_de_Bode.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Diagrama de Bode</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisao-de-serie-de-fourier">1. Revisão de Série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amostragem">2. Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-de-fourier">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao">Representação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Representação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinacao-dos-coeficientes">Determinação dos coeficientes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Determinação dos coeficientes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observacoes">Observações</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equacoes">Equações</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-tranformada-de-fourier">A tranformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-para-sinais-periodicos">Transformada de Fourier para sinais periódicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-fourier">A transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Transformada de Fourier para sinais periódicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes">Condições</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onda-quadrada">Onda quadrada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-dos-coeficientes-a-k">Gráficos dos coeficientes <span class="math notranslate nohighlight">\(a_k\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espectro-de-amplitude">Espectro de amplitude</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#espectro-de-fase">Espectro de fase</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Séries de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#onda-dente-de-serra">Onda dente de serra</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-serie-de-fourier">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversao-no-tempo">Reversão no tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressao-expansao">Compressão/expansão</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-os-sinais">Operações com os sinais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-de-parseval">Relação de Parseval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#densidade-espectral-de-potencia">Densidade Espectral de Potência</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simetrias-na-funcao">Simetrias na função</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Propriedades da série de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-trigonometrica-de-fourier">Série trigonométrica de Fourier</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Propriedades da série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Propriedades da série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Propriedades da série de Fourier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-matematica">Representação Matemática</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-a-transformada-de-fourier-tem-se">Calculando a transformada de Fourier tem-se:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes-de-nyquist">Condições de Nyquist</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recuperacao-de-x-t">Recuperação de x(t)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">Amostragem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-da-amostragem">Teorema da Amostragem</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

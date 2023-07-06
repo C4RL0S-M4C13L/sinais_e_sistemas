@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>A transformada de Fourier &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula08_Fourier';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Transformada de Fourier de Funções especiais" href="Aula09_Funcoes_Especiais.html" />
+    <link rel="prev" title="Transformada de Laplace" href="Aula07_Laplace.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula08_Fourier.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula08_Fourier.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>A transformada de Fourier</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transf-fourier-a-partir-da-transf-laplace-x-j-omega-x-s-big-s-j-omega">Transf. Fourier a partir da Transf. Laplace: <span class="math notranslate nohighlight">\(X(j\omega) = X(s) \big |_{s = j\omega}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-x-j-omega-int-infty-infty-x-t-e-j-omega-t-dt"><span class="math notranslate nohighlight">\(\Rightarrow \ X(j\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-x-t-frac-1-2-pi-int-infty-infty-x-j-omega-e-j-omega-t-d-omega"><span class="math notranslate nohighlight">\(\Rightarrow \ x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerando-y-t-h-t-x-t">Considerando <span class="math notranslate nohighlight">\(y(t) = h(t)*x(t)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espectro-de-x-t">Espectro de <span class="math notranslate nohighlight">\(x(t)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes-de-existencia-dirichlet">Condições de existência (Dirichlet)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-de-um-sinal-exponencial">Transformada de Fourier de um sinal exponencial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-do-pulso-retangular-com-largura-tau">Transformada de Fourier do pulso retangular com largura <span class="math notranslate nohighlight">\(\tau\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-j-omega-int-tau-2-tau-2-e-j-omega-t-dt-frac-1-j-omega-e-j-omega-t-big-tau-2-tau-2"><span class="math notranslate nohighlight">\(P(j\omega) = \int_{-\tau/2}^{\tau/2} e^{-j\omega t}dt = -\frac{1}{j\omega}e^{-j\omega t} \big |_{-\tau/2}^{\tau/2}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frac-1-j-omega-e-j-omega-tau-2-e-j-omega-tau-2-frac-1-j-omega-2j-sin-omega-tau-2-times-frac-tau-tau"><span class="math notranslate nohighlight">\(= -\frac{1}{j\omega}(e^{-j\omega \tau/2} - e^{-j\omega\tau/2})= \frac{1}{j\omega}2j\sin(\omega \tau/2) \times \frac{\tau}{\tau}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-broadband-connections">Types of Broadband Connections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adsl-asymmetric-digital-subscriber-line-tipico-de-64-kbit-s-e-podem-atingir-8-mbit-s-dentro-de-300-metros-da-central-onde-esta-instalado-o-sistema">ADSL (Asymmetric Digital Subscriber Line) -  típico de 64 kbit/s e podem atingir 8 Mbit/s dentro de 300 metros da central onde está instalado o sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cable-modem-velocidades-tipicas-de-1-5-mbps-ou-mais">cable modem - velocidades típicas de 1.5 Mbps ou mais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fiber-modem-velocidades-tipicas-de-dezenas-ou-centenas-de-mbps">fiber modem -  velocidades típicas de dezenas ou centenas de Mbps.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sinc-x-e-definida-para-x-0">Função Sinc(x) é definida para <span class="math notranslate nohighlight">\(x ≠ 0\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sinc-nao-nomalizada-area-pi">1. função sinc(.) não-nomalizada (área = <span class="math notranslate nohighlight">\(\pi\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sinc-normalizada-area-1">2. função sinc(.) normalizada (área = 1)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importante-a-tf-da-funcao-sinc-t-normalizada-e-a-rect-f">Importante: A TF da função sinc(t) normalizada é a rect(f):</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaystyle-int-infty-infty-operatorname-sinc-t-e-i2-pi-ft-dt-operatorname-rect-f"><span class="math notranslate nohighlight">\(\displaystyle \int _{-\infty }^{\infty }\operatorname {sinc} (t)\,e^{-i2\pi ft}\,dt=\operatorname {rect} (f)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-transformada-de-fourier">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importante">Importante</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paridade">Paridade</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#em-analise-matematica-uma-funcao-complexa-e-hermitiana-se-displaystyle-x-t-x-t">Em análise matemática, uma função complexa é <strong>Hermitiana</strong> se: <span class="math notranslate nohighlight">\({\displaystyle x^{*}(t)=x(-t)}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-e-diferenciacao">Integração e diferenciação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escalonamento">Escalonamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dualidade">Dualidade</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">exemplo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-parseval">Teorema de Parseval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-sob-x-omega-x-0-int-infty-infty-x-t-dt">Área sob <span class="math notranslate nohighlight">\(X(\omega)\)</span> $<span class="math notranslate nohighlight">\( X(0) = \int_{-\infty}^{\infty}x(t)dt \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-sob-x-t-x-0-frac-1-2-pi-int-infty-infty-x-omega-d-omega">Área sob <span class="math notranslate nohighlight">\(x(t)\)</span> $<span class="math notranslate nohighlight">\( x(0) = \frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)d\omega \)</span>$</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao">Convolução</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicacao">Multiplicação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-na-frequencia-teorema-da-modulacao">Deslocamento na frequência (teorema da modulação)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-bode">Diagrama de Bode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-x-fase">Amplitude x Fase</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="a-transformada-de-fourier">
+<h1>A transformada de Fourier<a class="headerlink" href="#a-transformada-de-fourier" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="transf-fourier-a-partir-da-transf-laplace-x-j-omega-x-s-big-s-j-omega">
+<h2>Transf. Fourier a partir da Transf. Laplace: <span class="math notranslate nohighlight">\(X(j\omega) = X(s) \big |_{s = j\omega}\)</span><a class="headerlink" href="#transf-fourier-a-partir-da-transf-laplace-x-j-omega-x-s-big-s-j-omega" title="Permalink to this heading">#</a></h2>
+<section id="rightarrow-x-j-omega-int-infty-infty-x-t-e-j-omega-t-dt">
+<h3><span class="math notranslate nohighlight">\(\Rightarrow \ X(j\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt \)</span><a class="headerlink" href="#rightarrow-x-j-omega-int-infty-infty-x-t-e-j-omega-t-dt" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="rightarrow-x-t-frac-1-2-pi-int-infty-infty-x-j-omega-e-j-omega-t-d-omega">
+<h3><span class="math notranslate nohighlight">\(\Rightarrow \ x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega \)</span><a class="headerlink" href="#rightarrow-x-t-frac-1-2-pi-int-infty-infty-x-j-omega-e-j-omega-t-d-omega" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="considerando-y-t-h-t-x-t">
+<h3>Considerando <span class="math notranslate nohighlight">\(y(t) = h(t)*x(t)\)</span><a class="headerlink" href="#considerando-y-t-h-t-x-t" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H(s)\)</span> é <strong>função de transferência</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(H(j\omega)\)</span> ou <span class="math notranslate nohighlight">\(H(\omega)\)</span> é <strong>resposta de frequência</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="espectro-de-x-t">
+<h2>Espectro de <span class="math notranslate nohighlight">\(x(t)\)</span><a class="headerlink" href="#espectro-de-x-t" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><span class="math notranslate nohighlight">\(X(j\omega)\)</span> é <strong>complexo</strong> logo pode ser escrito como: <span class="math notranslate nohighlight">\(X(j\omega) = |X(j\omega)|e^{j\phi(j\omega)}\)</span></p>
+<ul class="simple">
+<li><p>Gráfico de <span class="math notranslate nohighlight">\(\omega \times |X(j\omega)| \Rightarrow\)</span> espectro de amplitude</p></li>
+<li><p>Gráfico de <span class="math notranslate nohighlight">\(\omega \times \phi(j\omega) \Rightarrow\)</span> espectro de fase</p></li>
+<li><p>espectro é uma representação de uma grandeza em função da frequência ou comprimento de onda</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega \in \;\; ]-\infty, \infty[\)</span></p></li>
+</ul>
+</section>
+<section id="condicoes-de-existencia-dirichlet">
+<h2>Condições de existência (Dirichlet)<a class="headerlink" href="#condicoes-de-existencia-dirichlet" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Sinal com energia finita, ou, para que a transformada de Fourier exista, o sinal <span class="math notranslate nohighlight">\(x(t)\)</span> deve satisfazer as seguintes condições:</p>
+<ul class="simple">
+<li><p>Número finito de descontinuidades;</p></li>
+<li><p>Número finito de máximos e mínimos;</p></li>
+<li><p>Absolutamente somável.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \int_{-\infty}^{\infty}|x(t)|dt &lt; \infty \]</div>
+</section>
+<section id="transformada-de-fourier-de-um-sinal-exponencial">
+<h2>Transformada de Fourier de um sinal exponencial<a class="headerlink" href="#transformada-de-fourier-de-um-sinal-exponencial" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[ x(t) = e^{-at}u(t) \ \ a&gt;0 \]</div>
+<div class="math notranslate nohighlight">
+\[ \text{tranformada} \ \Rightarrow \ X(j\omega) = \frac{1}{a+j\omega} \]</div>
+<p><img alt="fig4.1.png" src="_images/fig8.2.png" /></p>
+</section>
+<section id="transformada-de-fourier-do-pulso-retangular-com-largura-tau">
+<h2>Transformada de Fourier do pulso retangular com largura <span class="math notranslate nohighlight">\(\tau\)</span><a class="headerlink" href="#transformada-de-fourier-do-pulso-retangular-com-largura-tau" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>$ p(t) = ret\left(\frac{t}{\tau}\right) \leftrightarrow P(f) = \tau.sinc(f\tau) $</p>
+<p><img alt="fig4.1.png" src="_images/fig8.1.png" /></p>
+<section id="p-j-omega-int-tau-2-tau-2-e-j-omega-t-dt-frac-1-j-omega-e-j-omega-t-big-tau-2-tau-2">
+<h3><span class="math notranslate nohighlight">\(P(j\omega) = \int_{-\tau/2}^{\tau/2} e^{-j\omega t}dt = -\frac{1}{j\omega}e^{-j\omega t} \big |_{-\tau/2}^{\tau/2}\)</span><a class="headerlink" href="#p-j-omega-int-tau-2-tau-2-e-j-omega-t-dt-frac-1-j-omega-e-j-omega-t-big-tau-2-tau-2" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="frac-1-j-omega-e-j-omega-tau-2-e-j-omega-tau-2-frac-1-j-omega-2j-sin-omega-tau-2-times-frac-tau-tau">
+<h3><span class="math notranslate nohighlight">\(= -\frac{1}{j\omega}(e^{-j\omega \tau/2} - e^{-j\omega\tau/2})= \frac{1}{j\omega}2j\sin(\omega \tau/2) \times \frac{\tau}{\tau}\)</span><a class="headerlink" href="#frac-1-j-omega-e-j-omega-tau-2-e-j-omega-tau-2-frac-1-j-omega-2j-sin-omega-tau-2-times-frac-tau-tau" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="types-of-broadband-connections">
+<h2>Types of Broadband Connections<a class="headerlink" href="#types-of-broadband-connections" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.fcc.gov/general/types-broadband-connections">https://www.fcc.gov/general/types-broadband-connections</a></p>
+<section id="adsl-asymmetric-digital-subscriber-line-tipico-de-64-kbit-s-e-podem-atingir-8-mbit-s-dentro-de-300-metros-da-central-onde-esta-instalado-o-sistema">
+<h3>ADSL (Asymmetric Digital Subscriber Line) -  típico de 64 kbit/s e podem atingir 8 Mbit/s dentro de 300 metros da central onde está instalado o sistema<a class="headerlink" href="#adsl-asymmetric-digital-subscriber-line-tipico-de-64-kbit-s-e-podem-atingir-8-mbit-s-dentro-de-300-metros-da-central-onde-esta-instalado-o-sistema" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="cable-modem-velocidades-tipicas-de-1-5-mbps-ou-mais">
+<h3>cable modem - velocidades típicas de 1.5 Mbps ou mais<a class="headerlink" href="#cable-modem-velocidades-tipicas-de-1-5-mbps-ou-mais" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="fiber-modem-velocidades-tipicas-de-dezenas-ou-centenas-de-mbps">
+<h3>fiber modem -  velocidades típicas de dezenas ou centenas de Mbps.<a class="headerlink" href="#fiber-modem-velocidades-tipicas-de-dezenas-ou-centenas-de-mbps" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="funcao-sinc-x-e-definida-para-x-0">
+<h2>Função Sinc(x) é definida para <span class="math notranslate nohighlight">\(x ≠ 0\)</span><a class="headerlink" href="#funcao-sinc-x-e-definida-para-x-0" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="funcao-sinc-nao-nomalizada-area-pi">
+<h3>1. função sinc(.) não-nomalizada (área = <span class="math notranslate nohighlight">\(\pi\)</span>)<a class="headerlink" href="#funcao-sinc-nao-nomalizada-area-pi" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\({\displaystyle \operatorname {sinc}(x) ={\frac {\sin x}{x}}.} \)</span></p>
+</section>
+<section id="funcao-sinc-normalizada-area-1">
+<h3>2. função sinc(.) normalizada (área = 1)<a class="headerlink" href="#funcao-sinc-normalizada-area-1" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\({\displaystyle \operatorname {sinc}(x)={\frac {\sin(\pi x)}{\pi x}}.}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#plt.rcParams[&#39;text.usetex&#39;] = True</span>
+
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+
+<span class="n">f2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;sen(x)/x&#39;</span><span class="p">,</span> <span class="s1">&#39;sen(pi x)/pi x&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7b1d6e0e50&gt;
+</pre></div>
+</div>
+<img alt="_images/af6ca98e22d5b8d1a89b44d609666a1d5fc3cdf2875c51f65b9f243c1f6d3f44.png" src="_images/af6ca98e22d5b8d1a89b44d609666a1d5fc3cdf2875c51f65b9f243c1f6d3f44.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="importante-a-tf-da-funcao-sinc-t-normalizada-e-a-rect-f">
+<h2>Importante: A TF da função sinc(t) normalizada é a rect(f):<a class="headerlink" href="#importante-a-tf-da-funcao-sinc-t-normalizada-e-a-rect-f" title="Permalink to this heading">#</a></h2>
+<section id="displaystyle-int-infty-infty-operatorname-sinc-t-e-i2-pi-ft-dt-operatorname-rect-f">
+<h3><span class="math notranslate nohighlight">\(\displaystyle \int _{-\infty }^{\infty }\operatorname {sinc} (t)\,e^{-i2\pi ft}\,dt=\operatorname {rect} (f)\)</span><a class="headerlink" href="#displaystyle-int-infty-infty-operatorname-sinc-t-e-i2-pi-ft-dt-operatorname-rect-f" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="propriedades-da-transformada-de-fourier">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#propriedades-da-transformada-de-fourier" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="linearidade">
+<h3>Linearidade<a class="headerlink" href="#linearidade" title="Permalink to this heading">#</a></h3>
+<p>Seja:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) \stackrel{TF} \leftrightarrow X(\omega) \]</div>
+<p>Considere dois sinais <span class="math notranslate nohighlight">\(x_1(t)\)</span> e <span class="math notranslate nohighlight">\(x_2(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ x_3(t) = ax_1(t)+bx_2(t) \stackrel{TF} \leftrightarrow X_3(\omega) = aX_1(\omega)+bX_2(\omega) \]</div>
+</section>
+</section>
+<section id="id1">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="deslocamento-no-tempo">
+<h3>Deslocamento no tempo<a class="headerlink" href="#deslocamento-no-tempo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t) \stackrel{TF} \leftrightarrow X(\omega) \]</div>
+<div class="math notranslate nohighlight">
+\[ x(t-t_0) \stackrel{TF} \leftrightarrow e^{-j\omega t_0}X(\omega) \]</div>
+<p>O módulo permanece o mesmo (somente a fase é modificada).</p>
+</section>
+<section id="importante">
+<h3>Importante<a class="headerlink" href="#importante" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\tau(\omega) = -\frac{d}{d\omega}\angle H(j\omega)\)</span></p>
+<ul class="simple">
+<li><p>sistemas com fase ‘linear’ possuem atraso constante. No sistema com resposta de frequência <span class="math notranslate nohighlight">\(H(j\omega)\)</span> todas as frequências tem o mesmo atraso.</p></li>
+</ul>
+</section>
+</section>
+<section id="paridade">
+<h2>Paridade<a class="headerlink" href="#paridade" title="Permalink to this heading">#</a></h2>
+<section id="em-analise-matematica-uma-funcao-complexa-e-hermitiana-se-displaystyle-x-t-x-t">
+<h3>Em análise matemática, uma função complexa é <strong>Hermitiana</strong> se: <span class="math notranslate nohighlight">\({\displaystyle x^{*}(t)=x(-t)}\)</span><a class="headerlink" href="#em-analise-matematica-uma-funcao-complexa-e-hermitiana-se-displaystyle-x-t-x-t" title="Permalink to this heading">#</a></h3>
+<p>As duas afirmações podem ser feitas:</p>
+<ul class="simple">
+<li><p>a função <span class="math notranslate nohighlight">\(x\)</span> é Real se e somente se sua Transformada de Fourier é hermitiana</p></li>
+<li><p>a função <span class="math notranslate nohighlight">\(x\)</span> é Hermitiana se somente se a sua Transformada de Fourier é real .</p></li>
+</ul>
+<p>Se <span class="math notranslate nohighlight">\(x(t)\)</span> é real, então:</p>
+<p><span class="math notranslate nohighlight">\( X(-\omega) = X^*(\omega) \)</span></p>
+<p>O módulo é uma função par e a fase é uma função impar.</p>
+</section>
+</section>
+<section id="id2">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="integracao-e-diferenciacao">
+<h3>Integração e diferenciação<a class="headerlink" href="#integracao-e-diferenciacao" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \frac{d^n}{dt^n} x(t) \stackrel{TF} \leftrightarrow (j\omega)^nX(\omega) \]</div>
+<div class="math notranslate nohighlight">
+\[ \int_{-\infty}^{t}x(\tau)dt \stackrel{TF} \leftrightarrow \frac{1}{j\omega}X(\omega) \]</div>
+<p>Propriedade muito utilizada em sistema LTI.</p>
+<p>Exemplo: Função degrau unitário.</p>
+</section>
+</section>
+<section id="id3">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="escalonamento">
+<h3>Escalonamento<a class="headerlink" href="#escalonamento" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(\alpha t) \stackrel{TF} \leftrightarrow \frac{1}{|\alpha|}X\left(\frac{\omega}{\alpha}\right) \]</div>
+<ul class="simple">
+<li><p>Compressão no tempo <span class="math notranslate nohighlight">\(\rightarrow\)</span> expansão na frequência.</p></li>
+</ul>
+</section>
+<section id="dualidade">
+<h3>Dualidade<a class="headerlink" href="#dualidade" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Se <span class="math notranslate nohighlight">\(x(t) \leftrightarrow X(\omega)\)</span> então <span class="math notranslate nohighlight">\(X(t) \leftrightarrow 2\pi x(-\omega)\)</span></p></li>
+</ul>
+<section id="exemplo">
+<h4>exemplo<a class="headerlink" href="#exemplo" title="Permalink to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(rect(t/\tau) \stackrel{TF}{\leftrightarrow} \tau sinc(\tau f) \)</span></p>
+<p><span class="math notranslate nohighlight">\(\tau sinc(\tau t) \stackrel{TF}{\leftrightarrow} \tau rect(-\tau f) = \tau rect(\tau f) \)</span></p>
+</section>
+</section>
+</section>
+<section id="id4">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="teorema-de-parseval">
+<h3>Teorema de Parseval<a class="headerlink" href="#teorema-de-parseval" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \int_{-\infty}^{\infty}|x(t)|²dt =\int_{-\infty}^{\infty}|X(f)|²df = \frac{1}{2\pi}\int_{-\infty}^{\infty}|X(\omega)|²d\omega \]</div>
+<p>Energia no tempo = energia na frequência</p>
+<p>O termo <span class="math notranslate nohighlight">\(|X(\omega)|^2\)</span> é chamado do <strong>densidade espectral de potência média</strong> ou simplesmente de <strong>espectro de potência</strong> de <span class="math notranslate nohighlight">\(x(t)\)</span>.</p>
+<p>Exemplo da distribição espectral de energia</p>
+<p><img alt="Spectral-energy-distribution-for-different-lights.png" src="_images/Aula_4_Spectral-energy-distribution.png" /></p>
+</section>
+<section id="area-sob-x-omega-x-0-int-infty-infty-x-t-dt">
+<h3>Área sob <span class="math notranslate nohighlight">\(X(\omega)\)</span> $<span class="math notranslate nohighlight">\( X(0) = \int_{-\infty}^{\infty}x(t)dt \)</span>$<a class="headerlink" href="#area-sob-x-omega-x-0-int-infty-infty-x-t-dt" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="area-sob-x-t-x-0-frac-1-2-pi-int-infty-infty-x-omega-d-omega">
+<h3>Área sob <span class="math notranslate nohighlight">\(x(t)\)</span> $<span class="math notranslate nohighlight">\( x(0) = \frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)d\omega \)</span>$<a class="headerlink" href="#area-sob-x-t-x-0-frac-1-2-pi-int-infty-infty-x-omega-d-omega" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id5">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="convolucao">
+<h3>Convolução<a class="headerlink" href="#convolucao" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t)*h(t) \stackrel{TF} \leftrightarrow X(\omega)H(\omega) \rightarrow \text{Se torna produto} \]</div>
+</section>
+<section id="multiplicacao">
+<h3>Multiplicação<a class="headerlink" href="#multiplicacao" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t).w(t) \stackrel{TF} \leftrightarrow \frac{1}{2\pi}X(\omega)*W(\omega) \rightarrow \text{Se torna convolução} \]</div>
+</section>
+</section>
+<section id="id6">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="deslocamento-na-frequencia-teorema-da-modulacao">
+<h3>Deslocamento na frequência (teorema da modulação)<a class="headerlink" href="#deslocamento-na-frequencia-teorema-da-modulacao" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t)e^{j\omega_0t} \stackrel{TF} \leftrightarrow X(\omega-\omega_0) \]</div>
+<p>Exemplo:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = m(t)cos(2\pi f_0t) \leftrightarrow X(f) = \frac{1}{2} M(f\pm f_0) \]</div>
+<p><img alt="fig4.1.png" src="_images/fig8.3.png" /></p>
+<p>Propriedade muito utilizada em telecomunicações (deslocamento espectral).</p>
+</section>
+</section>
+<section id="id7">
+<h2>Propriedades da Transformada de Fourier<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="diagrama-de-bode">
+<h3>Diagrama de Bode<a class="headerlink" href="#diagrama-de-bode" title="Permalink to this heading">#</a></h3>
+<p>Representação polar da transformada de Fourier</p>
+<div class="math notranslate nohighlight">
+\[ X(\omega) = |X(\omega)|.e^{j\angle X(\omega)} \]</div>
+<p>Módulo: Informações sobre as amplitudes das exponenciais complexas.</p>
+<p>Diagrama de bode <span class="math notranslate nohighlight">\(\rightarrow\)</span> gráfico do ganho e da fase contra a frequência.</p>
+<p>histórico: <a class="reference external" href="https://en.wikipedia.org/wiki/Bode_plot">https://en.wikipedia.org/wiki/Bode_plot</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Hendrik_Wade_Bode">https://en.wikipedia.org/wiki/Hendrik_Wade_Bode</a></p>
+<p><span class="math notranslate nohighlight">\(x(t) \to \fbox{h(t)} \to y(t)\)</span></p>
+<p><span class="math notranslate nohighlight">\(y(t) = x(t) * h(t)\)</span> ou <span class="math notranslate nohighlight">\(Y(\omega) = X(\omega)H(\omega)\)</span></p>
+<p><span class="math notranslate nohighlight">\(|Y(\omega)| = |X(\omega)||H(\omega)| \stackrel{\log}{\to} |Y(\omega)|_{dB} = |X(\omega)|_{dB}+|H(\omega)|_{dB}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\angle Y(\omega) = \angle X(\omega) + \angle H(\omega)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\angle H(\omega) = \sum \angle \{\overrightarrow{j\omega} - \overrightarrow{z_i}\} - \sum \angle \{\overrightarrow{j\omega} - \overrightarrow{p_i}\} \)</span></p>
+<p><span class="math notranslate nohighlight">\(z_i\)</span> são os zeros e <span class="math notranslate nohighlight">\(p_i\)</span> são os polos da função de transferência, <span class="math notranslate nohighlight">\(H(s)\)</span></p>
+</section>
+</section>
+<section id="amplitude-x-fase">
+<h2>Amplitude x Fase<a class="headerlink" href="#amplitude-x-fase" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://physics.stackexchange.com/questions/121459/image-reconstructionphase-vs-magnitude</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="alt text" src="_images/J5Xlb.png" /></p>
+<p><img alt="alt text" src="_images/nIRwF.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula07_Laplace.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Transformada de Laplace</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula09_Funcoes_Especiais.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Transformada de Fourier de Funções especiais</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transf-fourier-a-partir-da-transf-laplace-x-j-omega-x-s-big-s-j-omega">Transf. Fourier a partir da Transf. Laplace: <span class="math notranslate nohighlight">\(X(j\omega) = X(s) \big |_{s = j\omega}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-x-j-omega-int-infty-infty-x-t-e-j-omega-t-dt"><span class="math notranslate nohighlight">\(\Rightarrow \ X(j\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rightarrow-x-t-frac-1-2-pi-int-infty-infty-x-j-omega-e-j-omega-t-d-omega"><span class="math notranslate nohighlight">\(\Rightarrow \ x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}d\omega \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerando-y-t-h-t-x-t">Considerando <span class="math notranslate nohighlight">\(y(t) = h(t)*x(t)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#espectro-de-x-t">Espectro de <span class="math notranslate nohighlight">\(x(t)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes-de-existencia-dirichlet">Condições de existência (Dirichlet)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-de-um-sinal-exponencial">Transformada de Fourier de um sinal exponencial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-fourier-do-pulso-retangular-com-largura-tau">Transformada de Fourier do pulso retangular com largura <span class="math notranslate nohighlight">\(\tau\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-j-omega-int-tau-2-tau-2-e-j-omega-t-dt-frac-1-j-omega-e-j-omega-t-big-tau-2-tau-2"><span class="math notranslate nohighlight">\(P(j\omega) = \int_{-\tau/2}^{\tau/2} e^{-j\omega t}dt = -\frac{1}{j\omega}e^{-j\omega t} \big |_{-\tau/2}^{\tau/2}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frac-1-j-omega-e-j-omega-tau-2-e-j-omega-tau-2-frac-1-j-omega-2j-sin-omega-tau-2-times-frac-tau-tau"><span class="math notranslate nohighlight">\(= -\frac{1}{j\omega}(e^{-j\omega \tau/2} - e^{-j\omega\tau/2})= \frac{1}{j\omega}2j\sin(\omega \tau/2) \times \frac{\tau}{\tau}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-broadband-connections">Types of Broadband Connections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adsl-asymmetric-digital-subscriber-line-tipico-de-64-kbit-s-e-podem-atingir-8-mbit-s-dentro-de-300-metros-da-central-onde-esta-instalado-o-sistema">ADSL (Asymmetric Digital Subscriber Line) -  típico de 64 kbit/s e podem atingir 8 Mbit/s dentro de 300 metros da central onde está instalado o sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cable-modem-velocidades-tipicas-de-1-5-mbps-ou-mais">cable modem - velocidades típicas de 1.5 Mbps ou mais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fiber-modem-velocidades-tipicas-de-dezenas-ou-centenas-de-mbps">fiber modem -  velocidades típicas de dezenas ou centenas de Mbps.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sinc-x-e-definida-para-x-0">Função Sinc(x) é definida para <span class="math notranslate nohighlight">\(x ≠ 0\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sinc-nao-nomalizada-area-pi">1. função sinc(.) não-nomalizada (área = <span class="math notranslate nohighlight">\(\pi\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-sinc-normalizada-area-1">2. função sinc(.) normalizada (área = 1)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importante-a-tf-da-funcao-sinc-t-normalizada-e-a-rect-f">Importante: A TF da função sinc(t) normalizada é a rect(f):</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaystyle-int-infty-infty-operatorname-sinc-t-e-i2-pi-ft-dt-operatorname-rect-f"><span class="math notranslate nohighlight">\(\displaystyle \int _{-\infty }^{\infty }\operatorname {sinc} (t)\,e^{-i2\pi ft}\,dt=\operatorname {rect} (f)\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-transformada-de-fourier">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importante">Importante</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paridade">Paridade</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#em-analise-matematica-uma-funcao-complexa-e-hermitiana-se-displaystyle-x-t-x-t">Em análise matemática, uma função complexa é <strong>Hermitiana</strong> se: <span class="math notranslate nohighlight">\({\displaystyle x^{*}(t)=x(-t)}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-e-diferenciacao">Integração e diferenciação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#escalonamento">Escalonamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dualidade">Dualidade</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">exemplo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-de-parseval">Teorema de Parseval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-sob-x-omega-x-0-int-infty-infty-x-t-dt">Área sob <span class="math notranslate nohighlight">\(X(\omega)\)</span> $<span class="math notranslate nohighlight">\( X(0) = \int_{-\infty}^{\infty}x(t)dt \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-sob-x-t-x-0-frac-1-2-pi-int-infty-infty-x-omega-d-omega">Área sob <span class="math notranslate nohighlight">\(x(t)\)</span> $<span class="math notranslate nohighlight">\( x(0) = \frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)d\omega \)</span>$</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao">Convolução</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplicacao">Multiplicação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-na-frequencia-teorema-da-modulacao">Deslocamento na frequência (teorema da modulação)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Propriedades da Transformada de Fourier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-bode">Diagrama de Bode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-x-fase">Amplitude x Fase</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

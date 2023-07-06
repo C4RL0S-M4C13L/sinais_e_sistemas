@@ -1,0 +1,950 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Sinais Simples &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula02_Sinais_Simples';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Impulso, Sinais Complexos e Amostragem" href="Aula03_Sinais_Complexos.html" />
+    <link rel="prev" title="Conceitos Introdutórios" href="Aula01_Conceitos_Iniciais.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula02_Sinais_Simples.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula02_Sinais_Simples.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sinais Simples</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-sao-sinais">O que são sinais?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais">Sinais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tempo-continuo">Tempo contínuo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tempo-discreto">Tempo discreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-digitais">Sinais digitais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-sinais">Exemplos de sinais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exemplos de sinais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-sinais">Operações com sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Operações com sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversao-do-tempo">Reversão do tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Operações com sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressao-e-expansao">Compressão e expansão</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classificacao-de-sinais">Classificação de sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinal-par">Sinal par</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinal-impar">Sinal ímpar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Classificação de sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-parte-par-de-um-sinal">A parte par de um sinal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-parte-impar-de-um-sinal">A parte ímpar de um sinal:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-periodicos">Sinais periódicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodo-fundamental">Período fundamental</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequencia-fundamental">Frequência fundamental</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sinais periódicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energia-e-potencia-de-sinais">Energia e Potência de Sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Definição</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Energia e Potência de Sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#energia-de-um-sinal">Energia de um sinal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-media-de-um-sinal">Potência média de um sinal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-media-de-um-sinal-periodico">Potência média de um sinal periódico:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raiz-do-valor-medio-quadratico-i-root-mean-square-i">Raiz do valor médio quadrático (<i>root mean square</i>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-o-caso-de-x-t-complexo-a-lei-de-ohm-vai-ser-re-escrita-como">Para o caso de <span class="math notranslate nohighlight">\(x(t)\)</span> complexo a Lei de Ohm vai ser re-escrita como:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-t-x-t-r-e-a-potencia-instantanea-sera-p-inst-frac-x-t-x-t-r-frac-x-t-2-r"><span class="math notranslate nohighlight">\(i(t) = x^*(t)/R\)</span> e a potência instantânea será <span class="math notranslate nohighlight">\(P_{inst} = \frac{x(t)x^*(t)}{R} = \frac{|x(t)|^2}{R}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nesse-contexto-tem-se">Nesse contexto, tem-se:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-int-infty-infty-x-t-2dt"><span class="math notranslate nohighlight">\(E = \int_{-\infty}^{\infty} |x(t)|^2dt\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-m-frac-1-t-0-int-t-t-t-0-x-t-2dt"><span class="math notranslate nohighlight">\(P_M = \frac{1}{T_0}\int_t^{t+T_0}|x(t)|^2dt\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Energia e Potência de Sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Definição:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-exponenciais">Sinais exponenciais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Sinais exponenciais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacao">Aplicação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-senoidais">Sinais senoidais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacoes-de-euler">Relações de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-senoidais-exponencialmente-amortecidos">Sinais senoidais exponencialmente amortecidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-degrau-unitario">Função degrau unitário</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sinais-simples">
+<h1>Sinais Simples<a class="headerlink" href="#sinais-simples" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="o-que-sao-sinais">
+<h2>O que são sinais?<a class="headerlink" href="#o-que-sao-sinais" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Um sinal pode ser definido como uma função matemática que representa o estado ou comportamento de um sistema físico.</p></li>
+</ul>
+</section>
+<section id="sinais">
+<h2>Sinais<a class="headerlink" href="#sinais" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>São representados matematicamente como funções de uma ou mais variáveis independentes. Exemplo: sinal de fala, fotografia.</p></li>
+</ul>
+</section>
+<section id="introducao">
+<h2>Introdução<a class="headerlink" href="#introducao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>A variável independente usada para a representação matemática do sinal pode ser discreta ou contínua.</p>
+<section id="tempo-continuo">
+<h3>Tempo contínuo<a class="headerlink" href="#tempo-continuo" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sinais contínuos são definidos ao longo do tempo contínuo. São também conhecidos como sinais analógicos.</p></li>
+</ul>
+</section>
+<section id="tempo-discreto">
+<h3>Tempo discreto<a class="headerlink" href="#tempo-discreto" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sinais discretos no tempo são definidos em tempo discreto e suas variáveis independentes possuem valores discretos.</p></li>
+</ul>
+</section>
+<section id="sinais-digitais">
+<h3>Sinais digitais<a class="headerlink" href="#sinais-digitais" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sinais digitais são aqueles que possuem tanto a amplitude quanto o tempo discreto.</p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.1.png" /></p>
+<p>referência: <a class="reference external" href="https://i.stack.imgur.com/wVjge.jpg">https://i.stack.imgur.com/wVjge.jpg</a></p>
+</section>
+</section>
+<section id="exemplos-de-sinais">
+<h2>Exemplos de sinais<a class="headerlink" href="#exemplos-de-sinais" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/fig2.2.png" /></p>
+</section>
+<section id="id1">
+<h2>Exemplos de sinais<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/fig2.3.png" /></p>
+</section>
+<section id="operacoes-com-sinais">
+<h2>Operações com sinais<a class="headerlink" href="#operacoes-com-sinais" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="deslocamento-no-tempo">
+<h3>Deslocamento no tempo<a class="headerlink" href="#deslocamento-no-tempo" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(y(t) = x(t-t_0)\)</span> onde:<br></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(t_0 &gt; 0 \rightarrow\)</span> representa um tempo de atraso.<br></p></li>
+<li><p><span class="math notranslate nohighlight">\(t_0 &lt; 0 \rightarrow\)</span> representa um tempo de avanço.</p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.4.png" /></p>
+<p>Sinais idênticos quanto à forma mas deslocados no tempo.</p>
+</section>
+</section>
+<section id="id2">
+<h2>Operações com sinais<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="reversao-do-tempo">
+<h3>Reversão do tempo<a class="headerlink" href="#reversao-do-tempo" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(y(t) = x(-t)\)</span><br>
+É obtido refletindo x(t) em torno da origem (<span class="math notranslate nohighlight">\(t = 0\)</span>).</p>
+<p><img alt="image.png" src="_images/fig2.5.png" /></p>
+</section>
+</section>
+<section id="id3">
+<h2>Operações com sinais<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="compressao-e-expansao">
+<h3>Compressão e expansão<a class="headerlink" href="#compressao-e-expansao" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(y(t) = x(at), onde\)</span> <span class="math notranslate nohighlight">\(a\)</span> é uma constante.<br>
+É obtido fazendo-se uma mudança ‘afim’ na variável independente.</p>
+<ul class="simple">
+<li><p>se <span class="math notranslate nohighlight">\(a &gt; 1 \rightarrow\)</span> o sinal é comprimido (variações rápidas)</p></li>
+<li><p>se <span class="math notranslate nohighlight">\(a &lt; 1 \rightarrow\)</span> o sinal é expandido(variações lentas)</p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.6.png" /></p>
+</section>
+</section>
+<section id="classificacao-de-sinais">
+<h2>Classificação de sinais<a class="headerlink" href="#classificacao-de-sinais" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="sinal-par">
+<h3>Sinal par<a class="headerlink" href="#sinal-par" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Um sinal é chamado <strong>par</strong> se ele satisfazer a seguinte condição: <span class="math notranslate nohighlight">\(x(t) = x(−t)\)</span>. Ou seja, <span class="math notranslate nohighlight">\(x(t)\)</span> é igual a sua reflexão em torno do eixo y.</p></li>
+</ul>
+</section>
+<section id="sinal-impar">
+<h3>Sinal ímpar<a class="headerlink" href="#sinal-impar" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Um sinal é chamado <strong>ímpar</strong> se ele satisfazer a seguinte condição: <span class="math notranslate nohighlight">\(x(t) = −x(−t)\)</span>. <span class="math notranslate nohighlight">\(x(t)\)</span> é igual a sua reflexão em torno da origem.</p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.7.png" /></p>
+</section>
+</section>
+<section id="id4">
+<h2>Classificação de sinais<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="a-parte-par-de-um-sinal">
+<h3>A parte par de um sinal:<a class="headerlink" href="#a-parte-par-de-um-sinal" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_{e}(t) = \frac{1}{2}[x(t)+x(-t)]\)</span><br></p></li>
+</ul>
+</section>
+<section id="a-parte-impar-de-um-sinal">
+<h3>A parte ímpar de um sinal:<a class="headerlink" href="#a-parte-impar-de-um-sinal" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_{o}(t) = \frac{1}{2}[x(t)-x(-t)]\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="sinais-periodicos">
+<h2>Sinais periódicos<a class="headerlink" href="#sinais-periodicos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="definicao">
+<h3>Definição<a class="headerlink" href="#definicao" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Um sinal é chamado periódico se existir um valor positivo T tal que: <span class="math notranslate nohighlight">\(x(t) = x(t + T ), ∀t\)</span>. Essa condição é válida para: ±T , ±2T , ±3T , …</p></li>
+</ul>
+</section>
+<section id="periodo-fundamental">
+<h3>Período fundamental<a class="headerlink" href="#periodo-fundamental" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_{0}\)</span>: menor <span class="math notranslate nohighlight">\(T\)</span> que satisfaz a condição acima</p></li>
+</ul>
+</section>
+<section id="frequencia-fundamental">
+<h3>Frequência fundamental<a class="headerlink" href="#frequencia-fundamental" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f_{0} = \frac{1}{T_{0}}\)</span> ciclos por segundo ou Hertz [Hz].</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega_{0} = \frac{2\pi}{T_{0}} = 2\pi f_{0}\)</span> radianos por segundo [rad/s], pois tem-se um ciclo completo em <span class="math notranslate nohighlight">\(2\pi\)</span> radianos.</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>Sinais periódicos<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Um exemplo de sinal periódico:</p>
+<p><img alt="image.png" src="_images/fig2.8.png" /></p>
+<p><img alt="image.png" src="_images/PAP.png" /></p>
+<p>Sinais <strong>quasi-periodic</strong></p>
+<p>composição de 2 sinais periódicos com período <span class="math notranslate nohighlight">\(T_0\)</span> e <span class="math notranslate nohighlight">\(T_1\)</span></p>
+<p><img alt="title" src="_images/quasi_periodic.png" /></p>
+<p>É necessário que <span class="math notranslate nohighlight">\(N T_0 = M T_1\)</span> então <span class="math notranslate nohighlight">\(\frac{T_0}{T_1} = \frac{M}{N} \in Q\)</span></p>
+<p>sinais <strong>quasi-periodics</strong> são periódicos e sinais <strong>almost periodic</strong> não são.</p>
+</section>
+<section id="energia-e-potencia-de-sinais">
+<h2>Energia e Potência de Sinais<a class="headerlink" href="#energia-e-potencia-de-sinais" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id6">
+<h3>Definição<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A potência instantânea dissipada em um resistor é definida como:<br>
+<span class="math notranslate nohighlight">\(p(t) = \frac{v²(t)}{R} = Ri²(t)\)</span></p>
+<ol class="arabic simple">
+<li><p>A potência instantânea de um sinal em relação a um resistor de 1 ohm é: <span class="math notranslate nohighlight">\(p(t) = x²(t)\)</span></p></li>
+<li><p><strong>Observação:</strong> É importante não esquecer que a unidade ainda permanece! Mesmo tendo simplificado a equação, o resistor não desapareceu.</p></li>
+</ol>
+</li>
+</ul>
+<p>As fórmulas dimensionais são:</p>
+<ol class="arabic simple">
+<li><p>tensão é: <span class="math notranslate nohighlight">\(M L^2 T^{-3} I^{-1}\)</span></p></li>
+<li><p>resitência: <span class="math notranslate nohighlight">\(M L^2 T^{-3} I^{-2}\)</span></p></li>
+<li><p>potência: <span class="math notranslate nohighlight">\(M L^2 T^{-3}\)</span></p></li>
+<li><p>energia: <span class="math notranslate nohighlight">\(ML^2T^{−2}\)</span></p></li>
+</ol>
+<p>onde</p>
+<p>M → Massa, L → comprimento, T → Tempo e I → Corrente</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(V = RI\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E = P*T\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dfrac{V^2}{R} = M L^2 T^{-3}\)</span></p></li>
+</ol>
+</section>
+</section>
+<section id="id7">
+<h2>Energia e Potência de Sinais<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="energia-de-um-sinal">
+<h3>Energia de um sinal:<a class="headerlink" href="#energia-de-um-sinal" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E = \int_{-\infty}^{\infty}x²(t)dt\)</span></p></li>
+</ul>
+</section>
+<section id="potencia-media-de-um-sinal">
+<h3>Potência média de um sinal:<a class="headerlink" href="#potencia-media-de-um-sinal" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_M = \lim_{x \to \infty}\frac{1}{T}\int_{-T/2}^{T/2}x²(t)dt\)</span></p></li>
+</ul>
+</section>
+<section id="potencia-media-de-um-sinal-periodico">
+<h3>Potência média de um sinal periódico:<a class="headerlink" href="#potencia-media-de-um-sinal-periodico" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_M = \frac{1}{T_0}\int_{t'}^{t'+T_0}x²(t)dt\)</span></p></li>
+</ul>
+</section>
+<section id="raiz-do-valor-medio-quadratico-i-root-mean-square-i">
+<h3>Raiz do valor médio quadrático (<i>root mean square</i>)<a class="headerlink" href="#raiz-do-valor-medio-quadratico-i-root-mean-square-i" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>É a raiz quadrada da potência média em relação a um resistor de 1 ohm que é equivalente ao valor eficaz.</p></li>
+</ul>
+</section>
+</section>
+<section id="para-o-caso-de-x-t-complexo-a-lei-de-ohm-vai-ser-re-escrita-como">
+<h2>Para o caso de <span class="math notranslate nohighlight">\(x(t)\)</span> complexo a Lei de Ohm vai ser re-escrita como:<a class="headerlink" href="#para-o-caso-de-x-t-complexo-a-lei-de-ohm-vai-ser-re-escrita-como" title="Permalink to this heading">#</a></h2>
+<section id="i-t-x-t-r-e-a-potencia-instantanea-sera-p-inst-frac-x-t-x-t-r-frac-x-t-2-r">
+<h3><span class="math notranslate nohighlight">\(i(t) = x^*(t)/R\)</span> e a potência instantânea será <span class="math notranslate nohighlight">\(P_{inst} = \frac{x(t)x^*(t)}{R} = \frac{|x(t)|^2}{R}\)</span><a class="headerlink" href="#i-t-x-t-r-e-a-potencia-instantanea-sera-p-inst-frac-x-t-x-t-r-frac-x-t-2-r" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="nesse-contexto-tem-se">
+<h3>Nesse contexto, tem-se:<a class="headerlink" href="#nesse-contexto-tem-se" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="e-int-infty-infty-x-t-2dt">
+<h3><span class="math notranslate nohighlight">\(E = \int_{-\infty}^{\infty} |x(t)|^2dt\)</span><a class="headerlink" href="#e-int-infty-infty-x-t-2dt" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="p-m-frac-1-t-0-int-t-t-t-0-x-t-2dt">
+<h3><span class="math notranslate nohighlight">\(P_M = \frac{1}{T_0}\int_t^{t+T_0}|x(t)|^2dt\)</span><a class="headerlink" href="#p-m-frac-1-t-0-int-t-t-t-0-x-t-2dt" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id8">
+<h2>Energia e Potência de Sinais<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id9">
+<h3>Definição:<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Sinal de energia é aquele que: <span class="math notranslate nohighlight">\(E &lt; \infty\)</span></p></li>
+<li><p>Sinal de potência é aquele que: <span class="math notranslate nohighlight">\(0 &lt; P_M &lt; \infty\)</span></p></li>
+</ol>
+<p><strong>Cuidado:</strong> sinais periódicos não possuem energia!!!</p>
+</section>
+</section>
+<section id="sinais-exponenciais">
+<h2>Sinais exponenciais<a class="headerlink" href="#sinais-exponenciais" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x(t) = Ce^{at}\)</span>, onde <span class="math notranslate nohighlight">\(C\)</span> e <span class="math notranslate nohighlight">\(a\)</span> são, em geral, números complexos</p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.9.png" /></p>
+<p>Exemplo:</p>
+<ul class="simple">
+<li><p>Descarga de um capacitor através de um resistor</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>Sinais exponenciais<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>A forma mais comum de exponencial complexa é realizada admitindo a um número puramente imaginário. <span class="math notranslate nohighlight">\(x(t) = Ce^{j\omega_0t}\)</span> onde <span class="math notranslate nohighlight">\(C\)</span> é admitido ser 1 e <span class="math notranslate nohighlight">\(\omega_0\)</span> é um número positivo. Esta função é periódica com período <span class="math notranslate nohighlight">\(T_0\)</span> pois:<br>
+<span class="math notranslate nohighlight">\(x(t+T_0) = e^{j\omega_{0}(t+T_0)} = e^{j\omega_0t}e^{j\omega_0T_0} = e^{j\omega_0t}e^{j2\pi} = e^{j\omega_0t} = x(t)\)</span></p></li>
+</ul>
+<section id="aplicacao">
+<h3>Aplicação<a class="headerlink" href="#aplicacao" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Análise de Fourier onde é definido um conjunto de exponenciais relacionadas harmonicamente tais que:<br>
+<span class="math notranslate nohighlight">\(\phi_k(t) = e^{jk\omega_0t}\)</span> <span class="math notranslate nohighlight">\(\{k = 0, \pm1, \pm2,\dots\}\)</span> <span class="math notranslate nohighlight">\(T_k = \frac{2\pi}{|k|\omega_0} = \frac{T_0}{|k|}\)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="sinais-senoidais">
+<h2>Sinais senoidais<a class="headerlink" href="#sinais-senoidais" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>A forma mais comum de se escrever um sinal senoidal é: <span class="math notranslate nohighlight">\(x(t) = Asen(\omega_0t+\phi)\)</span>. Onde <span class="math notranslate nohighlight">\(A\)</span> é a amplitude, <span class="math notranslate nohighlight">\(\omega_0\)</span> é a frequência em (rad/s) e <span class="math notranslate nohighlight">\(\phi\)</span> é o ângulo de fase em radianos.</p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.10.png" /></p>
+</section>
+<section id="relacoes-de-euler">
+<h2>Relações de Euler<a class="headerlink" href="#relacoes-de-euler" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e^{j\omega_0t} = cos(\omega_0t)+jsen(\omega_0t)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(cos(\omega_0t) = \frac{1}{2}[e^{j\omega_0t}+e^{-j\omega_0t}]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(sen(\omega_0t) = \frac{1}{2j}[e^{j\omega_0t}-e^{-j\omega_0t}]\)</span></p></li>
+</ul>
+</section>
+<section id="sinais-senoidais-exponencialmente-amortecidos">
+<h2>Sinais senoidais exponencialmente amortecidos<a class="headerlink" href="#sinais-senoidais-exponencialmente-amortecidos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x(t) = Ae^{-at}sen(\omega_0t+\phi)\)</span>, em que <span class="math notranslate nohighlight">\(a&gt;0\)</span></p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.11.png" /></p>
+</section>
+<section id="funcao-degrau-unitario">
+<h2>Função degrau unitário<a class="headerlink" href="#funcao-degrau-unitario" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(
+u(t)=
+\begin{cases}
+\displaystyle 1, t\geq 0 \\
+\\
+\displaystyle 0, t&lt;0
+\end{cases} 
+\)</span></p></li>
+</ul>
+<p><img alt="image.png" src="_images/fig2.12.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula01_Conceitos_Iniciais.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Conceitos Introdutórios</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula03_Sinais_Complexos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Impulso, Sinais Complexos e Amostragem</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-sao-sinais">O que são sinais?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais">Sinais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tempo-continuo">Tempo contínuo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tempo-discreto">Tempo discreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-digitais">Sinais digitais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplos-de-sinais">Exemplos de sinais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exemplos de sinais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-sinais">Operações com sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Operações com sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reversao-do-tempo">Reversão do tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Operações com sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressao-e-expansao">Compressão e expansão</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classificacao-de-sinais">Classificação de sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinal-par">Sinal par</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinal-impar">Sinal ímpar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Classificação de sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-parte-par-de-um-sinal">A parte par de um sinal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-parte-impar-de-um-sinal">A parte ímpar de um sinal:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-periodicos">Sinais periódicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodo-fundamental">Período fundamental</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequencia-fundamental">Frequência fundamental</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sinais periódicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energia-e-potencia-de-sinais">Energia e Potência de Sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Definição</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Energia e Potência de Sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#energia-de-um-sinal">Energia de um sinal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-media-de-um-sinal">Potência média de um sinal:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#potencia-media-de-um-sinal-periodico">Potência média de um sinal periódico:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raiz-do-valor-medio-quadratico-i-root-mean-square-i">Raiz do valor médio quadrático (<i>root mean square</i>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-o-caso-de-x-t-complexo-a-lei-de-ohm-vai-ser-re-escrita-como">Para o caso de <span class="math notranslate nohighlight">\(x(t)\)</span> complexo a Lei de Ohm vai ser re-escrita como:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-t-x-t-r-e-a-potencia-instantanea-sera-p-inst-frac-x-t-x-t-r-frac-x-t-2-r"><span class="math notranslate nohighlight">\(i(t) = x^*(t)/R\)</span> e a potência instantânea será <span class="math notranslate nohighlight">\(P_{inst} = \frac{x(t)x^*(t)}{R} = \frac{|x(t)|^2}{R}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nesse-contexto-tem-se">Nesse contexto, tem-se:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-int-infty-infty-x-t-2dt"><span class="math notranslate nohighlight">\(E = \int_{-\infty}^{\infty} |x(t)|^2dt\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#p-m-frac-1-t-0-int-t-t-t-0-x-t-2dt"><span class="math notranslate nohighlight">\(P_M = \frac{1}{T_0}\int_t^{t+T_0}|x(t)|^2dt\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Energia e Potência de Sinais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Definição:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-exponenciais">Sinais exponenciais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Sinais exponenciais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacao">Aplicação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-senoidais">Sinais senoidais</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacoes-de-euler">Relações de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-senoidais-exponencialmente-amortecidos">Sinais senoidais exponencialmente amortecidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-degrau-unitario">Função degrau unitário</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

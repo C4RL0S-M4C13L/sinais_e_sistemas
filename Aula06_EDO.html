@@ -1,0 +1,1010 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Equações Diferenciais Lineares &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula06_EDO';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Transformada de Laplace" href="Aula07_Laplace.html" />
+    <link rel="prev" title="Sistemas Lineares e Invariantes no tempo - LTI" href="Aula05_Sistemas_LIT.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula06_EDO.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula06_EDO.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Equações Diferenciais Lineares</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-geral-da-representacao">Forma geral da representação:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-k-e-b-k-sao-coeficientes-constantes">- <span class="math notranslate nohighlight">\(a_k\)</span> e <span class="math notranslate nohighlight">\(b_k\)</span> são coeficientes constantes.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-a-maior-derivada-de-y-t-rightarrow-ordem-do-sistema">- N (a maior derivada de y(t)) <span class="math notranslate nohighlight">\(\rightarrow\)</span> ordem do sistema.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-solucao-consiste-de-duas-partes">A solução consiste de duas partes:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes">Considerações</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#um-sistema-para-a-qual-a-entrada-e-a-saida-satisfazem-uma-equacao-linear-de-diferencas-possui">Um sistema para a qual a entrada e a saída satisfazem uma equação linear de diferenças possui:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-saida-para-uma-dada-entrada-nao-e-unicamente-especificada-informacoes-adicionais-sao-necessarias">- A saída para uma dada entrada não é unicamente especificada. Informações adicionais são necessárias;</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-informacao-auxiliar-consiste-de-n-condicoes-iniciais-da-saida">- A informação auxiliar consiste de <span class="math notranslate nohighlight">\(N\)</span> condições iniciais da saída;</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#se-n-0-nenhuma-condicao-e-necessaria-para-o-calculo-da-saida">- Se <span class="math notranslate nohighlight">\(N = 0\)</span> nenhuma condição é necessária para o cálculo da saída.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade-invariancia-no-tempo-e-causalidade-do-sistema-nao-dependem-das-condicoes-auxiliares">- Linearidade, invariância no tempo e causalidade do sistema não dependem das condições auxiliares.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equações Diferenciais Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao">Solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Equações Diferenciais Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-homogenea-ou-resposta-natural">Solução homogênea ou resposta natural</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-homogenea-ou-resposta-natual">Solução homogênea ou resposta natual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#com-relacao-ao-tipo-de-raizes-tem-se-os-seguintes-tipos-de-saida">Com relação ao tipo de raízes, tem-se os seguintes tipos de saída:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reais-rightarrow-exponenciais-reais">- Reais <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Exponenciais Reais</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imaginarias-rightarrow-senoides">- Imaginárias <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Senóides</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complexas-rightarrow-senoides-amortecidas">- Complexas <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Senóides Amortecidas</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-uma-das-raizes-tiver-multiplicidade-m-sao-incluidos-m-termos">Se uma das raízes tiver multiplicidade M, são incluídos M termos:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-particular">Solução particular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#y-p-t-rightarrow-a-solucao-particular-e-obtida-atraves-da-resposta-forcada-na-forma-e-st"><span class="math notranslate nohighlight">\(y_p(t)\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> a solução particular é obtida através da resposta forçada na forma <span class="math notranslate nohighlight">\(e^{st}\)</span>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supoe-se-que-a-saida-tenha-a-mesma-forma-geral-de-entrada">Supõe-se que a saída tenha a mesma forma geral de entrada.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-para-sistemas-continuos-no-tempo">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceitos-basicos">Conceitos básicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considere-o-sistema-descrito-pela-equacao-diferencial">Considere o sistema descrito pela equação diferencial:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-direta">Forma direta</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Estruturas para sistemas contínuos no tempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-direta-modificada">Forma direta modificada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-canonica">Forma canônica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio">Exercício</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fazer-os-exercicios-27-e-28-da-lista">Fazer os exercícios 27 e 28 da lista.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ficaria-a-implementacao-usando-as-estruturas-com-integracao-e-diferenciacao">Como ficaria a implementação usando as estruturas  com integração e diferenciação?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equacoes-de-recorrencia-para-sistemas-em-tempo-discreto">Equações de Recorrência para sistemas em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equacoes-de-recorrencia-lineares">Equações de Recorrência Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justicativa">Justicativa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#em-diagrama-de-blocos">Em diagrama de blocos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-para-n-0">Exemplo para N = 0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-para-sistemas-discretos-no-tempo">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Forma direta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eq-recorrencia">Eq. recorrência</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-discreto">Sistema discreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Forma direta modificada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerando">Considerando</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Forma canônica</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="equacoes-diferenciais-lineares">
+<h1>Equações Diferenciais Lineares<a class="headerlink" href="#equacoes-diferenciais-lineares" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="forma-geral-da-representacao">
+<h2>Forma geral da representação:<a class="headerlink" href="#forma-geral-da-representacao" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ \sum_{k=0}^{N}a_k\frac{d^K}{dt^k}y(t) = \sum_{k=0}^{M}b_k\frac{d^K}{dt^k}x(t) \]</div>
+<section id="a-k-e-b-k-sao-coeficientes-constantes">
+<h3>- <span class="math notranslate nohighlight">\(a_k\)</span> e <span class="math notranslate nohighlight">\(b_k\)</span> são coeficientes constantes.<a class="headerlink" href="#a-k-e-b-k-sao-coeficientes-constantes" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="n-a-maior-derivada-de-y-t-rightarrow-ordem-do-sistema">
+<h3>- N (a maior derivada de y(t)) <span class="math notranslate nohighlight">\(\rightarrow\)</span> ordem do sistema.<a class="headerlink" href="#n-a-maior-derivada-de-y-t-rightarrow-ordem-do-sistema" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="a-solucao-consiste-de-duas-partes">
+<h3>A solução consiste de duas partes:<a class="headerlink" href="#a-solucao-consiste-de-duas-partes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>solução homogênea (resposta natural) <span class="math notranslate nohighlight">\(\to y_h(t)\)</span></p></li>
+<li><p>solução particular <span class="math notranslate nohighlight">\(\to y_p(t)\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ y(t) = y_h(t)+y_p(t) \]</div>
+</section>
+</section>
+<section id="consideracoes">
+<h2>Considerações<a class="headerlink" href="#consideracoes" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="um-sistema-para-a-qual-a-entrada-e-a-saida-satisfazem-uma-equacao-linear-de-diferencas-possui">
+<h3>Um sistema para a qual a entrada e a saída satisfazem uma equação linear de diferenças possui:<a class="headerlink" href="#um-sistema-para-a-qual-a-entrada-e-a-saida-satisfazem-uma-equacao-linear-de-diferencas-possui" title="Permalink to this heading">#</a></h3>
+<section id="a-saida-para-uma-dada-entrada-nao-e-unicamente-especificada-informacoes-adicionais-sao-necessarias">
+<h4>- A saída para uma dada entrada não é unicamente especificada. Informações adicionais são necessárias;<a class="headerlink" href="#a-saida-para-uma-dada-entrada-nao-e-unicamente-especificada-informacoes-adicionais-sao-necessarias" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="a-informacao-auxiliar-consiste-de-n-condicoes-iniciais-da-saida">
+<h4>- A informação auxiliar consiste de <span class="math notranslate nohighlight">\(N\)</span> condições iniciais da saída;<a class="headerlink" href="#a-informacao-auxiliar-consiste-de-n-condicoes-iniciais-da-saida" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="se-n-0-nenhuma-condicao-e-necessaria-para-o-calculo-da-saida">
+<h4>- Se <span class="math notranslate nohighlight">\(N = 0\)</span> nenhuma condição é necessária para o cálculo da saída.<a class="headerlink" href="#se-n-0-nenhuma-condicao-e-necessaria-para-o-calculo-da-saida" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="linearidade-invariancia-no-tempo-e-causalidade-do-sistema-nao-dependem-das-condicoes-auxiliares">
+<h4>- Linearidade, invariância no tempo e causalidade do sistema não dependem das condições auxiliares.<a class="headerlink" href="#linearidade-invariancia-no-tempo-e-causalidade-do-sistema-nao-dependem-das-condicoes-auxiliares" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="id1">
+<h2>Equações Diferenciais Lineares<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="solucao">
+<h3>Solução<a class="headerlink" href="#solucao" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A solução da equação diferencial necessita de um conjunto de N condições auxiliares:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ y(t_0), \frac{d}{dt}y(t_0), \dots, \frac{d^{N-1}}{dt^{N-1}}y(t_0) \]</div>
+<p>Essas condições resumem as condições dos dispositivos que armazenam energia (tensões nos capacitores, correntes nos indutores, <span class="math notranslate nohighlight">\(\dots\)</span>)</p>
+</section>
+</section>
+<section id="id2">
+<h2>Equações Diferenciais Lineares<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id3">
+<h3>Solução<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A solução da equação diferencial necessita de um conjunto de <span class="math notranslate nohighlight">\(N\)</span> condições auxiliares: Um sistema linear é causal se a condição inicial de repouso for satisfeita:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x(t) = 0, t &lt; t_0 \rightarrow y(t) = 0, t &lt; t_0 \]</div>
+</section>
+</section>
+<section id="solucao-homogenea-ou-resposta-natural">
+<h2>Solução homogênea ou resposta natural<a class="headerlink" href="#solucao-homogenea-ou-resposta-natural" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><span class="math notranslate nohighlight">\(y_h(t)\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> a resposta natural é a saída do sistema quando a entrada é nula:</p>
+<div class="math notranslate nohighlight">
+\[\underbrace{\sum_{k=0}^{N}a_k\frac{d^K}{dt^k}y_h(t) = 0}_{\text{equação homogênea}} \]</div>
+<p>A solução apresenta a seguinte forma:</p>
+<div class="math notranslate nohighlight">
+\[ y_h(t) = \sum_{k=1}^{N}C_ke^{\alpha_kt}\]</div>
+<p>Em que os coeficientes <span class="math notranslate nohighlight">\(\alpha_k\)</span> são as raízes da seguinte equação característica:</p>
+<p><span class="math notranslate nohighlight">\(\sum_{k=0}^{N}a_k s^k = a_0+a_1s+\ldots+a_Ns^N\)</span></p>
+</section>
+<section id="solucao-homogenea-ou-resposta-natual">
+<h2>Solução homogênea ou resposta natual<a class="headerlink" href="#solucao-homogenea-ou-resposta-natual" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="com-relacao-ao-tipo-de-raizes-tem-se-os-seguintes-tipos-de-saida">
+<h3>Com relação ao tipo de raízes, tem-se os seguintes tipos de saída:<a class="headerlink" href="#com-relacao-ao-tipo-de-raizes-tem-se-os-seguintes-tipos-de-saida" title="Permalink to this heading">#</a></h3>
+<section id="reais-rightarrow-exponenciais-reais">
+<h4>- Reais <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Exponenciais Reais</strong><a class="headerlink" href="#reais-rightarrow-exponenciais-reais" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="imaginarias-rightarrow-senoides">
+<h4>- Imaginárias <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Senóides</strong><a class="headerlink" href="#imaginarias-rightarrow-senoides" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="complexas-rightarrow-senoides-amortecidas">
+<h4>- Complexas <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Senóides Amortecidas</strong><a class="headerlink" href="#complexas-rightarrow-senoides-amortecidas" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+<section id="se-uma-das-raizes-tiver-multiplicidade-m-sao-incluidos-m-termos">
+<h3>Se uma das raízes tiver multiplicidade M, são incluídos M termos:<a class="headerlink" href="#se-uma-das-raizes-tiver-multiplicidade-m-sao-incluidos-m-termos" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ e^{\alpha_it}, te^{\alpha_it}, \dots, t^{M-1}e^{\alpha_it} \]</div>
+</section>
+</section>
+<section id="solucao-particular">
+<h2>Solução particular<a class="headerlink" href="#solucao-particular" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="y-p-t-rightarrow-a-solucao-particular-e-obtida-atraves-da-resposta-forcada-na-forma-e-st">
+<h3><span class="math notranslate nohighlight">\(y_p(t)\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> a solução particular é obtida através da resposta forçada na forma <span class="math notranslate nohighlight">\(e^{st}\)</span>.<a class="headerlink" href="#y-p-t-rightarrow-a-solucao-particular-e-obtida-atraves-da-resposta-forcada-na-forma-e-st" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="supoe-se-que-a-saida-tenha-a-mesma-forma-geral-de-entrada">
+<h3>Supõe-se que a saída tenha a mesma forma geral de entrada.<a class="headerlink" href="#supoe-se-que-a-saida-tenha-a-mesma-forma-geral-de-entrada" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ 1 \rightarrow c   \]</div>
+<div class="math notranslate nohighlight">
+\[ e^{\alpha t}\rightarrow ce^{\alpha t} \]</div>
+<div class="math notranslate nohighlight">
+\[ cos(\omega t + \phi) \rightarrow c_1cos(\omega t) + c_2sen(\omega t) \]</div>
+</section>
+</section>
+<section id="estruturas-para-sistemas-continuos-no-tempo">
+<h2>Estruturas para sistemas contínuos no tempo<a class="headerlink" href="#estruturas-para-sistemas-continuos-no-tempo" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="conceitos-basicos">
+<h3>Conceitos básicos<a class="headerlink" href="#conceitos-basicos" title="Permalink to this heading">#</a></h3>
+<p>Os sistemas descritos por equações diferenciais com coeficientes constantes podem ser representados por um diagrama de blocos de operações elementares. Três operações básica são utilizadas:</p>
+<p><img alt="fig4.1.png" src="_images/fig6.7.png" /></p>
+</section>
+</section>
+<section id="id4">
+<h2>Estruturas para sistemas contínuos no tempo<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="considere-o-sistema-descrito-pela-equacao-diferencial">
+<h3>Considere o sistema descrito pela equação diferencial:<a class="headerlink" href="#considere-o-sistema-descrito-pela-equacao-diferencial" title="Permalink to this heading">#</a></h3>
+<p>\begin{equation} \sum_{k=0}^{N}a_k\frac{d^k}{dt^k}y(t) = \sum_{k=0}^{M}b_k\frac{d^k}{dt^k}x(t) \end{equation}</p>
+<p>Considere a seguinte operação de integração recursiva: <span class="math notranslate nohighlight">\(g^{(n)}(t) = \int_{-\infty}^{t}g^{(n-1)}(\tau)d\tau\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(g^{(n)}(t) \rightarrow\)</span> a n-ésima integral de <span class="math notranslate nohighlight">\(g(t)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(g^{(0)}(t) = g(t)\)</span></p></li>
+<li><p>Admitindo <span class="math notranslate nohighlight">\(N \geq M\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \sum_{k=0}^{N}a_ky^{(N-k)}(t) = \sum_{k=0}^{M}b_kx^{(M-k)}(t) \]</div>
+</section>
+</section>
+<section id="id5">
+<h2>Estruturas para sistemas contínuos no tempo<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="exemplo">
+<h3>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ a_0y(t) + a_1\frac{d}{dt}y(t) + a_2\frac{d²}{dt²}y(t) = b_0x(t) + b_1 \frac{d}{dt}x(t) + b_2 \frac{d²}{dt²}x(t) \]</div>
+<p>Escrevendo a equação acima através de uma soma de integrais:</p>
+<div class="math notranslate nohighlight">
+\[ a_0y^{(2)}(t) + a_1y^{(1)}(t) + a_2y(t) = b_0x^{(2)}(t) + b_1x^{(1)}(t) + b_2x(t) \]</div>
+<p>De outro modo:</p>
+<div class="math notranslate nohighlight">
+\[ a_2y(t) = \underbrace{b_0x^{(2)}(t) + b_1x^{(1)}(t) + b_2x(t)}_{\text{operações em x(t)}} - \underbrace{a_0y^{(2)}(t) - a_1y^{(1)} (t)}_{\text{operações em y(t)}} \]</div>
+<div class="math notranslate nohighlight">
+\[ y(t) = \frac{1}{a_2}\left\{ \underbrace{ b_0x^{(2)}(t) + b_1x^{(1)}(t) + b_2x(t)}_{g(t)} -a_0y^{(2)}(t) - a_1y^{(1)} (t)\right\} \]</div>
+</section>
+</section>
+<section id="id6">
+<h2>Estruturas para sistemas contínuos no tempo<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="forma-direta">
+<h3>Forma direta<a class="headerlink" href="#forma-direta" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig6.8.png" /></p>
+</section>
+</section>
+<section id="id7">
+<h2>Estruturas para sistemas contínuos no tempo<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Tem-se dois sistemas LTI em cascata. Pode-se trocar a ordem de execução (propriedades comutativa) trocando a ordem de operação dos sistemas:</p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig6.9.png" /></p>
+</section>
+<section id="id8">
+<h2>Estruturas para sistemas contínuos no tempo<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="forma-direta-modificada">
+<h3>Forma direta modificada<a class="headerlink" href="#forma-direta-modificada" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w(t)\)</span> alimenta os dois conjuntos de integradores idênticos. Portanto, eles podem ser agrupados em um só formando então uma nova forma de diagrama de blocos.</p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig6.10.png" /></p>
+<p><span class="math notranslate nohighlight">\(\Rightarrow\)</span> <strong>Vantagem:</strong> utiliza um número menor de integradores em relação à primeira forma direta.</p>
+</section>
+</section>
+<section id="id9">
+<h2>Estruturas para sistemas contínuos no tempo<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="forma-canonica">
+<h3>Forma canônica<a class="headerlink" href="#forma-canonica" title="Permalink to this heading">#</a></h3>
+<p>Generalizando a forma direta modificada:</p>
+<p><img alt="fig4.1.png" src="_images/fig6.11.png" /></p>
+</section>
+</section>
+<section id="exercicio">
+<h2>Exercício<a class="headerlink" href="#exercicio" title="Permalink to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="fazer-os-exercicios-27-e-28-da-lista">
+<h2>Fazer os exercícios 27 e 28 da lista.<a class="headerlink" href="#fazer-os-exercicios-27-e-28-da-lista" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="como-ficaria-a-implementacao-usando-as-estruturas-com-integracao-e-diferenciacao">
+<h2>Como ficaria a implementação usando as estruturas  com integração e diferenciação?<a class="headerlink" href="#como-ficaria-a-implementacao-usando-as-estruturas-com-integracao-e-diferenciacao" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="equacoes-de-recorrencia-para-sistemas-em-tempo-discreto">
+<h2>Equações de Recorrência para sistemas em tempo discreto<a class="headerlink" href="#equacoes-de-recorrencia-para-sistemas-em-tempo-discreto" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="equacoes-de-recorrencia-lineares">
+<h2>Equações de Recorrência Lineares<a class="headerlink" href="#equacoes-de-recorrencia-lineares" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="justicativa">
+<h3>Justicativa<a class="headerlink" href="#justicativa" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Uma importante classe de sistemas lineares e invariantes no tempo consiste na seguinte equação:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \sum_{k=0}^{N}a_ky[n-k] = \sum_{k=0}^{M}b_kx[n-k] \]</div>
+<p>Exemplo:</p>
+<div class="math notranslate nohighlight">
+\[ y[n] - y[n-1] = x[n] \]</div>
+<div class="math notranslate nohighlight">
+\[ N = 1, a_1 = -1, a_0 = 1 \]</div>
+<div class="math notranslate nohighlight">
+\[ b_0 = 1, M = 0 \]</div>
+</section>
+</section>
+<section id="em-diagrama-de-blocos">
+<h2>Em diagrama de blocos<a class="headerlink" href="#em-diagrama-de-blocos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig6.1.png" /></p>
+</section>
+<section id="exemplo-para-n-0">
+<h2>Exemplo para N = 0<a class="headerlink" href="#exemplo-para-n-0" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[ y[n] = \sum_{k=-0}^{M}\left(\frac{b_k}{a_0}\right)x[n-k] \]</div>
+<p>Substituindo <span class="math notranslate nohighlight">\(x[n]\)</span> por <span class="math notranslate nohighlight">\(\delta[n]\)</span></p>
+<div class="math notranslate nohighlight">
+\[ y[n] = \sum_{k=-0}^{M}\left(\frac{b_k}{a_0}\right)\delta[n-k] \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+h[n] =
+\begin{cases}
+\displaystyle \frac{b_k}{a_0}, 0 \leq n &lt; M \\
+\\
+\displaystyle 0, c.c
+\end{cases} 
+\end{split}\]</div>
+</section>
+<section id="estruturas-para-sistemas-discretos-no-tempo">
+<h2>Estruturas para sistemas discretos no tempo<a class="headerlink" href="#estruturas-para-sistemas-discretos-no-tempo" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="definicao">
+<h3>Definição<a class="headerlink" href="#definicao" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sistemas LTI com função racional possui a propriedade que a sua sequência de entrada e saída satisfaz uma equação de diferençaas finitas com coeficientes constante. A função do sistema é a TZ da resposta impulsiva. Veja a seguir a representação das operações elementares em sistemas discretos:</p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig6.2.png" /></p>
+</section>
+</section>
+<section id="id10">
+<h2>Estruturas para sistemas discretos no tempo<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id11">
+<h3>Exemplo<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[H(z) = \frac{b_0}{1-a_1z^{-1}-a_2z^{-2}} \]</div>
+<div class="math notranslate nohighlight">
+\[ y[n] = a_1y[n-1] + a_2y[n-2] + b_0x[n] \]</div>
+<p><img alt="fig4.1.png" src="_images/fig6.3.png" /></p>
+</section>
+</section>
+<section id="id12">
+<h2>Forma direta<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig6.4.png" /></p>
+</section>
+<section id="eq-recorrencia">
+<h2>Eq. recorrência<a class="headerlink" href="#eq-recorrencia" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="sistema-discreto">
+<h3>Sistema discreto<a class="headerlink" href="#sistema-discreto" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ y[n] - \sum_{k=1}^{N}a_ky[n-k] = \sum_{k=0}^{M}b_kx[n-k] \]</div>
+</section>
+<section id="id13">
+<h3>Forma direta modificada<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig6.5.png" /></p>
+</section>
+</section>
+<section id="id14">
+<h2>Estruturas para sistemas discretos no tempo<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="considerando">
+<h3>Considerando<a class="headerlink" href="#considerando" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(v[n] = \sum_{k=0}^{M} b_kx[n-k]\)</span>. Esse gráfico pode ser interpretado como a cascata de 2 sistemas e desta forma a ordem da soma pode ser alterada. Caso <span class="math notranslate nohighlight">\(N \neq M\)</span> existem alguns coeficientes com zero.</p>
+<div class="math notranslate nohighlight">
+\[ H(z) = H_2(z)H_1(z) = \left(\frac{1}{1-\sum_{k=1}^{N}a_kz^{-k}}\right) \left(\sum_{k=0}^{M}b_kz^{-k}\right) \]</div>
+<div class="math notranslate nohighlight">
+\[ V(z) = H_1(z)X(z) = \left(\sum_{k=0}^{M}b_kz^{-k}\right)X(z) \]</div>
+<div class="math notranslate nohighlight">
+\[ Y(z) = H_2(z)V(z) = \frac{1}{1-\sum_{k=1}^{N}a_kz^{-k}}V(z) \]</div>
+</section>
+</section>
+<section id="id15">
+<h2>Estruturas para sistemas discretos no tempo<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id16">
+<h3>Forma canônica<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig6.6.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula05_Sistemas_LIT.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sistemas Lineares e Invariantes no tempo - LTI</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula07_Laplace.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Transformada de Laplace</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-geral-da-representacao">Forma geral da representação:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-k-e-b-k-sao-coeficientes-constantes">- <span class="math notranslate nohighlight">\(a_k\)</span> e <span class="math notranslate nohighlight">\(b_k\)</span> são coeficientes constantes.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-a-maior-derivada-de-y-t-rightarrow-ordem-do-sistema">- N (a maior derivada de y(t)) <span class="math notranslate nohighlight">\(\rightarrow\)</span> ordem do sistema.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-solucao-consiste-de-duas-partes">A solução consiste de duas partes:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes">Considerações</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#um-sistema-para-a-qual-a-entrada-e-a-saida-satisfazem-uma-equacao-linear-de-diferencas-possui">Um sistema para a qual a entrada e a saída satisfazem uma equação linear de diferenças possui:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-saida-para-uma-dada-entrada-nao-e-unicamente-especificada-informacoes-adicionais-sao-necessarias">- A saída para uma dada entrada não é unicamente especificada. Informações adicionais são necessárias;</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-informacao-auxiliar-consiste-de-n-condicoes-iniciais-da-saida">- A informação auxiliar consiste de <span class="math notranslate nohighlight">\(N\)</span> condições iniciais da saída;</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#se-n-0-nenhuma-condicao-e-necessaria-para-o-calculo-da-saida">- Se <span class="math notranslate nohighlight">\(N = 0\)</span> nenhuma condição é necessária para o cálculo da saída.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade-invariancia-no-tempo-e-causalidade-do-sistema-nao-dependem-das-condicoes-auxiliares">- Linearidade, invariância no tempo e causalidade do sistema não dependem das condições auxiliares.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equações Diferenciais Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao">Solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Equações Diferenciais Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-homogenea-ou-resposta-natural">Solução homogênea ou resposta natural</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-homogenea-ou-resposta-natual">Solução homogênea ou resposta natual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#com-relacao-ao-tipo-de-raizes-tem-se-os-seguintes-tipos-de-saida">Com relação ao tipo de raízes, tem-se os seguintes tipos de saída:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reais-rightarrow-exponenciais-reais">- Reais <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Exponenciais Reais</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imaginarias-rightarrow-senoides">- Imaginárias <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Senóides</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#complexas-rightarrow-senoides-amortecidas">- Complexas <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Senóides Amortecidas</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-uma-das-raizes-tiver-multiplicidade-m-sao-incluidos-m-termos">Se uma das raízes tiver multiplicidade M, são incluídos M termos:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucao-particular">Solução particular</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#y-p-t-rightarrow-a-solucao-particular-e-obtida-atraves-da-resposta-forcada-na-forma-e-st"><span class="math notranslate nohighlight">\(y_p(t)\)</span> <span class="math notranslate nohighlight">\(\rightarrow\)</span> a solução particular é obtida através da resposta forçada na forma <span class="math notranslate nohighlight">\(e^{st}\)</span>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supoe-se-que-a-saida-tenha-a-mesma-forma-geral-de-entrada">Supõe-se que a saída tenha a mesma forma geral de entrada.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-para-sistemas-continuos-no-tempo">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceitos-basicos">Conceitos básicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considere-o-sistema-descrito-pela-equacao-diferencial">Considere o sistema descrito pela equação diferencial:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-direta">Forma direta</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Estruturas para sistemas contínuos no tempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-direta-modificada">Forma direta modificada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Estruturas para sistemas contínuos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-canonica">Forma canônica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio">Exercício</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fazer-os-exercicios-27-e-28-da-lista">Fazer os exercícios 27 e 28 da lista.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-ficaria-a-implementacao-usando-as-estruturas-com-integracao-e-diferenciacao">Como ficaria a implementação usando as estruturas  com integração e diferenciação?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equacoes-de-recorrencia-para-sistemas-em-tempo-discreto">Equações de Recorrência para sistemas em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equacoes-de-recorrencia-lineares">Equações de Recorrência Lineares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#justicativa">Justicativa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#em-diagrama-de-blocos">Em diagrama de blocos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-para-n-0">Exemplo para N = 0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estruturas-para-sistemas-discretos-no-tempo">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">Definição</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Exemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Forma direta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eq-recorrencia">Eq. recorrência</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-discreto">Sistema discreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Forma direta modificada</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerando">Considerando</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Estruturas para sistemas discretos no tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Forma canônica</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

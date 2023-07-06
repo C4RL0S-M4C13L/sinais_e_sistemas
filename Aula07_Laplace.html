@@ -1,0 +1,1209 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Transformada de Laplace &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula07_Laplace';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A transformada de Fourier" href="Aula08_Fourier.html" />
+    <link rel="prev" title="Equações Diferenciais Lineares" href="Aula06_EDO.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula07_Laplace.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula07_Laplace.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transformada de Laplace</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topicos-que-serao-abordados">Tópicos que serão abordados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-laplace">- a transformada de Laplace;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regiao-de-convergencia">- região de convergência;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades">- propriedades;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversao-da-transformada">- inversão da transformada;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes">- aplicações.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-laplace-introducao">Transformada de Laplace: Introdução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-utilizada-na-analise-e-caracterizacao-de-sistemas-lineares-invariantes-no-tempo">- É utilizada na análise e caracterização de sistemas lineares invariantes no tempo:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinacao-da-funcao-de-transferencia-ou-da-funcao-do-sistema">- Determinação da função de transferência ou da função do sistema;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-estabilidade-causalidade-etc">- Análise de estabilidade, causalidade, etc.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-linear-e-invariante-no-tempo">Sistema Linear e Invariante no Tempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-to-fbox-h-t-to-y-t-h-t-x-t-int-infty-infty-h-tau-x-t-tau-d-tau"><span class="math notranslate nohighlight">\(x(t) \to  \fbox{h(t)}  \to y(t) = h(t)*x(t) = \int_{-\infty}^{\infty} h(\tau)x(t-\tau)d\tau \)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazendo-x-t-e-st">fazendo <span class="math notranslate nohighlight">\(x(t) = e^{st}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#y-t-int-infty-infty-h-tau-e-s-t-tau-d-tau-underbrace-e-st-auto-funcao-underbrace-int-infty-infty-h-tau-e-s-tau-d-tau-auto-valor"><span class="math notranslate nohighlight">\(y(t) = \int_{-\infty}^{\infty} h(\tau)e^{s(t-\tau)}d\tau = \underbrace{e^{st}}_{auto-função}\underbrace{\int_{-\infty}^{\infty} h(\tau)e^{-s\tau}d\tau}_{auto-valor}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todas-as-familias-de-funcoes-na-forma-e-st-se-comportam-como-auto-funcoes-para-sistemas-lit">Todas as famílias de funções na forma <span class="math notranslate nohighlight">\(e^{st}\)</span> se comportam como auto-funções para sistemas LIT.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">A transformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">- Definição:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-de-representacao">- Forma de representação:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicao-de-existencia-da-tl-to-regiao-de-convergencia-roc">Condição de existência da TL <span class="math notranslate nohighlight">\(\to\)</span> Região de Convergência <em><strong>ROC</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lugar-geometrico-do-plano-complexo-s-onde-a-tl-converge">Lugar geométrico do plano complexo (S) onde a TL converge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-laplace-se-aplica-a-sinais-mais-gerais">- A transformada de Laplace se aplica a sinais mais gerais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consequentemente-uma-condicao-para-a-convergencia-e-que">- consequentemente uma condição para a convergência é que:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-infty-infty-x-t-e-st-dt-infty-to-int-infty-infty-x-t-e-sigma-j-omega-t-dt"><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|x(t)e^{-st}|dt &lt; \infty \to \int_{-\infty}^{\infty}|x(t)e^{-(\sigma+j\omega)t}|dt\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-infty-infty-x-t-e-sigma-j-omega-t-dt-int-infty-infty-x-t-e-sigma-t-underbrace-e-j-omega-t-1-dt-infty"><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|x(t)e^{-(\sigma+j\omega)t}|dt = \int_{-\infty}^{\infty}|x(t)e^{-\sigma t}| \underbrace{|e^{-j\omega t}|}_{1}dt &lt; \infty  \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#as-roc-sao-dependentes-apenas-de-sigma-e-dessa-forma-sao-semi-planos-paralelos-ao-eixo-y"><strong>As ROC são dependentes apenas de <span class="math notranslate nohighlight">\(\sigma\)</span> e, dessa forma, são semi-planos paralelos ao eixo-y</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-laplace-unilateral">A transformada de Laplace Unilateral</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-x-s-int-0-infty-x-t-e-st-dt">- Definição:   <span class="math notranslate nohighlight">\(X(s) = \int_{0^-}^{\infty}x(t)e^{-st}dt \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-frac-d-dt-x-t-sx-s-x-0">Diferenciação <span class="math notranslate nohighlight">\(\frac{d}{dt}x(t) = sX(s) - x(0^-)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-int-infty-t-x-tau-d-tau-frac-1-s-x-s-frac-1-s-int-infty-0-x-tau-d-tau">Integração <span class="math notranslate nohighlight">\(\int_{-\infty}^{t}x(\tau)d\tau = \frac{1}{s}X(s) - \frac{1}{s}\int_{-\infty}^{0^-}x(\tau)d\tau\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-at-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-a-sigma-a">1- <span class="math notranslate nohighlight">\(e^{-at}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+a}, \ \ \     \sigma &gt; -a \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2- <span class="math notranslate nohighlight">\(-e^{-at}u(-t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+a}, \ \ \ \sigma &lt; -a \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-t-u-t-e-3t-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-1-frac-1-s-3-sigma-1">3- <span class="math notranslate nohighlight">\( e^{-t}u(t) + e^{-3t}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+1} + \frac{1}{s+3}, \ \ \ \sigma &gt; -1 \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-1">Exercício 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-int-infty-infty-x-t-e-st-dt-int-0-infty-e-at-e-st-dt"><span class="math notranslate nohighlight">\(X(s) = \int_{-\infty}^{\infty} x(t)e^{-st}dt = \int_{0}^{\infty} e^{-at}e^{-st}dt\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-int-0-infty-e-a-s-t-dt-frac-1-s-a-e-s-a-t-big-0-infty"><span class="math notranslate nohighlight">\(X(s) = \int_{0}^{\infty} e^{-(a+s)t}dt = -\frac{1}{s+a}e^{-(s+a)t}\Big |_{0}^{\infty} \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-lim-t-to-infty-frac-1-s-a-e-s-a-t-frac-1-s-a-e-s-a-0"><span class="math notranslate nohighlight">\(X(s) = \lim_{t \to \infty} -\frac{1}{s+a}e^{-(s+a)t} - [-\frac{1}{s+a}e^{-(s+a)0}]\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quando-o-limite-converge-re-s-a-0-to-sigma-a">Quando o limite converge?  <span class="math notranslate nohighlight">\(\Re\{{s+a}\}&gt;0 \to \sigma &gt; -a\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-x-s-frac-1-s-a-sigma-a">Resposta <span class="math notranslate nohighlight">\(X(s) = \frac{1}{s+a}, \sigma &gt; -a\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-3t-u-t-e-t-u-t-stackrel-mathcal-l-to-frac-1-s-3-frac-1-s-1-3-sigma-1">4- <span class="math notranslate nohighlight">\(e^{-3t}u(t) -e^{-t}u(-t) \stackrel{\mathcal{L}} \to \frac{1}{s+3}+ \frac{1}{s+1}, -3&lt;\sigma&lt;-1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-t-u-t-e-3t-u-t-stackrel-mathcal-l-to-roc-sigma-3-text-e-sigma-1-nao-existe-solucao">5- <span class="math notranslate nohighlight">\(e^{-t}u(t) - e^{-3t}u(-t) \stackrel{\mathcal{L}} \to ROC: \sigma&lt;-3 \text{ e } \sigma&gt;-1 \)</span> Não existe solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observacoes">Observações</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-o-exemplo-3">Para o exemplo 3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">$<span class="math notranslate nohighlight">\(e^{-t}u(t) + e^{-3t}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+1} + \frac{1}{s+3}, \sigma &gt; -1 \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-frac-2-s-2-s-1-s-3-sigma-1">$<span class="math notranslate nohighlight">\(X(s) = \frac{2(s+2)}{(s+1)(s+3)}, \sigma &gt; -1 \)</span>$</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Observações</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nos-tres-exemplos-x-s-e-uma-razao-de-polinomios">- nos três exemplos X(s) é uma razão de polinômios:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-frac-n-s-d-s-rightarrow-frac-text-raizes-zeros-text-raizes-polos">$<span class="math notranslate nohighlight">\( X(s) = \frac{N(s)}{D(s)} \rightarrow \frac{\text{raízes = zeros}}{\text{raízes = polos}} \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-x-t-for-uma-combinacao-de-exponenciais-complexas-entao-x-s-sera-uma-funcao-racional">- Se <span class="math notranslate nohighlight">\(x(t)\)</span> for uma combinação de exponenciais complexas então <span class="math notranslate nohighlight">\(X(s)\)</span> será uma função racional.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lineares-descritos-por-equacoes-diferenciais-lineares-com-coeficientes-constantes-apresentam-transformada-racional">- Sistemas lineares descritos por equações diferenciais lineares com coeficientes constantes apresentam transformada racional.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#as-raizes-do-numerador-e-denominador-descrevem-o-sistema">- As raízes do numerador e denominador descrevem o sistema.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#os-polos-estao-relacionados-com-a-regiao-de-convergencia">- Os pólos estão relacionados com a região de convergência.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-regiao-de-convergencia-rdc">Propriedades da região de convergência (RDC)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-transformada-de-laplace">Propriedades da transformada de Laplace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Propriedades da transformada de Laplace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-em-s">Deslocamento em S</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressao-expansao">Compressão / Expansão</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao">Convolução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-no-dominio-do-tempo">Diferenciação no domínio do tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Propriedades da transformada de Laplace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-no-dominio-do-tempo">Integração no domínio do tempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-em-laplace">Diferenciação em Laplace</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-do-valor-inicial-e-do-valor-final">Teoremas do valor inicial e do valor final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforma-laplace-unilateral">Transforma Laplace Unilateral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-bilateral-x-s-int-infty-infty-x-t-e-st-dt">Transformada Bilateral: <span class="math notranslate nohighlight">\(X(s) = \int_{-\infty}^{\infty} x(t)e^{-st}dt\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-unilateral-x-s-int-0-infty-x-t-e-st-dt">Transformada Unilateral: <span class="math notranslate nohighlight">\(X(s) = \int_{0}^{\infty} x(t)e^{-st}dt\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-unilateral-vai-incorporar-todo-o-comportamento-do-sistema-de-infty-ate-0-na-forma-de-condicoes-iniciais-em-t-0">A transformada unilateral vai incorporar todo o comportamento do sistema de <span class="math notranslate nohighlight">\(-\infty\)</span> até <span class="math notranslate nohighlight">\(^-0\)</span> na forma de condições iniciais em <span class="math notranslate nohighlight">\(t=0\)</span>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-laplace-inversa">Transformada de Laplace inversa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-das-transformadas-cuja-forma-e-uma-razao-de-dois-polinomios">Caso das transformadas cuja forma é uma razão de dois polinômios.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Transformada de Laplace inversa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-os-polos-p-k-de-x-s-podemos-escrever-que">Calculando os pólos [<span class="math notranslate nohighlight">\(p_k\)</span>] de X(s) podemos escrever que:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expansao-em-fracoes-parciais">Expansão em frações parciais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Transformada de Laplace inversa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Expansão em frações parciais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pares-de-transformadas-de-laplace-importantes">Pares de transformadas de Laplace importantes:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-sistemas-lineares-utilizando-a-transformada-de-laplace">Análise de sistemas lineares utilizando a transformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-descritos-por-equacoes-diferenciais-lineares">Sistemas descritos por equações diferenciais lineares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Sistemas descritos por equações diferenciais lineares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Sistemas descritos por equações diferenciais lineares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causalidade-e-estabilidade-de-sistemas-lti">Causalidade e estabilidade de sistemas LTI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-estaveis">Sistemas estáveis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Sistemas estáveis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-causais-e-estaveis">Sistemas Causais e estáveis</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="transformada-de-laplace">
+<h1>Transformada de Laplace<a class="headerlink" href="#transformada-de-laplace" title="Permalink to this heading">#</a></h1>
+<section id="topicos-que-serao-abordados">
+<h2>Tópicos que serão abordados<a class="headerlink" href="#topicos-que-serao-abordados" title="Permalink to this heading">#</a></h2>
+<section id="a-transformada-de-laplace">
+<h3>- a transformada de Laplace;<a class="headerlink" href="#a-transformada-de-laplace" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="regiao-de-convergencia">
+<h3>- região de convergência;<a class="headerlink" href="#regiao-de-convergencia" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="propriedades">
+<h3>- propriedades;<a class="headerlink" href="#propriedades" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="inversao-da-transformada">
+<h3>- inversão da transformada;<a class="headerlink" href="#inversao-da-transformada" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="aplicacoes">
+<h3>- aplicações.<a class="headerlink" href="#aplicacoes" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="transformada-de-laplace-introducao">
+<h2>Transformada de Laplace: Introdução<a class="headerlink" href="#transformada-de-laplace-introducao" title="Permalink to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="e-utilizada-na-analise-e-caracterizacao-de-sistemas-lineares-invariantes-no-tempo">
+<h2>- É utilizada na análise e caracterização de sistemas lineares invariantes no tempo:<a class="headerlink" href="#e-utilizada-na-analise-e-caracterizacao-de-sistemas-lineares-invariantes-no-tempo" title="Permalink to this heading">#</a></h2>
+<section id="determinacao-da-funcao-de-transferencia-ou-da-funcao-do-sistema">
+<h3>- Determinação da função de transferência ou da função do sistema;<a class="headerlink" href="#determinacao-da-funcao-de-transferencia-ou-da-funcao-do-sistema" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="analise-de-estabilidade-causalidade-etc">
+<h3>- Análise de estabilidade, causalidade, etc.<a class="headerlink" href="#analise-de-estabilidade-causalidade-etc" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="sistema-linear-e-invariante-no-tempo">
+<h2>Sistema Linear e Invariante no Tempo<a class="headerlink" href="#sistema-linear-e-invariante-no-tempo" title="Permalink to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="x-t-to-fbox-h-t-to-y-t-h-t-x-t-int-infty-infty-h-tau-x-t-tau-d-tau">
+<h2><span class="math notranslate nohighlight">\(x(t) \to  \fbox{h(t)}  \to y(t) = h(t)*x(t) = \int_{-\infty}^{\infty} h(\tau)x(t-\tau)d\tau \)</span><a class="headerlink" href="#x-t-to-fbox-h-t-to-y-t-h-t-x-t-int-infty-infty-h-tau-x-t-tau-d-tau" title="Permalink to this heading">#</a></h2>
+<section id="fazendo-x-t-e-st">
+<h3>fazendo <span class="math notranslate nohighlight">\(x(t) = e^{st}\)</span><a class="headerlink" href="#fazendo-x-t-e-st" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="y-t-int-infty-infty-h-tau-e-s-t-tau-d-tau-underbrace-e-st-auto-funcao-underbrace-int-infty-infty-h-tau-e-s-tau-d-tau-auto-valor">
+<h2><span class="math notranslate nohighlight">\(y(t) = \int_{-\infty}^{\infty} h(\tau)e^{s(t-\tau)}d\tau = \underbrace{e^{st}}_{auto-função}\underbrace{\int_{-\infty}^{\infty} h(\tau)e^{-s\tau}d\tau}_{auto-valor}\)</span><a class="headerlink" href="#y-t-int-infty-infty-h-tau-e-s-t-tau-d-tau-underbrace-e-st-auto-funcao-underbrace-int-infty-infty-h-tau-e-s-tau-d-tau-auto-valor" title="Permalink to this heading">#</a></h2>
+<section id="todas-as-familias-de-funcoes-na-forma-e-st-se-comportam-como-auto-funcoes-para-sistemas-lit">
+<h3>Todas as famílias de funções na forma <span class="math notranslate nohighlight">\(e^{st}\)</span> se comportam como auto-funções para sistemas LIT.<a class="headerlink" href="#todas-as-familias-de-funcoes-na-forma-e-st-se-comportam-como-auto-funcoes-para-sistemas-lit" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id1">
+<h2>A transformada de Laplace<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="definicao">
+<h2>- Definição:<a class="headerlink" href="#definicao" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ X(s) = \int_{-\infty}^{\infty}x(t)e^{-st}dt, s=\sigma+j\omega \]</div>
+</section>
+<section id="forma-de-representacao">
+<h2>- Forma de representação:<a class="headerlink" href="#forma-de-representacao" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ x(t)  \stackrel{\mathcal{L}} \rightarrow X(s) \]</div>
+<section id="condicao-de-existencia-da-tl-to-regiao-de-convergencia-roc">
+<h3>Condição de existência da TL <span class="math notranslate nohighlight">\(\to\)</span> Região de Convergência <em><strong>ROC</strong></em><a class="headerlink" href="#condicao-de-existencia-da-tl-to-regiao-de-convergencia-roc" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="lugar-geometrico-do-plano-complexo-s-onde-a-tl-converge">
+<h3>Lugar geométrico do plano complexo (S) onde a TL converge<a class="headerlink" href="#lugar-geometrico-do-plano-complexo-s-onde-a-tl-converge" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="a-transformada-de-laplace-se-aplica-a-sinais-mais-gerais">
+<h2>- A transformada de Laplace se aplica a sinais mais gerais<a class="headerlink" href="#a-transformada-de-laplace-se-aplica-a-sinais-mais-gerais" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="consequentemente-uma-condicao-para-a-convergencia-e-que">
+<h3>- consequentemente uma condição para a convergência é que:<a class="headerlink" href="#consequentemente-uma-condicao-para-a-convergencia-e-que" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="int-infty-infty-x-t-e-st-dt-infty-to-int-infty-infty-x-t-e-sigma-j-omega-t-dt">
+<h3><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|x(t)e^{-st}|dt &lt; \infty \to \int_{-\infty}^{\infty}|x(t)e^{-(\sigma+j\omega)t}|dt\)</span><a class="headerlink" href="#int-infty-infty-x-t-e-st-dt-infty-to-int-infty-infty-x-t-e-sigma-j-omega-t-dt" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="int-infty-infty-x-t-e-sigma-j-omega-t-dt-int-infty-infty-x-t-e-sigma-t-underbrace-e-j-omega-t-1-dt-infty">
+<h3><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|x(t)e^{-(\sigma+j\omega)t}|dt = \int_{-\infty}^{\infty}|x(t)e^{-\sigma t}| \underbrace{|e^{-j\omega t}|}_{1}dt &lt; \infty  \)</span><a class="headerlink" href="#int-infty-infty-x-t-e-sigma-j-omega-t-dt-int-infty-infty-x-t-e-sigma-t-underbrace-e-j-omega-t-1-dt-infty" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="as-roc-sao-dependentes-apenas-de-sigma-e-dessa-forma-sao-semi-planos-paralelos-ao-eixo-y">
+<h2><strong>As ROC são dependentes apenas de <span class="math notranslate nohighlight">\(\sigma\)</span> e, dessa forma, são semi-planos paralelos ao eixo-y</strong><a class="headerlink" href="#as-roc-sao-dependentes-apenas-de-sigma-e-dessa-forma-sao-semi-planos-paralelos-ao-eixo-y" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Plano s:</strong></p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig7.1.png" /></p>
+</section>
+<section id="a-transformada-de-laplace-unilateral">
+<h2>A transformada de Laplace Unilateral<a class="headerlink" href="#a-transformada-de-laplace-unilateral" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="definicao-x-s-int-0-infty-x-t-e-st-dt">
+<h3>- Definição:   <span class="math notranslate nohighlight">\(X(s) = \int_{0^-}^{\infty}x(t)e^{-st}dt \)</span><a class="headerlink" href="#definicao-x-s-int-0-infty-x-t-e-st-dt" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="diferenciacao-frac-d-dt-x-t-sx-s-x-0">
+<h3>Diferenciação <span class="math notranslate nohighlight">\(\frac{d}{dt}x(t) = sX(s) - x(0^-)\)</span><a class="headerlink" href="#diferenciacao-frac-d-dt-x-t-sx-s-x-0" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="integracao-int-infty-t-x-tau-d-tau-frac-1-s-x-s-frac-1-s-int-infty-0-x-tau-d-tau">
+<h3>Integração <span class="math notranslate nohighlight">\(\int_{-\infty}^{t}x(\tau)d\tau = \frac{1}{s}X(s) - \frac{1}{s}\int_{-\infty}^{0^-}x(\tau)d\tau\)</span><a class="headerlink" href="#integracao-int-infty-t-x-tau-d-tau-frac-1-s-x-s-frac-1-s-int-infty-0-x-tau-d-tau" title="Permalink to this heading">#</a></h3>
+<p>A transformada de Laplace unilateral ignora <span class="math notranslate nohighlight">\(x(t)\)</span> para <span class="math notranslate nohighlight">\(t &lt; 0\)</span>. Como <span class="math notranslate nohighlight">\(x(t)\)</span> é um sinal lateral direito, a ROC de <span class="math notranslate nohighlight">\(X(s)\)</span> é sempre da forma <span class="math notranslate nohighlight">\(Re(s) &gt; σ_{max}\)</span> ou seja, o semi-plano lateral direito de <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</section>
+</section>
+<section id="exercicios">
+<h2>Exercícios<a class="headerlink" href="#exercicios" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="e-at-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-a-sigma-a">
+<h3>1- <span class="math notranslate nohighlight">\(e^{-at}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+a}, \ \ \     \sigma &gt; -a \)</span><a class="headerlink" href="#e-at-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-a-sigma-a" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="id2">
+<h3>2- <span class="math notranslate nohighlight">\(-e^{-at}u(-t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+a}, \ \ \ \sigma &lt; -a \)</span><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="e-t-u-t-e-3t-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-1-frac-1-s-3-sigma-1">
+<h3>3- <span class="math notranslate nohighlight">\( e^{-t}u(t) + e^{-3t}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+1} + \frac{1}{s+3}, \ \ \ \sigma &gt; -1 \)</span><a class="headerlink" href="#e-t-u-t-e-3t-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-1-frac-1-s-3-sigma-1" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig7.2.png" /></p>
+</section>
+</section>
+<section id="exercicio-1">
+<h2>Exercício 1<a class="headerlink" href="#exercicio-1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="x-s-int-infty-infty-x-t-e-st-dt-int-0-infty-e-at-e-st-dt">
+<h3><span class="math notranslate nohighlight">\(X(s) = \int_{-\infty}^{\infty} x(t)e^{-st}dt = \int_{0}^{\infty} e^{-at}e^{-st}dt\)</span><a class="headerlink" href="#x-s-int-infty-infty-x-t-e-st-dt-int-0-infty-e-at-e-st-dt" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="x-s-int-0-infty-e-a-s-t-dt-frac-1-s-a-e-s-a-t-big-0-infty">
+<h3><span class="math notranslate nohighlight">\(X(s) = \int_{0}^{\infty} e^{-(a+s)t}dt = -\frac{1}{s+a}e^{-(s+a)t}\Big |_{0}^{\infty} \)</span><a class="headerlink" href="#x-s-int-0-infty-e-a-s-t-dt-frac-1-s-a-e-s-a-t-big-0-infty" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="x-s-lim-t-to-infty-frac-1-s-a-e-s-a-t-frac-1-s-a-e-s-a-0">
+<h3><span class="math notranslate nohighlight">\(X(s) = \lim_{t \to \infty} -\frac{1}{s+a}e^{-(s+a)t} - [-\frac{1}{s+a}e^{-(s+a)0}]\)</span><a class="headerlink" href="#x-s-lim-t-to-infty-frac-1-s-a-e-s-a-t-frac-1-s-a-e-s-a-0" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="quando-o-limite-converge-re-s-a-0-to-sigma-a">
+<h3>Quando o limite converge?  <span class="math notranslate nohighlight">\(\Re\{{s+a}\}&gt;0 \to \sigma &gt; -a\)</span><a class="headerlink" href="#quando-o-limite-converge-re-s-a-0-to-sigma-a" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="resposta-x-s-frac-1-s-a-sigma-a">
+<h3>Resposta <span class="math notranslate nohighlight">\(X(s) = \frac{1}{s+a}, \sigma &gt; -a\)</span><a class="headerlink" href="#resposta-x-s-frac-1-s-a-sigma-a" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id3">
+<h2>Exercícios<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="e-3t-u-t-e-t-u-t-stackrel-mathcal-l-to-frac-1-s-3-frac-1-s-1-3-sigma-1">
+<h3>4- <span class="math notranslate nohighlight">\(e^{-3t}u(t) -e^{-t}u(-t) \stackrel{\mathcal{L}} \to \frac{1}{s+3}+ \frac{1}{s+1}, -3&lt;\sigma&lt;-1\)</span><a class="headerlink" href="#e-3t-u-t-e-t-u-t-stackrel-mathcal-l-to-frac-1-s-3-frac-1-s-1-3-sigma-1" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="e-t-u-t-e-3t-u-t-stackrel-mathcal-l-to-roc-sigma-3-text-e-sigma-1-nao-existe-solucao">
+<h3>5- <span class="math notranslate nohighlight">\(e^{-t}u(t) - e^{-3t}u(-t) \stackrel{\mathcal{L}} \to ROC: \sigma&lt;-3 \text{ e } \sigma&gt;-1 \)</span> Não existe solução<a class="headerlink" href="#e-t-u-t-e-3t-u-t-stackrel-mathcal-l-to-roc-sigma-3-text-e-sigma-1-nao-existe-solucao" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="observacoes">
+<h2>Observações<a class="headerlink" href="#observacoes" title="Permalink to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="para-o-exemplo-3">
+<h2>Para o exemplo 3<a class="headerlink" href="#para-o-exemplo-3" title="Permalink to this heading">#</a></h2>
+<section id="id4">
+<h3>$<span class="math notranslate nohighlight">\(e^{-t}u(t) + e^{-3t}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+1} + \frac{1}{s+3}, \sigma &gt; -1 \)</span>$<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="x-s-frac-2-s-2-s-1-s-3-sigma-1">
+<h3>$<span class="math notranslate nohighlight">\(X(s) = \frac{2(s+2)}{(s+1)(s+3)}, \sigma &gt; -1 \)</span>$<a class="headerlink" href="#x-s-frac-2-s-2-s-1-s-3-sigma-1" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>O diagrama de pólos e zeros no plano s será:</p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig7.3.png" /></p>
+</section>
+</section>
+<section id="id5">
+<h2>Observações<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="nos-tres-exemplos-x-s-e-uma-razao-de-polinomios">
+<h2>- nos três exemplos X(s) é uma razão de polinômios:<a class="headerlink" href="#nos-tres-exemplos-x-s-e-uma-razao-de-polinomios" title="Permalink to this heading">#</a></h2>
+<section id="x-s-frac-n-s-d-s-rightarrow-frac-text-raizes-zeros-text-raizes-polos">
+<h3>$<span class="math notranslate nohighlight">\( X(s) = \frac{N(s)}{D(s)} \rightarrow \frac{\text{raízes = zeros}}{\text{raízes = polos}} \)</span>$<a class="headerlink" href="#x-s-frac-n-s-d-s-rightarrow-frac-text-raizes-zeros-text-raizes-polos" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="se-x-t-for-uma-combinacao-de-exponenciais-complexas-entao-x-s-sera-uma-funcao-racional">
+<h3>- Se <span class="math notranslate nohighlight">\(x(t)\)</span> for uma combinação de exponenciais complexas então <span class="math notranslate nohighlight">\(X(s)\)</span> será uma função racional.<a class="headerlink" href="#se-x-t-for-uma-combinacao-de-exponenciais-complexas-entao-x-s-sera-uma-funcao-racional" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="sistemas-lineares-descritos-por-equacoes-diferenciais-lineares-com-coeficientes-constantes-apresentam-transformada-racional">
+<h3>- Sistemas lineares descritos por equações diferenciais lineares com coeficientes constantes apresentam transformada racional.<a class="headerlink" href="#sistemas-lineares-descritos-por-equacoes-diferenciais-lineares-com-coeficientes-constantes-apresentam-transformada-racional" title="Permalink to this heading">#</a></h3>
+<section id="as-raizes-do-numerador-e-denominador-descrevem-o-sistema">
+<h4>- As raízes do numerador e denominador descrevem o sistema.<a class="headerlink" href="#as-raizes-do-numerador-e-denominador-descrevem-o-sistema" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="os-polos-estao-relacionados-com-a-regiao-de-convergencia">
+<h4>- Os pólos estão relacionados com a região de convergência.<a class="headerlink" href="#os-polos-estao-relacionados-com-a-regiao-de-convergencia" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="propriedades-da-regiao-de-convergencia-rdc">
+<h2>Propriedades da região de convergência (RDC)<a class="headerlink" href="#propriedades-da-regiao-de-convergencia-rdc" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Para que a transformada de Laplace convirja:</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty}|x(t)e^{-st}|dt &lt; \infty\)</span>, em que <span class="math notranslate nohighlight">\(\sigma = \Re\{s\}\)</span></p>
+<ul class="simple">
+<li><p>O conjunto de valores de <span class="math notranslate nohighlight">\(\sigma\)</span> define a RDC:</p></li>
+</ul>
+<p>1- A RDC consiste de faixas paralelas ao eixo jw.</p>
+<p>2- Para sinais de duração finita a RDC é todo o plano s.</p>
+<p>3- A RDC não contém pólos.</p>
+<p>4- Sinal lateral direito <span class="math notranslate nohighlight">\((x(t)u(t))\)</span> a RDC então a RDC é da forma: <span class="math notranslate nohighlight">\(\sigma &gt; \sigma_0\)</span></p>
+<p>5- Sinal lateral esquerdo <span class="math notranslate nohighlight">\((x(t)u(-t)\)</span> a RDC então a RDC é da forma: <span class="math notranslate nohighlight">\(\sigma &lt; \sigma_1\)</span></p>
+<p>6- Sinal bilateral (<span class="math notranslate nohighlight">\(x(t) \neq 0, -\infty &lt; t &lt; \infty\)</span> ) a RDC então a RDC é da forma: <span class="math notranslate nohighlight">\(\sigma_0 &lt; \sigma &lt; \sigma_1\)</span></p>
+</section>
+<section id="propriedades-da-transformada-de-laplace">
+<h2>Propriedades da transformada de Laplace<a class="headerlink" href="#propriedades-da-transformada-de-laplace" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="linearidade">
+<h3>Linearidade:<a class="headerlink" href="#linearidade" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x_1(t) \stackrel{\mathcal{L}} \leftrightarrow X_1(s) \ \ \text{e}\ \ x_2(t) \stackrel{\mathcal{L}} \leftrightarrow X_2(s) \]</div>
+<div class="math notranslate nohighlight">
+\[ a_1x_1(t)+a_2x_2(t) \stackrel{\mathcal{L}} \leftrightarrow a_1X_1(s)+a_2X_2(s) \]</div>
+<p><strong>RDC = <span class="math notranslate nohighlight">\(R_1 \cap R_2\)</span></strong></p>
+</section>
+<section id="deslocamento-no-tempo">
+<h3>Deslocamento no tempo:<a class="headerlink" href="#deslocamento-no-tempo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(t-t_d) \stackrel{\mathcal{L}} \leftrightarrow e^{-st_d}X(s) \]</div>
+<p><strong>RDC = R</strong> <span class="math notranslate nohighlight">\(\rightarrow\)</span> A própria RDC de <span class="math notranslate nohighlight">\(X(s)\)</span></p>
+</section>
+</section>
+<section id="id6">
+<h2>Propriedades da transformada de Laplace<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="deslocamento-em-s">
+<h3>Deslocamento em S<a class="headerlink" href="#deslocamento-em-s" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ e^{s_0t}x(t) \stackrel{\mathcal{L}} \leftrightarrow  X(s-s_0) \ \ \ RDC = R + Re[s_0] \]</div>
+</section>
+<section id="compressao-expansao">
+<h3>Compressão / Expansão<a class="headerlink" href="#compressao-expansao" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ x(at) \stackrel{\mathcal{L}} \leftrightarrow \frac{1}{|a|}X\left(\frac{s}{a}\right) \ \ \ RDC=R/a \]</div>
+</section>
+</section>
+<section id="convolucao">
+<h2>Convolução<a class="headerlink" href="#convolucao" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ x_1(t) * x_2(t) \stackrel{\mathcal{L}} \leftrightarrow X_1(s).X_2(s) \ \ \ RDC = R_1 \cap R_2 \]</div>
+<section id="diferenciacao-no-dominio-do-tempo">
+<h3>Diferenciação no domínio do tempo<a class="headerlink" href="#diferenciacao-no-dominio-do-tempo" title="Permalink to this heading">#</a></h3>
+<p>Com condições inicias nulas:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{d}{dt}x(t) \stackrel{\mathcal{L}} \leftrightarrow sX(s) \ \ \ RDC = R \]</div>
+</section>
+</section>
+<section id="id7">
+<h2>Propriedades da transformada de Laplace<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="integracao-no-dominio-do-tempo">
+<h3>Integração no domínio do tempo<a class="headerlink" href="#integracao-no-dominio-do-tempo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ \int_{\infty}^{t}x(\tau)d\tau \stackrel{\mathcal{L}} \leftrightarrow \frac{1}{s}X(s) \ \ \ RDC = R + \sigma &gt;0 \]</div>
+</section>
+<section id="diferenciacao-em-laplace">
+<h3>Diferenciação em Laplace<a class="headerlink" href="#diferenciacao-em-laplace" title="Permalink to this heading">#</a></h3>
+<p>Com condições iniciais nulas:</p>
+<div class="math notranslate nohighlight">
+\[-tx(t) \stackrel{\mathcal{L}} \leftrightarrow \frac{d}{ds}X(s) \ \ \ RDC = R \]</div>
+</section>
+</section>
+<section id="teoremas-do-valor-inicial-e-do-valor-final">
+<h2>Teoremas do valor inicial e do valor final<a class="headerlink" href="#teoremas-do-valor-inicial-e-do-valor-final" title="Permalink to this heading">#</a></h2>
+<p>x(t) é um sinal causal sem impulsos ou singularidades na origem.</p>
+<div class="math notranslate nohighlight">
+\[ x(0_+) = \lim_{s\rightarrow \infty} sX(s) \ \ \ \text{valor inicial} \]</div>
+<div class="math notranslate nohighlight">
+\[\lim_{t\rightarrow \infty}x(t) = \lim_{s\rightarrow 0} sX(s) \ \ \ \text{valor final} \]</div>
+</section>
+<section id="transforma-laplace-unilateral">
+<h2>Transforma Laplace Unilateral<a class="headerlink" href="#transforma-laplace-unilateral" title="Permalink to this heading">#</a></h2>
+</section>
+<hr class="docutils" />
+<section id="transformada-bilateral-x-s-int-infty-infty-x-t-e-st-dt">
+<h2>Transformada Bilateral: <span class="math notranslate nohighlight">\(X(s) = \int_{-\infty}^{\infty} x(t)e^{-st}dt\)</span><a class="headerlink" href="#transformada-bilateral-x-s-int-infty-infty-x-t-e-st-dt" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="transformada-unilateral-x-s-int-0-infty-x-t-e-st-dt">
+<h2>Transformada Unilateral: <span class="math notranslate nohighlight">\(X(s) = \int_{0}^{\infty} x(t)e^{-st}dt\)</span><a class="headerlink" href="#transformada-unilateral-x-s-int-0-infty-x-t-e-st-dt" title="Permalink to this heading">#</a></h2>
+<section id="a-transformada-unilateral-vai-incorporar-todo-o-comportamento-do-sistema-de-infty-ate-0-na-forma-de-condicoes-iniciais-em-t-0">
+<h3>A transformada unilateral vai incorporar todo o comportamento do sistema de <span class="math notranslate nohighlight">\(-\infty\)</span> até <span class="math notranslate nohighlight">\(^-0\)</span> na forma de condições iniciais em <span class="math notranslate nohighlight">\(t=0\)</span>.<a class="headerlink" href="#a-transformada-unilateral-vai-incorporar-todo-o-comportamento-do-sistema-de-infty-ate-0-na-forma-de-condicoes-iniciais-em-t-0" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="transformada-de-laplace-inversa">
+<h2>Transformada de Laplace inversa<a class="headerlink" href="#transformada-de-laplace-inversa" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>A transformada de Laplace inversa é calculada pela seguinte equação:</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}X(s)e^{st}ds \]</div>
+<ul class="simple">
+<li><p>A equação acima envolve integral de contorno em uma linha reta paralela ao eixo <span class="math notranslate nohighlight">\(j\omega\)</span>.</p></li>
+</ul>
+</section>
+<section id="caso-das-transformadas-cuja-forma-e-uma-razao-de-dois-polinomios">
+<h2>Caso das transformadas cuja forma é uma razão de dois polinômios.<a class="headerlink" href="#caso-das-transformadas-cuja-forma-e-uma-razao-de-dois-polinomios" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ X(s) = \frac{N(s)}{D(s)} = \frac{b_Ms^M+b_{M-1}s^{M-1}+\dots+b_1s+b_0}{s^N+a_{N-1}s^{N-1}+\dots+a_1s+a_0} \]</div>
+<ul class="simple">
+<li><p>Em que <span class="math notranslate nohighlight">\(M &lt; N\)</span> e <span class="math notranslate nohighlight">\(a_N\)</span> = 1</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>Transformada de Laplace inversa<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="calculando-os-polos-p-k-de-x-s-podemos-escrever-que">
+<h3>Calculando os pólos [<span class="math notranslate nohighlight">\(p_k\)</span>] de X(s) podemos escrever que:<a class="headerlink" href="#calculando-os-polos-p-k-de-x-s-podemos-escrever-que" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[X(s) = \frac{N(s)}{D(s)} = \frac{b_Ms^M+b_{M-1}s^{M-1}+\dots+b_1s+b_0}{\prod_{k=1}^{N}(s-p_k)} \]</div>
+</section>
+<section id="expansao-em-fracoes-parciais">
+<h3>Expansão em frações parciais<a class="headerlink" href="#expansao-em-fracoes-parciais" title="Permalink to this heading">#</a></h3>
+<p>Se os polos forem distintos uns dos outros então:</p>
+<div class="math notranslate nohighlight">
+\[X(s) = \sum_{k=1}^{N}\frac{A_k}{(s-p_k)} \]</div>
+<p>em que: <span class="math notranslate nohighlight">\(A_k = \left\{(s-p_k)X(s)\right\}_{s=p_k}\)</span> <span class="math notranslate nohighlight">\(\ \ k=1, \dots, N\)</span> Justificativa <strong>Teorema dos Resíduos</strong></p>
+</section>
+</section>
+<section id="id9">
+<h2>Transformada de Laplace inversa<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id10">
+<h3>Expansão em frações parciais<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p>se ocorrer um pólo <span class="math notranslate nohighlight">\(p\)</span>, com multiplicidade <span class="math notranslate nohighlight">\(r\)</span>, então são incluídos na expansão <span class="math notranslate nohighlight">\(r\)</span> termos do tipo:</p>
+<div class="math notranslate nohighlight">
+\[\frac{k_1}{(s-p)}, \frac{k_2}{(s-p)^2}, \dots, \frac{k_r}{(s-p)^r} \]</div>
+<p>em que:</p>
+<div class="math notranslate nohighlight">
+\[k_i = \frac{1}{(r-i)!}\frac{d^{r-i}}{ds^{r-i}}\left\{(s-p)^rX(s)\right\}_{s=p} \ \ \ i=1,2,\dots,r \]</div>
+</section>
+<section id="pares-de-transformadas-de-laplace-importantes">
+<h3>Pares de transformadas de Laplace importantes:<a class="headerlink" href="#pares-de-transformadas-de-laplace-importantes" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ A_ke^{-at}u(t) \stackrel{\mathcal{L}} \leftrightarrow \frac{A_k}{s+a} \ \ \ \sigma&gt;-a \]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{k_rt^{r-1}}{(r-1)!}e^{-at}u(t) \stackrel{\mathcal{L}} \leftrightarrow \frac{k_r}{(s+a)^r} \ \ \ \sigma&gt;-a \]</div>
+</section>
+</section>
+<section id="analise-de-sistemas-lineares-utilizando-a-transformada-de-laplace">
+<h2>Análise de sistemas lineares utilizando a transformada de Laplace<a class="headerlink" href="#analise-de-sistemas-lineares-utilizando-a-transformada-de-laplace" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Em um sistema LTI os sinais de entrada e saída estão relacionados pela integral de convolução:</p>
+<div class="math notranslate nohighlight">
+\[ y(t) = h(t) * x(t), \]</div>
+<p>onde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y(t)\)</span> é a saída do sistema</p></li>
+<li><p><span class="math notranslate nohighlight">\(h(t)\)</span> é a resposta ao impulso</p></li>
+<li><p><span class="math notranslate nohighlight">\(x(t)\)</span> é a entrada</p></li>
+</ul>
+<p>Pela propriedade da convolução:</p>
+<p><span class="math notranslate nohighlight">\( Y(s) = H(s).X(s)\)</span></p>
+</section>
+<section id="sistemas-descritos-por-equacoes-diferenciais-lineares">
+<h2>Sistemas descritos por equações diferenciais lineares<a class="headerlink" href="#sistemas-descritos-por-equacoes-diferenciais-lineares" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Para um sistema LIT, descrito por equação diferencial com coeficientes constantes, tem-se que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sum_{k=0}^{N}a_k\frac{d^k}{dt^k}y(t) = \sum_{k=0}^{M}b_k\frac{d^k}{dt^k}x(t) \]</div>
+<ul class="simple">
+<li><p>aplicando a transformada de Laplace em ambos os lados da equação acima tem-se:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \mathcal{L}\left\{\sum_{k=0}^{N}a_k\frac{d^k}{dt^k}y(t)\right\} = \mathcal{L}\left\{\sum_{k=0}^{M}b_k\frac{d^k}{dt^k}x(t)\right\} \]</div>
+</section>
+<section id="id11">
+<h2>Sistemas descritos por equações diferenciais lineares<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Pelas propriedades da linearidade e diferenciação no tempo:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \left\{\sum_{k=0}^{N}a_ks^k\right\}Y(s)=\left\{\sum_{k=0}^{M}b_ks^k\right\}X(s) \]</div>
+<ul class="simple">
+<li><p>portanto a <strong>função de transferência</strong> será:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H(s) = \frac{Y(s)}{X(s)}=\frac{\sum_{k=0}^{M}b_ks^k}{\sum_{k=0}^{N}a_ks^k}=\frac{N(s)}{D(s)} \]</div>
+<ul class="simple">
+<li><p>H(s) é uma função racional de s</p>
+<ul>
+<li><p>polinômios no numerador e denominador</p></li>
+<li><p>Os coeficientes são os mesmos da equação diferencial.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h2>Sistemas descritos por equações diferenciais lineares<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Zeros <span class="math notranslate nohighlight">\(c_k\)</span> de H(s) são as raízes do numerador:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ N(s) = \sum_{k=0}^{M}b_ks^k=0 \]</div>
+<ul class="simple">
+<li><p>Polos <span class="math notranslate nohighlight">\(p_k\)</span> de H(s) são as raízes do denominador:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ D(s) = \sum_{k=0}^{N}a_ks^k=0 \]</div>
+<ul class="simple">
+<li><p>A RDC e propriedades de estabilidade podem ser determinadas através da localização dos pólos de H(s) pois:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[H(s) = \frac{b_M}{a_N}\frac{\prod_{k=1}^{M}(s-c_k)}{\prod_{k=1}^{N}(s-p_k)} \ \ \ \ \ \Rightarrow \text{Exercício 16}\]</div>
+</section>
+<section id="causalidade-e-estabilidade-de-sistemas-lti">
+<h2>Causalidade e estabilidade de sistemas LTI<a class="headerlink" href="#causalidade-e-estabilidade-de-sistemas-lti" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>sabemos que a resposta ao impulso fornece informações sobre a estabilidade e causalidade dos sistemas.</p></li>
+<li><p>para um sistema LTI causal, h(t) é nula para <span class="math notranslate nohighlight">\(t &lt; 0\)</span>.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( h(t) = 0, t&lt;0\)</span> então a ROC deve incluir <span class="math notranslate nohighlight">\(+\infty\)</span> ou estar a direita do polo com maior parte Real.</p>
+<ul class="simple">
+<li><p>para um sistema LTI estável, <span class="math notranslate nohighlight">\(h(t)\)</span> é absolutamente integrável.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|h(t)|dt \ &lt; \infty \)</span></p>
+<p><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|h(t)||e^{j\omega t}|dt \ &lt; \infty \)</span> ou seja, a reta <span class="math notranslate nohighlight">\(j\omega\)</span> deve estar na ROC da TLaplace</p>
+<ul class="simple">
+<li><p>portanto, para um sistema LTI estável:</p>
+<ul>
+<li><p>ROC inclui a reta <span class="math notranslate nohighlight">\(j\omega\)</span> pois <span class="math notranslate nohighlight">\(h(t)\)</span> é absolutamente integrável</p></li>
+<li><p>estar a direita do polo com maior parte Real.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="sistemas-estaveis">
+<h2>Sistemas estáveis<a class="headerlink" href="#sistemas-estaveis" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Seja <span class="math notranslate nohighlight">\(s=p_k\)</span> um polo de <span class="math notranslate nohighlight">\(H(s)\)</span>:</p>
+<ul class="simple">
+<li><p>este pólo contribui, no domínio do tempo, com um termo exponencial.</p></li>
+</ul>
+<p><strong>A exponencial é decrescente e absolutamente integrável se:</strong></p>
+<div class="math notranslate nohighlight">
+\[ Re(p_k)=\sigma_k &lt; \ 0 \ \ \ \text{e a RDC à direita} \]</div>
+<p><img alt="fig4.1.png" src="_images/fig7.4.png" /></p>
+</section>
+<section id="id13">
+<h2>Sistemas estáveis<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><strong>Ou a exponencial é decrescente e absolutamente integrável se:</strong></p>
+<div class="math notranslate nohighlight">
+\[ Re(p_k)=\sigma_k &gt; \ 0 \ \ \ \text{e a RDC à esquerda} \]</div>
+<p><img alt="fig4.1.png" src="_images/fig7.5.png" /></p>
+</section>
+<section id="sistemas-causais-e-estaveis">
+<h2>Sistemas Causais e estáveis<a class="headerlink" href="#sistemas-causais-e-estaveis" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Os pólos de H(s) devem estar localizados no semi-plano esquerdo do plano s, e a Região de Convergência deve incluir o eixo imaginário jw.</p></li>
+</ul>
+<p><img alt="fig4.1.png" src="_images/fig7.6.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula06_EDO.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Equações Diferenciais Lineares</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula08_Fourier.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">A transformada de Fourier</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topicos-que-serao-abordados">Tópicos que serão abordados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-laplace">- a transformada de Laplace;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regiao-de-convergencia">- região de convergência;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades">- propriedades;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inversao-da-transformada">- inversão da transformada;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacoes">- aplicações.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-laplace-introducao">Transformada de Laplace: Introdução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-utilizada-na-analise-e-caracterizacao-de-sistemas-lineares-invariantes-no-tempo">- É utilizada na análise e caracterização de sistemas lineares invariantes no tempo:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinacao-da-funcao-de-transferencia-ou-da-funcao-do-sistema">- Determinação da função de transferência ou da função do sistema;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-estabilidade-causalidade-etc">- Análise de estabilidade, causalidade, etc.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-linear-e-invariante-no-tempo">Sistema Linear e Invariante no Tempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-t-to-fbox-h-t-to-y-t-h-t-x-t-int-infty-infty-h-tau-x-t-tau-d-tau"><span class="math notranslate nohighlight">\(x(t) \to  \fbox{h(t)}  \to y(t) = h(t)*x(t) = \int_{-\infty}^{\infty} h(\tau)x(t-\tau)d\tau \)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fazendo-x-t-e-st">fazendo <span class="math notranslate nohighlight">\(x(t) = e^{st}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#y-t-int-infty-infty-h-tau-e-s-t-tau-d-tau-underbrace-e-st-auto-funcao-underbrace-int-infty-infty-h-tau-e-s-tau-d-tau-auto-valor"><span class="math notranslate nohighlight">\(y(t) = \int_{-\infty}^{\infty} h(\tau)e^{s(t-\tau)}d\tau = \underbrace{e^{st}}_{auto-função}\underbrace{\int_{-\infty}^{\infty} h(\tau)e^{-s\tau}d\tau}_{auto-valor}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todas-as-familias-de-funcoes-na-forma-e-st-se-comportam-como-auto-funcoes-para-sistemas-lit">Todas as famílias de funções na forma <span class="math notranslate nohighlight">\(e^{st}\)</span> se comportam como auto-funções para sistemas LIT.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">A transformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao">- Definição:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-de-representacao">- Forma de representação:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condicao-de-existencia-da-tl-to-regiao-de-convergencia-roc">Condição de existência da TL <span class="math notranslate nohighlight">\(\to\)</span> Região de Convergência <em><strong>ROC</strong></em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lugar-geometrico-do-plano-complexo-s-onde-a-tl-converge">Lugar geométrico do plano complexo (S) onde a TL converge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-laplace-se-aplica-a-sinais-mais-gerais">- A transformada de Laplace se aplica a sinais mais gerais</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consequentemente-uma-condicao-para-a-convergencia-e-que">- consequentemente uma condição para a convergência é que:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-infty-infty-x-t-e-st-dt-infty-to-int-infty-infty-x-t-e-sigma-j-omega-t-dt"><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|x(t)e^{-st}|dt &lt; \infty \to \int_{-\infty}^{\infty}|x(t)e^{-(\sigma+j\omega)t}|dt\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-infty-infty-x-t-e-sigma-j-omega-t-dt-int-infty-infty-x-t-e-sigma-t-underbrace-e-j-omega-t-1-dt-infty"><span class="math notranslate nohighlight">\( \int_{-\infty}^{\infty}|x(t)e^{-(\sigma+j\omega)t}|dt = \int_{-\infty}^{\infty}|x(t)e^{-\sigma t}| \underbrace{|e^{-j\omega t}|}_{1}dt &lt; \infty  \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#as-roc-sao-dependentes-apenas-de-sigma-e-dessa-forma-sao-semi-planos-paralelos-ao-eixo-y"><strong>As ROC são dependentes apenas de <span class="math notranslate nohighlight">\(\sigma\)</span> e, dessa forma, são semi-planos paralelos ao eixo-y</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-de-laplace-unilateral">A transformada de Laplace Unilateral</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-x-s-int-0-infty-x-t-e-st-dt">- Definição:   <span class="math notranslate nohighlight">\(X(s) = \int_{0^-}^{\infty}x(t)e^{-st}dt \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-frac-d-dt-x-t-sx-s-x-0">Diferenciação <span class="math notranslate nohighlight">\(\frac{d}{dt}x(t) = sX(s) - x(0^-)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-int-infty-t-x-tau-d-tau-frac-1-s-x-s-frac-1-s-int-infty-0-x-tau-d-tau">Integração <span class="math notranslate nohighlight">\(\int_{-\infty}^{t}x(\tau)d\tau = \frac{1}{s}X(s) - \frac{1}{s}\int_{-\infty}^{0^-}x(\tau)d\tau\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicios">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-at-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-a-sigma-a">1- <span class="math notranslate nohighlight">\(e^{-at}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+a}, \ \ \     \sigma &gt; -a \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2- <span class="math notranslate nohighlight">\(-e^{-at}u(-t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+a}, \ \ \ \sigma &lt; -a \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-t-u-t-e-3t-u-t-stackrel-mathcal-l-rightarrow-frac-1-s-1-frac-1-s-3-sigma-1">3- <span class="math notranslate nohighlight">\( e^{-t}u(t) + e^{-3t}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+1} + \frac{1}{s+3}, \ \ \ \sigma &gt; -1 \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio-1">Exercício 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-int-infty-infty-x-t-e-st-dt-int-0-infty-e-at-e-st-dt"><span class="math notranslate nohighlight">\(X(s) = \int_{-\infty}^{\infty} x(t)e^{-st}dt = \int_{0}^{\infty} e^{-at}e^{-st}dt\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-int-0-infty-e-a-s-t-dt-frac-1-s-a-e-s-a-t-big-0-infty"><span class="math notranslate nohighlight">\(X(s) = \int_{0}^{\infty} e^{-(a+s)t}dt = -\frac{1}{s+a}e^{-(s+a)t}\Big |_{0}^{\infty} \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-lim-t-to-infty-frac-1-s-a-e-s-a-t-frac-1-s-a-e-s-a-0"><span class="math notranslate nohighlight">\(X(s) = \lim_{t \to \infty} -\frac{1}{s+a}e^{-(s+a)t} - [-\frac{1}{s+a}e^{-(s+a)0}]\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quando-o-limite-converge-re-s-a-0-to-sigma-a">Quando o limite converge?  <span class="math notranslate nohighlight">\(\Re\{{s+a}\}&gt;0 \to \sigma &gt; -a\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-x-s-frac-1-s-a-sigma-a">Resposta <span class="math notranslate nohighlight">\(X(s) = \frac{1}{s+a}, \sigma &gt; -a\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercícios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-3t-u-t-e-t-u-t-stackrel-mathcal-l-to-frac-1-s-3-frac-1-s-1-3-sigma-1">4- <span class="math notranslate nohighlight">\(e^{-3t}u(t) -e^{-t}u(-t) \stackrel{\mathcal{L}} \to \frac{1}{s+3}+ \frac{1}{s+1}, -3&lt;\sigma&lt;-1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-t-u-t-e-3t-u-t-stackrel-mathcal-l-to-roc-sigma-3-text-e-sigma-1-nao-existe-solucao">5- <span class="math notranslate nohighlight">\(e^{-t}u(t) - e^{-3t}u(-t) \stackrel{\mathcal{L}} \to ROC: \sigma&lt;-3 \text{ e } \sigma&gt;-1 \)</span> Não existe solução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observacoes">Observações</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#para-o-exemplo-3">Para o exemplo 3</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">$<span class="math notranslate nohighlight">\(e^{-t}u(t) + e^{-3t}u(t) \stackrel{\mathcal{L}} \rightarrow \frac{1}{s+1} + \frac{1}{s+3}, \sigma &gt; -1 \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-frac-2-s-2-s-1-s-3-sigma-1">$<span class="math notranslate nohighlight">\(X(s) = \frac{2(s+2)}{(s+1)(s+3)}, \sigma &gt; -1 \)</span>$</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Observações</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nos-tres-exemplos-x-s-e-uma-razao-de-polinomios">- nos três exemplos X(s) é uma razão de polinômios:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#x-s-frac-n-s-d-s-rightarrow-frac-text-raizes-zeros-text-raizes-polos">$<span class="math notranslate nohighlight">\( X(s) = \frac{N(s)}{D(s)} \rightarrow \frac{\text{raízes = zeros}}{\text{raízes = polos}} \)</span>$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-x-t-for-uma-combinacao-de-exponenciais-complexas-entao-x-s-sera-uma-funcao-racional">- Se <span class="math notranslate nohighlight">\(x(t)\)</span> for uma combinação de exponenciais complexas então <span class="math notranslate nohighlight">\(X(s)\)</span> será uma função racional.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-lineares-descritos-por-equacoes-diferenciais-lineares-com-coeficientes-constantes-apresentam-transformada-racional">- Sistemas lineares descritos por equações diferenciais lineares com coeficientes constantes apresentam transformada racional.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#as-raizes-do-numerador-e-denominador-descrevem-o-sistema">- As raízes do numerador e denominador descrevem o sistema.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#os-polos-estao-relacionados-com-a-regiao-de-convergencia">- Os pólos estão relacionados com a região de convergência.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-regiao-de-convergencia-rdc">Propriedades da região de convergência (RDC)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-transformada-de-laplace">Propriedades da transformada de Laplace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearidade">Linearidade:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-no-tempo">Deslocamento no tempo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Propriedades da transformada de Laplace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deslocamento-em-s">Deslocamento em S</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compressao-expansao">Compressão / Expansão</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolucao">Convolução</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-no-dominio-do-tempo">Diferenciação no domínio do tempo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Propriedades da transformada de Laplace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integracao-no-dominio-do-tempo">Integração no domínio do tempo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferenciacao-em-laplace">Diferenciação em Laplace</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoremas-do-valor-inicial-e-do-valor-final">Teoremas do valor inicial e do valor final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforma-laplace-unilateral">Transforma Laplace Unilateral</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-bilateral-x-s-int-infty-infty-x-t-e-st-dt">Transformada Bilateral: <span class="math notranslate nohighlight">\(X(s) = \int_{-\infty}^{\infty} x(t)e^{-st}dt\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-unilateral-x-s-int-0-infty-x-t-e-st-dt">Transformada Unilateral: <span class="math notranslate nohighlight">\(X(s) = \int_{0}^{\infty} x(t)e^{-st}dt\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transformada-unilateral-vai-incorporar-todo-o-comportamento-do-sistema-de-infty-ate-0-na-forma-de-condicoes-iniciais-em-t-0">A transformada unilateral vai incorporar todo o comportamento do sistema de <span class="math notranslate nohighlight">\(-\infty\)</span> até <span class="math notranslate nohighlight">\(^-0\)</span> na forma de condições iniciais em <span class="math notranslate nohighlight">\(t=0\)</span>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformada-de-laplace-inversa">Transformada de Laplace inversa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-das-transformadas-cuja-forma-e-uma-razao-de-dois-polinomios">Caso das transformadas cuja forma é uma razão de dois polinômios.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Transformada de Laplace inversa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculando-os-polos-p-k-de-x-s-podemos-escrever-que">Calculando os pólos [<span class="math notranslate nohighlight">\(p_k\)</span>] de X(s) podemos escrever que:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expansao-em-fracoes-parciais">Expansão em frações parciais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Transformada de Laplace inversa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Expansão em frações parciais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pares-de-transformadas-de-laplace-importantes">Pares de transformadas de Laplace importantes:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-sistemas-lineares-utilizando-a-transformada-de-laplace">Análise de sistemas lineares utilizando a transformada de Laplace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-descritos-por-equacoes-diferenciais-lineares">Sistemas descritos por equações diferenciais lineares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Sistemas descritos por equações diferenciais lineares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Sistemas descritos por equações diferenciais lineares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causalidade-e-estabilidade-de-sistemas-lti">Causalidade e estabilidade de sistemas LTI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-estaveis">Sistemas estáveis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Sistemas estáveis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-causais-e-estaveis">Sistemas Causais e estáveis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

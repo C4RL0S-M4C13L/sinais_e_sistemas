@@ -1,0 +1,1762 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Noção de Filtragem &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula12_Nocoes_de_Filtros';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Diagrama de Bode" href="Aula11_Diagrama_de_Bode.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula12_Nocoes_de_Filtros.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula12_Nocoes_de_Filtros.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Noção de Filtragem</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-sao-filtros">O que são Filtros?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicoes-preliminares">Definições preliminares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-de-respostas-de-filtros">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definições preliminares</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ganho-g-omega-h-j-omega-db-20log-10-h-j-omega">Ganho:  <span class="math notranslate nohighlight">\( G(\Omega) = |H(j\Omega)|_{dB}=20log_{10}|H(j\Omega)|\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atenuacao-displaystyle-a-omega-frac-1-h-j-omega-db-20log-10-h-j-omega">Atenuação: <span class="math notranslate nohighlight">\(\displaystyle A(\Omega) = \frac{1}{|H(j\Omega)|_{dB}} = -20log_{10}|H(j\Omega)|\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-resposta-de-fase-e-expressa-em-graus-ou-radianos">A resposta de fase é expressa em graus ou radianos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-filtro-rc">Exemplo: Filtro RC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristica-em-frequencia-dos-filtros-seletivos-ideais">Característica em Frequência dos Filtros Seletivos Ideais</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#um-filtro-deixa-passar-sinais-cujas-frequencias-estao-em-determinadas-bandas-ou-faixas-banda-de-passagem-e-rejeita-ou-atenua-as-frequencias-que-estao-em-outras-bandas-bandas-de-atenuacao-ou-de-rejeicao">Um filtro deixa passar sinais cujas frequências estão em determinadas bandas ou faixas (banda de passagem) e rejeita ou atenua as frequências que estão em outras bandas (bandas de atenuação ou de rejeição).</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-forma-da-resposta-de-amplitude-a-magnitude-classifica-o-filtro-de-acordo-com-a-localizacao-das-bandas-de-passagem-e-de-rejeicao">A forma da resposta de amplitude (a magnitude) classifica o filtro de acordo com a localização das bandas de passagem e de rejeição.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#para-um-filtro-ideal-as-bandas-de-passagem-e-de-rejeicao-sao-planas-e-a-transicao-entre-elas-apresenta-uma-inclinacao-infinita">Para um filtro ideal as bandas de passagem e de rejeição são planas e a transição entre elas apresenta uma inclinação infinita.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desse-modo-pode-se-obter-os-seguintes-tipos-de-filtros">Desse modo pode-se obter os seguintes tipos de filtros:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacao-de-um-filtro-passa-baixa">Especificação de um filtro Passa-Baixa</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-intervalo-0-omega-p-corresponde-a-banda-de-passagem-e-a-atenuacao-tem-que-ser-menor-que-a-max">O intervalo <span class="math notranslate nohighlight">\([0, \Omega_P]\)</span> corresponde a <em><strong>banda de passagem</strong></em> e a atenuação tem que ser menor que <span class="math notranslate nohighlight">\(A_{max}\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-intervalo-omega-p-omega-r-corresponde-a-banda-de-transicao-e-nada-e-especificado-para-ela">O intervalo <span class="math notranslate nohighlight">\([\Omega_P, \Omega_R]\)</span> corresponde a <em><strong>banda de transição</strong></em> e nada é especificado para ela</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-intervalo-omega-r-infty-corresponde-a-banda-de-rejeicao-e-aatenuacao-tem-que-ser-maior-que-a-min">O intervalo <span class="math notranslate nohighlight">\([\Omega_R, \infty [\)</span> corresponde a <em><strong>banda de rejeição</strong></em> e aatenuação tem que ser maior que <span class="math notranslate nohighlight">\(A_{min}\)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacao-de-um-filtro-passa-faixa">Especificação de um filtro Passa-Faixa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-s-so-com-polos-vai-fazer-uma-familia-de-passa-baixa-h-pb-s"><span class="math notranslate nohighlight">\(H(s)\)</span> só com polos vai fazer uma Família de Passa-Baixa, <span class="math notranslate nohighlight">\(H_{PB}(s)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-pa-s-pode-ser-interpretado-com-so-zeros-ou"><span class="math notranslate nohighlight">\(H_{PA}(s)\)</span> pode ser interpretado com só zeros ou</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-pf-s-pode-ser-como"><span class="math notranslate nohighlight">\(H_{PF}(s)\)</span> pode ser como:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-toque-do-telefone">Exemplo: toque do telefone</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soma-de-duas-senoides">Soma de duas senoides</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Famílias de Respostas de Filtros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Famílias de Respostas de Filtros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-de-transferencia">Função de Transferência</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Famílias de Respostas de Filtros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerando-o-filtro-ideal-passa-baixa">Considerando o filtro ideal Passa-Baixa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-de-feldtkeller">Relação de Feldtkeller</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtros-butterworth">Filtros Butterworth</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esses-filtros-sao-baseados-nas-funcoes-y-x-n-com-k-omega-epsilon-frac-omega-omega-p-n">Esses filtros são baseados nas funções <span class="math notranslate nohighlight">\(y=x^N\)</span> com <span class="math notranslate nohighlight">\(K(\Omega) = \epsilon(\frac{\Omega}{\Omega_P})^N\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-de-funcoes-butterworth">Família de funções Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-butterworth">Filtro butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Filtro butterworth</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#os-polos-do-filtro-butterworth">Os polos do filtro Butterworth</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-chebyshev">Filtro Chebyshev</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-de-chebyshev">Filtro de Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polinomios-de-chebyshev">Polinômios de Chebyshev</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-amplitudes-para-o-filtro-de-chebyshev-tipo-i">Resposta de Amplitudes para o filtro de Chebyshev: Tipo I</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades">Propriedades</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Propriedades</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-das-respostas-dos-filtros-de-butterworth-e-chebyshev">Comparação das respostas dos filtros de Butterworth e Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lozalizacao-dos-polos">Lozalização dos polos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Lozalização dos polos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Filtro de Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Filtro de Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efeitos-dos-parametros-na-resposta-do-filtro-de-chebyshev">Efeitos dos parâmetros na resposta do filtro de Chebyshev</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Filtro Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-de-chebyshev-tipo-ii">Filtro de Chebyshev Tipo II</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-amplitude-para-o-filtro-de-chebyshev-tipo-ii">Resposta de Amplitude para o filtro de Chebyshev: Tipo II</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Filtro Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modo-de-se-especificar-o-filtro-de-chebyshev-tipo-ii">Modo de se especificar o filtro de Chebyshev tipo II:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Filtro Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio">Exercício</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtros-elipticos">Filtros Elípticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">Filtros Elípticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-amplitude-para-o-filtro-eliptico">Resposta de Amplitude para o filtro Elíptico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-eliptico">Filtro Elíptico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-de-bessel">Filtro de Bessel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Filtro de Bessel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-das-respostas-dos-filtros-ordem-6">Comparação das respostas dos filtros - ordem 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-de-frequencias">Transformação de Frequências</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desnormalizacao">Desnormalização</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-passa-baixas-para-passa-altas">Transformação passa-baixas para passa-altas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-passa-baixas-para-passa-banda">Transformação passa-baixas para passa-banda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-passa-baixas-para-rejeita-banda">Transformação passa-baixas para rejeita-banda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacoes-de-um-prototipo-passa-baixas-com-frequencia-omega-p">Transformações de um protótipo passa-baixas com frequência <span class="math notranslate nohighlight">\(\Omega_p\)</span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="nocao-de-filtragem">
+<h1>Noção de Filtragem<a class="headerlink" href="#nocao-de-filtragem" title="Permalink to this heading">#</a></h1>
+<section id="o-que-sao-filtros">
+<h2>O que são Filtros?<a class="headerlink" href="#o-que-sao-filtros" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>São sistemas lineares invariantes no tempo</p></li>
+<li><p>O objetivo é <em><strong>selecionar</strong></em>, com pouca ou nenhuma atenuação, determinadas faixas de frequência e <em><strong>rejeitar</strong></em> todas as demais de um sinal de entrada.</p></li>
+<li><p>Em um contexto mais amplo define-se um filtro como um <em><strong>dispositivo que atenua mais algumas das frequência de um sinal aplicado em sua entrada do que outras</strong></em>.</p></li>
+</ol>
+<p>Aplicação</p>
+<ul class="simple">
+<li><p>Telefonia, sistemas de TV e áudio, radar, sonar, controle e em aplicações onde há alguma forma de processamento de sinais.</p></li>
+</ul>
+</section>
+<section id="definicoes-preliminares">
+<h2>Definições preliminares<a class="headerlink" href="#definicoes-preliminares" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Um filtro seletivo em frequência é um sistema linear invariante no tempo. Ele pode ser representado pelo diagrama de blocos abaixo, em que <span class="math notranslate nohighlight">\(x(t)\)</span> é o sinal de entrada e <span class="math notranslate nohighlight">\(y(t)\)</span> o de saída,</p>
+<div class="math notranslate nohighlight">
+\[ x(t) \to \boxed{Filtro} \to y(t) \]</div>
+<p>Utilizando a transformada de Laplace, a relação entre entrada e saída do sistema é dada por:</p>
+<p><span class="math notranslate nohighlight">\(Y(s)=H(s)X(s)\)</span> onde <span class="math notranslate nohighlight">\(H(s)\)</span> é a função de transferência do sistema</p>
+<p>Admitindo <span class="math notranslate nohighlight">\(s=j\Omega\)</span> tem-se que:</p>
+<p><span class="math notranslate nohighlight">\(Y(j\Omega)=H(j\Omega)X(j\Omega)\)</span> onde <span class="math notranslate nohighlight">\(H(j\Omega)\)</span> é a resposta de frequência do sistema</p>
+</section>
+<section id="familias-de-respostas-de-filtros">
+<h2>Famílias de Respostas de Filtros<a class="headerlink" href="#familias-de-respostas-de-filtros" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id1">
+<h3>Definições preliminares<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Forma polar de <span class="math notranslate nohighlight">\(H(j\Omega)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle H(j\Omega)=\underbrace{|H(j\Omega)|}_{\text{Resposta de amplitude}}
+{e^{j\overbrace{\varphi(j\Omega)}^{\text{Resposta de fase}}}} \]</div>
+<section id="ganho-g-omega-h-j-omega-db-20log-10-h-j-omega">
+<h4>Ganho:  <span class="math notranslate nohighlight">\( G(\Omega) = |H(j\Omega)|_{dB}=20log_{10}|H(j\Omega)|\)</span><a class="headerlink" href="#ganho-g-omega-h-j-omega-db-20log-10-h-j-omega" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="atenuacao-displaystyle-a-omega-frac-1-h-j-omega-db-20log-10-h-j-omega">
+<h4>Atenuação: <span class="math notranslate nohighlight">\(\displaystyle A(\Omega) = \frac{1}{|H(j\Omega)|_{dB}} = -20log_{10}|H(j\Omega)|\)</span><a class="headerlink" href="#atenuacao-displaystyle-a-omega-frac-1-h-j-omega-db-20log-10-h-j-omega" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="a-resposta-de-fase-e-expressa-em-graus-ou-radianos">
+<h4>A resposta de fase é expressa em graus ou radianos<a class="headerlink" href="#a-resposta-de-fase-e-expressa-em-graus-ou-radianos" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="exemplo-filtro-rc">
+<h2>Exemplo: Filtro RC<a class="headerlink" href="#exemplo-filtro-rc" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig12.2.png" /></p>
+<div class="math notranslate nohighlight">
+\[ H(j\Omega)=\frac{1}{1+j\Omega RC} \]</div>
+<div class="math notranslate nohighlight">
+\[ |H(j\Omega)|=\frac{1}{\sqrt{1+(\Omega RC)²}} \ \text{e} \ \angle H(\Omega)=-arctan(\Omega RC) \]</div>
+<img src="imagens/fig12.3.png"><section id="caracteristica-em-frequencia-dos-filtros-seletivos-ideais">
+<h3>Característica em Frequência dos Filtros Seletivos Ideais<a class="headerlink" href="#caracteristica-em-frequencia-dos-filtros-seletivos-ideais" title="Permalink to this heading">#</a></h3>
+<hr class="docutils" />
+<section id="um-filtro-deixa-passar-sinais-cujas-frequencias-estao-em-determinadas-bandas-ou-faixas-banda-de-passagem-e-rejeita-ou-atenua-as-frequencias-que-estao-em-outras-bandas-bandas-de-atenuacao-ou-de-rejeicao">
+<h4>Um filtro deixa passar sinais cujas frequências estão em determinadas bandas ou faixas (banda de passagem) e rejeita ou atenua as frequências que estão em outras bandas (bandas de atenuação ou de rejeição).<a class="headerlink" href="#um-filtro-deixa-passar-sinais-cujas-frequencias-estao-em-determinadas-bandas-ou-faixas-banda-de-passagem-e-rejeita-ou-atenua-as-frequencias-que-estao-em-outras-bandas-bandas-de-atenuacao-ou-de-rejeicao" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="a-forma-da-resposta-de-amplitude-a-magnitude-classifica-o-filtro-de-acordo-com-a-localizacao-das-bandas-de-passagem-e-de-rejeicao">
+<h4>A forma da resposta de amplitude (a magnitude) classifica o filtro de acordo com a localização das bandas de passagem e de rejeição.<a class="headerlink" href="#a-forma-da-resposta-de-amplitude-a-magnitude-classifica-o-filtro-de-acordo-com-a-localizacao-das-bandas-de-passagem-e-de-rejeicao" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="para-um-filtro-ideal-as-bandas-de-passagem-e-de-rejeicao-sao-planas-e-a-transicao-entre-elas-apresenta-uma-inclinacao-infinita">
+<h4>Para um filtro ideal as bandas de passagem e de rejeição são planas e a transição entre elas apresenta uma inclinação infinita.<a class="headerlink" href="#para-um-filtro-ideal-as-bandas-de-passagem-e-de-rejeicao-sao-planas-e-a-transicao-entre-elas-apresenta-uma-inclinacao-infinita" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="desse-modo-pode-se-obter-os-seguintes-tipos-de-filtros">
+<h4>Desse modo pode-se obter os seguintes tipos de filtros:<a class="headerlink" href="#desse-modo-pode-se-obter-os-seguintes-tipos-de-filtros" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- passa-baixas, passa-altas;
+
+- passa-banda ou passa-faixa;
+
+- rejeita banda;
+
+- passa tudo.
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id2">
+<h2>Famílias de Respostas de Filtros<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig12.10.png" /></p>
+<section id="especificacao-de-um-filtro-passa-baixa">
+<h3>Especificação de um filtro Passa-Baixa<a class="headerlink" href="#especificacao-de-um-filtro-passa-baixa" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/RespPB.png" /></p>
+<section id="o-intervalo-0-omega-p-corresponde-a-banda-de-passagem-e-a-atenuacao-tem-que-ser-menor-que-a-max">
+<h4>O intervalo <span class="math notranslate nohighlight">\([0, \Omega_P]\)</span> corresponde a <em><strong>banda de passagem</strong></em> e a atenuação tem que ser menor que <span class="math notranslate nohighlight">\(A_{max}\)</span><a class="headerlink" href="#o-intervalo-0-omega-p-corresponde-a-banda-de-passagem-e-a-atenuacao-tem-que-ser-menor-que-a-max" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="o-intervalo-omega-p-omega-r-corresponde-a-banda-de-transicao-e-nada-e-especificado-para-ela">
+<h4>O intervalo <span class="math notranslate nohighlight">\([\Omega_P, \Omega_R]\)</span> corresponde a <em><strong>banda de transição</strong></em> e nada é especificado para ela<a class="headerlink" href="#o-intervalo-omega-p-omega-r-corresponde-a-banda-de-transicao-e-nada-e-especificado-para-ela" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="o-intervalo-omega-r-infty-corresponde-a-banda-de-rejeicao-e-aatenuacao-tem-que-ser-maior-que-a-min">
+<h4>O intervalo <span class="math notranslate nohighlight">\([\Omega_R, \infty [\)</span> corresponde a <em><strong>banda de rejeição</strong></em> e aatenuação tem que ser maior que <span class="math notranslate nohighlight">\(A_{min}\)</span><a class="headerlink" href="#o-intervalo-omega-r-infty-corresponde-a-banda-de-rejeicao-e-aatenuacao-tem-que-ser-maior-que-a-min" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="especificacao-de-um-filtro-passa-faixa">
+<h2>Especificação de um filtro Passa-Faixa<a class="headerlink" href="#especificacao-de-um-filtro-passa-faixa" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/RespPF.png" /></p>
+</section>
+<section id="id3">
+<h2>Famílias de Respostas de Filtros<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="h-s-so-com-polos-vai-fazer-uma-familia-de-passa-baixa-h-pb-s">
+<h3><span class="math notranslate nohighlight">\(H(s)\)</span> só com polos vai fazer uma Família de Passa-Baixa, <span class="math notranslate nohighlight">\(H_{PB}(s)\)</span><a class="headerlink" href="#h-s-so-com-polos-vai-fazer-uma-familia-de-passa-baixa-h-pb-s" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ H_{PB}(s) = \frac{1}{s^2 + as + b} \to H_{PB}(j\Omega) = \frac{1}{b-\Omega^2 + ja\Omega} \]</div>
+</section>
+<section id="h-pa-s-pode-ser-interpretado-com-so-zeros-ou">
+<h3><span class="math notranslate nohighlight">\(H_{PA}(s)\)</span> pode ser interpretado com só zeros ou<a class="headerlink" href="#h-pa-s-pode-ser-interpretado-com-so-zeros-ou" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[H_{PA}(j\Omega) = 1 - H_{PB}(j\Omega)\]</div>
+</section>
+<section id="h-pf-s-pode-ser-como">
+<h3><span class="math notranslate nohighlight">\(H_{PF}(s)\)</span> pode ser como:<a class="headerlink" href="#h-pf-s-pode-ser-como" title="Permalink to this heading">#</a></h3>
+<p>$<span class="math notranslate nohighlight">\(H_{PF}(s) = \frac{a's+b'}{s^2+as+b}\)</span>$ com o |zero| &lt; |polos|</p>
+</section>
+</section>
+<section id="exemplo-toque-do-telefone">
+<h2>Exemplo: toque do telefone<a class="headerlink" href="#exemplo-toque-do-telefone" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>frequências (Hz)</p></th>
+<th class="head"><p>1209</p></th>
+<th class="head"><p>1336</p></th>
+<th class="head"><p>1477</p></th>
+<th class="head"><p>1633</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em><strong>697</strong></em></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-odd"><td><p><em><strong>770</strong></em></p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>B</p></td>
+</tr>
+<tr class="row-even"><td><p><em><strong>852</strong></em></p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+<td><p>9</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p><em><strong>941</strong></em></p></td>
+<td><p>*</p></td>
+<td><p>0</p></td>
+<td><p>#</p></td>
+<td><p>D</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="fig4.1.png" src="_images/1280px-66a3aDTMFpad.jpg" /></p>
+<p><img alt="fig4.1.png" src="_images/telefonistas.jpg" /></p>
+<p><img alt="fig4.1.png" src="_images/BDUK_Broadband_(14626513882).jpg" /></p>
+<p>By btphotosbduk - BDUK Broadband, CC BY 2.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=40750142">https://commons.wikimedia.org/w/index.php?curid=40750142</a></p>
+<p><img alt="image.png" src="_images/redeTel.png" /></p>
+<p><a class="reference external" href="https://www.ericsson.com/en/blog/2014/10/when-the-telephone-lines-darkened-the-sun-in-stockholm">https://www.ericsson.com/en/blog/2014/10/when-the-telephone-lines-darkened-the-sun-in-stockholm</a></p>
+<p><img alt="image.png" src="_images/old-mechanical-telephone-switch-20435934.jpg" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;YpUy1Ra_WN0&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="600"
+            height="300"
+            src="https://www.youtube.com/embed/YpUy1Ra_WN0"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+<section id="soma-de-duas-senoides">
+<h2>Soma de duas senoides<a class="headerlink" href="#soma-de-duas-senoides" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">600</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f3dc19b4bd0&gt;]
+</pre></div>
+</div>
+<img alt="_images/7c97b74ff4a6a219e0663e11c9c7fae476de44512c54f7551701bd1fabef18ca.png" src="_images/7c97b74ff4a6a219e0663e11c9c7fae476de44512c54f7551701bd1fabef18ca.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">ipd</span>
+<span class="n">ipd</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="s1">&#39;data/DTMF_dialing.ogg&#39;</span><span class="p">)</span> <span class="c1"># load a local WAV file</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+                <audio  controls="controls" >
+                    <source src="data:audio/ogg;base64,T2dnUwACAAAAAAAAAADcSQAAAAAAAN8cH0oBHgF2b3JiaXMAAAAAAUAfAAAAAAAAYG0AAAAAAACZAU9nZ1MAAAAAAAAAAAAA3EkAAAEAAACwvJsoCy3///////////+1A3ZvcmJpcx0AAABYaXBoLk9yZyBsaWJWb3JiaXMgSSAyMDA3MDYyMgAAAAABBXZvcmJpcxJCQ1YBAAABAAxSFCElGVNKYwiVUlIpBR1jUFtHHWPUOUYhZBBTiEkZpXtPKpVYSsgRUlgpRR1TTFNJlVKWKUUdYxRTSCFT1jFloXMUS4ZJCSVsTa50FkvomWOWMUYdY85aSp1j1jFFHWNSUkmhcxg6ZiVkFDpGxehifDA6laJCKL7H3lLpLYWKW4q91xpT6y2EGEtpwQhhc+211dxKasUYY4wxxsXiUyiC0JBVAAABAABABAFCQ1YBAAoAAMJQDEVRgNCQVQBABgCAABRFcRTHcRxHkiTLAkJDVgEAQAAAAgAAKI7hKJIjSZJkWZZlWZameZaouaov+64u667t6roOhIasBADIAAAYhiGH3knMkFOQSSYpVcw5CKH1DjnlFGTSUsaYYoxRzpBTDDEFMYbQKYUQ1E45pQwiCENInWTOIEs96OBi5zgQGrIiAIgCAACMQYwhxpBzDEoGIXKOScggRM45KZ2UTEoorbSWSQktldYi55yUTkompbQWUsuklNZCKwUAAAQ4AAAEWAiFhqwIAKIAABCDkFJIKcSUYk4xh5RSjinHkFLMOcWYcowx6CBUzDHIHIRIKcUYc0455iBkDCrmHIQMMgEAAAEOAAABFkKhISsCgDgBAIMkaZqlaaJoaZooeqaoqqIoqqrleabpmaaqeqKpqqaquq6pqq5seZ5peqaoqp4pqqqpqq5rqqrriqpqy6ar2rbpqrbsyrJuu7Ks256qyrapurJuqq5tu7Js664s27rkearqmabreqbpuqrr2rLqurLtmabriqor26bryrLryratyrKua6bpuqKr2q6purLtyq5tu7Ks+6br6rbqyrquyrLu27au+7KtC7vourauyq6uq7Ks67It67Zs20LJ81TVM03X9UzTdVXXtW3VdW1bM03XNV1XlkXVdWXVlXVddWVb90zTdU1XlWXTVWVZlWXddmVXl0XXtW1Vln1ddWVfl23d92VZ133TdXVblWXbV2VZ92Vd94VZt33dU1VbN11X103X1X1b131htm3fF11X11XZ1oVVlnXf1n1lmHWdMLqurqu27OuqLOu+ruvGMOu6MKy6bfyurQvDq+vGseu+rty+j2rbvvDqtjG8um4cu7Abv+37xrGpqm2brqvrpivrumzrvm/runGMrqvrqiz7uurKvm/ruvDrvi8Mo+vquirLurDasq/Lui4Mu64bw2rbwu7aunDMsi4Mt+8rx68LQ9W2heHVdaOr28ZvC8PSN3a+AACAAQcAgAATykChISsCgDgBAAYhCBVjECrGIIQQUgohpFQxBiFjDkrGHJQQSkkhlNIqxiBkjknIHJMQSmiplNBKKKWlUEpLoZTWUmotptRaDKG0FEpprZTSWmopttRSbBVjEDLnpGSOSSiltFZKaSlzTErGoKQOQiqlpNJKSa1lzknJoKPSOUippNJSSam1UEproZTWSkqxpdJKba3FGkppLaTSWkmptdRSba21WiPGIGSMQcmck1JKSamU0lrmnJQOOiqZg5JKKamVklKsmJPSQSglg4xKSaW1kkoroZTWSkqxhVJaa63VmFJLNZSSWkmpxVBKa621GlMrNYVQUgultBZKaa21VmtqLbZQQmuhpBZLKjG1FmNtrcUYSmmtpBJbKanFFluNrbVYU0s1lpJibK3V2EotOdZaa0ot1tJSjK21mFtMucVYaw0ltBZKaa2U0lpKrcXWWq2hlNZKKrGVklpsrdXYWow1lNJiKSm1kEpsrbVYW2w1ppZibLHVWFKLMcZYc0u11ZRai621WEsrNcYYa2415VIAAMCAAwBAgAlloNCQlQBAFAAAYAxjjEFoFHLMOSmNUs45JyVzDkIIKWXOQQghpc45CKW01DkHoZSUQikppRRbKCWl1losAACgwAEAIMAGTYnFAQoNWQkARAEAIMYoxRiExiClGIPQGKMUYxAqpRhzDkKlFGPOQcgYc85BKRljzkEnJYQQQimlhBBCKKWUAgAAChwAAAJs0JRYHKDQkBUBQBQAAGAMYgwxhiB0UjopEYRMSielkRJaCylllkqKJcbMWomtxNhICa2F1jJrJcbSYkatxFhiKgAA7MABAOzAQig0ZCUAkAcAQBijFGPOOWcQYsw5CCE0CDHmHIQQKsaccw5CCBVjzjkHIYTOOecghBBC55xzEEIIoYMQQgillNJBCCGEUkrpIIQQQimldBBCCKGUUgoAACpwAAAIsFFkc4KRoEJDVgIAeQAAgDFKOSclpUYpxiCkFFujFGMQUmqtYgxCSq3FWDEGIaXWYuwgpNRajLV2EFJqLcZaQ0qtxVhrziGl1mKsNdfUWoy15tx7ai3GWnPOuQAA3AUHALADG0U2JxgJKjRkJQCQBwBAIKQUY4w5h5RijDHnnENKMcaYc84pxhhzzjnnFGOMOeecc4wx55xzzjnGmHPOOeecc84556CDkDnnnHPQQeicc845CCF0zjnnHIQQCgAAKnAAAAiwUWRzgpGgQkNWAgDhAACAMZRSSimllFJKqKOUUkoppZRSAiGllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimllFJKKaWUUkoppZRSSimVUkoppZRSSimllFJKKaUAIN8KBwD/BxtnWEk6KxwNLjRkJQAQDgAAGMMYhIw5JyWlhjEIpXROSkklNYxBKKVzElJKKYPQWmqlpNJSShmElGILIZWUWgqltFZrKam1lFIoKcUaS0qppdYy5ySkklpLrbaYOQelpNZaaq3FEEJKsbXWUmuxdVJSSa211lptLaSUWmstxtZibCWlllprqcXWWkyptRZbSy3G1mJLrcXYYosxxhoLAOBucACASLBxhpWks8LR4EJDVgIAIQEABDJKOeecgxBCCCFSijHnoIMQQgghREox5pyDEEIIIYSMMecghBBCCKGUkDHmHIQQQgghhFI65yCEUEoJpZRSSucchBBCCKWUUkoJIYQQQiillFJKKSGEEEoppZRSSiklhBBCKKWUUkoppYQQQiillFJKKaWUEEIopZRSSimllBJCCKGUUkoppZRSQgillFJKKaWUUkooIYRSSimllFJKCSWUUkoppZRSSikhlFJKKaWUUkoppQAAgAMHAIAAI+gko8oibDThwgMQAAAAAgACTACBAYKCUQgChBEIAAAAAAAIAPgAAEgKgIiIaOYMDhASFBYYGhweICIkAAAAAAAAAAAAAAAABE9nZ1MAAABVAAAAAAAA3EkAAAIAAADSeA5eVgEBAQEBAQEBAQEBAQEBAWJENUdMN0xHOUNUPT9WRjxTSj5RSjlHUz5CZj5CVEM6TgEBAQEBAQEB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" type="audio/ogg" />
+                    Your browser does not support the audio element.
+                </audio>
+              </div></div>
+</div>
+</section>
+<section id="id4">
+<h2>Famílias de Respostas de Filtros<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/fig12.8.png" /></p>
+</section>
+<section id="id5">
+<h2>Famílias de Respostas de Filtros<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/fig12.9.png" /></p>
+</section>
+<section id="funcao-de-transferencia">
+<h2>Função de Transferência<a class="headerlink" href="#funcao-de-transferencia" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Os circuitos apresentam como função de transferência uma razão de polinômios e portanto não possuem descontinuidades</p></li>
+<li><p>Um filtro realizável, é representado, no domínio da frequência, pela função do sistema que é uma razão entre dois polinômios.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{k=0}^{M}\beta_k s^k}{\sum_{k=0}^{N}\alpha_ks^k} \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha_k\)</span> e <span class="math notranslate nohighlight">\(\beta_k\)</span> são coeficientes constantes e <span class="math notranslate nohighlight">\(N\)</span> é a ordem do filtro.</p></li>
+<li><p>A maior potência (M) do numerador define o número de zeros da função de transferência.</p></li>
+<li><p>A maior potência (<span class="math notranslate nohighlight">\(N\)</span>) do denominador define o número de pólos de <span class="math notranslate nohighlight">\(H(s)\)</span>. O valor de <span class="math notranslate nohighlight">\(N\)</span> define a seletividade da função de transferência, a taxa de atenuação na banda de transição.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>Famílias de Respostas de Filtros<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>As respostas em frequência mais importantes e mais utilizadas nos projetos de filtros são:</p>
+<ul>
+<li><p>resposta de Butterwoth;</p></li>
+<li><p>resposta Chebyshev;</p></li>
+<li><p>resposta Cauer ou filtros elípticos;</p></li>
+<li><p>resposta Bessel.</p></li>
+</ul>
+</li>
+<li><p>O objetivo é aproximar o melhor possível a resposta dos filtros ideais.</p></li>
+<li><p>Estas respostas são realizadas a partir de funções de transferência que são a razão entre dois polinômios em <span class="math notranslate nohighlight">\(s\)</span>.</p></li>
+<li><p>As famílias, aqui discutidas, são apresentadas para os protótipos passa-baixas, os outros tipos de filtros podem ser facilmente obtidos por transformação de freqüências.</p></li>
+</ul>
+</section>
+<section id="considerando-o-filtro-ideal-passa-baixa">
+<h2>Considerando o filtro ideal Passa-Baixa<a class="headerlink" href="#considerando-o-filtro-ideal-passa-baixa" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[\begin{split} |H(j\omega)|= \begin{cases}
+\displaystyle 1, \Omega_{BP}
+\\
+\displaystyle \delta, \Omega_{BR}
+\end{cases} \rightarrow |H^{'}(j\omega)|= \begin{cases}
+\displaystyle 1, \Omega_{BP}
+\\
+\displaystyle \Delta, \Omega_{BR}
+\end{cases}
+\end{split}\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\displaystyle H^{'}(s) = \frac{1}{H(s)}\)</span>, <span class="math notranslate nohighlight">\(\delta\)</span> é um valor muito pequeno e <span class="math notranslate nohighlight">\(\Delta\)</span> é um valor muito grande</p>
+<section id="relacao-de-feldtkeller">
+<h3>Relação de Feldtkeller<a class="headerlink" href="#relacao-de-feldtkeller" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split} |H^{'}(s)|^2=1+|K(s)|² \rightarrow |K(j\omega)|=\begin{cases}
+\displaystyle 0, \Omega_{BP}
+\\
+\displaystyle \approx\Delta, \Omega_{BR}
+\end{cases}
+\end{split}\]</div>
+<p>onde <span class="math notranslate nohighlight">\(K(s)\)</span> é a função de aproximação</p>
+</section>
+</section>
+<section id="filtros-butterworth">
+<h2>Filtros Butterworth<a class="headerlink" href="#filtros-butterworth" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="esses-filtros-sao-baseados-nas-funcoes-y-x-n-com-k-omega-epsilon-frac-omega-omega-p-n">
+<h3>Esses filtros são baseados nas funções <span class="math notranslate nohighlight">\(y=x^N\)</span> com <span class="math notranslate nohighlight">\(K(\Omega) = \epsilon(\frac{\Omega}{\Omega_P})^N\)</span><a class="headerlink" href="#esses-filtros-sao-baseados-nas-funcoes-y-x-n-com-k-omega-epsilon-frac-omega-omega-p-n" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ K(\Omega)=\epsilon \left(\frac{\Omega}{\Omega_p}\right)^N \rightarrow |H^{'}(\Omega)|^2 = 1+\epsilon^2 \left(\frac{\Omega}{\Omega_p}\right)^{2N} \]</div>
+<div class="math notranslate nohighlight">
+\[ |H(\Omega)| = \frac{1}{|H'(\Omega)|} = \frac{1}{\sqrt{1+\epsilon^2 \left(\frac{\Omega}{\Omega_p}\right)^{2N}}}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">K</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">e</span><span class="o">*</span><span class="p">(</span><span class="n">w</span><span class="o">/</span><span class="n">wp</span><span class="p">)</span><span class="o">**</span><span class="n">N</span>
+
+<span class="n">wp</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">e</span>  <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">K</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">K</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">K</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">K</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\Omega/\Omega_P$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|K($\Omega$|)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">Hl</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="mi">1</span><span class="o">+</span><span class="n">K</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Hl</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Hl</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Hl</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">Hl</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\Omega/\Omega_P$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|Hl($\Omega$)|&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">H</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">K</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\Omega/\Omega_P$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|H($\Omega$)|&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;|H($\\Omega$)|&#39;)
+</pre></div>
+</div>
+<img alt="_images/aed1858e0ad1c5e8f6f23e5e9847119f5408d64e29619702abf95e2396d626af.png" src="_images/aed1858e0ad1c5e8f6f23e5e9847119f5408d64e29619702abf95e2396d626af.png" />
+<img alt="_images/512c25c5259f2ee9876bd3b6de3d703f28b7d2939a9c1782946a6aae7afd98f4.png" src="_images/512c25c5259f2ee9876bd3b6de3d703f28b7d2939a9c1782946a6aae7afd98f4.png" />
+<img alt="_images/68614b7d612864ab7f43df3f3e5de87abe5ebebf20570b0e80a9ae4d269d45b5.png" src="_images/68614b7d612864ab7f43df3f3e5de87abe5ebebf20570b0e80a9ae4d269d45b5.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="familia-de-funcoes-butterworth">
+<h2>Família de funções Butterworth<a class="headerlink" href="#familia-de-funcoes-butterworth" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>A função de atenuação <span class="math notranslate nohighlight">\(A(\omega)\)</span> é</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ A(\omega) = |H^{'}(j\omega)|_{dB} = 10log_{10}\left(1+\epsilon²\left(\frac{\omega}{\omega_p}\right)^{2N}\right) \]</div>
+<p>Condições de projeto:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\omega = \omega_p \rightarrow\)</span> máxima atenuação na banda de passagem</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ A(\omega_p)= A_{max} = 10log_{10}(1+\epsilon²) \ \ \rightarrow \ \ \text{determina} \ \epsilon \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\omega = \omega_r \rightarrow\)</span> mínima atenuação na banda de rejeição</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ A(\omega_r)= A_{min} = 10log_{10}\left(1+\epsilon²\left(\frac{\omega_r}{\omega_p}\right)^{2N}\right) \ \ \rightarrow \ \ \text{determina} \ N \]</div>
+<p>A ordem <span class="math notranslate nohighlight">\(N\)</span> do filtro é determinada pela atenuação em <span class="math notranslate nohighlight">\(\omega_r\)</span> e da relação entre <span class="math notranslate nohighlight">\(\omega_r\)</span> e <span class="math notranslate nohighlight">\(\omega_p\)</span>.</p>
+</section>
+<section id="filtro-butterworth">
+<h2>Filtro butterworth<a class="headerlink" href="#filtro-butterworth" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>Ordem N</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ N \geq \frac{log_{10}[(10^{0.1A_{max}}-1)]/(10^{0.1A_{min}}-1)]}{2log_{10}(\omega_p/\omega_r)} \ \ \text{onde} A_{max} \ \text{e} \ A_{min} \ \text{são as atenuações em decibels} \]</div>
+</section>
+<section id="id7">
+<h2>Filtro Butterworth<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>O filtro de Buterworth tenta aproximar característica plana (derivadas iguais a zero em <span class="math notranslate nohighlight">\(\omega = 0\)</span>) da banda de passagem do filtro ideal através de uma função polinomial.</p>
+<ul class="simple">
+<li><p>Ele apresenta uma resposta de amplitude maximamente plana na faixa de passagem e uma resposta monotônica (decrescente) na banda de parada.</p></li>
+<li><p>O módulo ao quadrado da sua função de transferência é definido por:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |H(j\omega)|²=\frac{1}{1+\left(\frac{\omega}{\omega_p}\right)^{2N}} \]</div>
+<p>Em que <span class="math notranslate nohighlight">\(\omega_p\)</span> é a frequência de corte (queda de 3dB no ganho) e <span class="math notranslate nohighlight">\(N\)</span> é a ordem do filtro.</p>
+</section>
+<section id="id8">
+<h2>Filtro Butterworth<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Admitindo <span class="math notranslate nohighlight">\(\Omega_0=\Omega/ \Omega_c\)</span> observa-se as seguintes propriedades:</p>
+<ul class="simple">
+<li><p>|H(0)|=1 <span class="math notranslate nohighlight">\(\rightarrow\)</span> ganho igual a 1 na faixa de passagem.</p></li>
+<li><p>|H(1)|=0.707 <span class="math notranslate nohighlight">\(\rightarrow\)</span> frequência de corte igual a 1 rad/s.</p></li>
+<li><p>Expandindo <span class="math notranslate nohighlight">\(|H(\Omega_n)|\)</span> em série de Taylor tem-se que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[|H(j\omega_n)|=\sqrt{\frac{1}{1+(\omega_n)^{2N}}} = 1-\frac{1}{2}\omega_n^{2N}+\frac{3}{8}\omega_n^{4N}- \dots \]</div>
+<ul class="simple">
+<li><p>As derivadas de <span class="math notranslate nohighlight">\(|H(\Omega_n)|\)</span> para <span class="math notranslate nohighlight">\(\Omega_n=0\)</span> são todas nulas,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{d^k}{d\omega_n^k}|H(j\omega_n)||_{\omega_n=0}=0 \ \ :k=1, 2, \dots, 2N-1 \]</div>
+<p><strong>Por isso o nome: aproximação maximamente plana</strong></p>
+</section>
+<section id="id9">
+<h2>Filtro Butterworth<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Conforme N aumenta, a resposta de amplitude torna-se mais plana na faixa de passagem e a taxa de atenuação na banda de transição torna-se mais acentuada.</p></li>
+<li><p>Acima da frequência de corte, <span class="math notranslate nohighlight">\(\omega_n&gt;&gt;1\)</span> ou <span class="math notranslate nohighlight">\(\omega&gt;&gt;\omega_c\)</span> , a função de transferência exibe uma taxa de atenuação correspondente a 20N dB por década (cada vez que se aumenta por 10 a frequência) ou 6N dB por oitava (cada vez que se dobra a frequência). Nesta situação a resposta assintótica será:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |H(j\Omega)| \approx \frac{1}{(\Omega_n)^N}=\frac{1}{\left(\frac{\Omega}{\Omega_c}\right)^N}  \ \ \text{atenuação:} \rightarrow |A(j\Omega)|\approx(\Omega_n)^N \]</div>
+</section>
+<section id="id10">
+<h2>Filtro Butterworth<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[ \displaystyle |H(\Omega)|^2 = \frac{1}{1+|K(\Omega)|^2}=\frac{1}{1+\frac{\epsilon^2}{\Omega_P^{2N}} \Omega^{2N}} \]</div>
+<p>Os pólos do filtro de Butterworth são aqueles anulam o denominador da função de transferência</p>
+<p>Fazendo</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(s=j\Omega \to -s^2=\Omega^2\)</span>; e</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\epsilon^2}{\Omega_P^{2N}} = 1\)</span> (filtro normalizado).</p></li>
+</ol>
+<p>Os polos se encontram em: <span class="math notranslate nohighlight">\(1+(-s^2)^N=0\)</span></p>
+<p>Para a solução do problema separa-se <span class="math notranslate nohighlight">\(N\)</span> em par ou impar:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(N\)</span> impar: <span class="math notranslate nohighlight">\(1-s^{2N} = 0\)</span> então <span class="math notranslate nohighlight">\(\{1, -1\}\)</span> pertencem ao conjunto das soluções; <span class="math notranslate nohighlight">\(p_k = e^{jk\frac{2\pi}{2N}} = e^{jk\frac{\pi}{N}}, k = 0, \ldots, 2N-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> par:  <span class="math notranslate nohighlight">\(1+s^{2N} = 0\)</span> <span class="math notranslate nohighlight">\(p_k = e^{j(k\frac{2\pi}{2N}+\frac{\pi}{2N})} = e^{j(2k+1)\frac{\pi}{2N}}, k = 0, \ldots, 2N-1\)</span></p></li>
+</ol>
+<p>São escolhidos para <span class="math notranslate nohighlight">\(H(s)\)</span> apenas as raízes que estão no semi-plano lateral esquerdo</p>
+</section>
+<section id="id11">
+<h2>Filtro butterworth<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="os-polos-do-filtro-butterworth">
+<h3>Os polos do filtro Butterworth<a class="headerlink" href="#os-polos-do-filtro-butterworth" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/fig12.13.png" /></p>
+</section>
+</section>
+<section id="id12">
+<h2>Famílias de Respostas de Filtros<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="filtro-chebyshev">
+<h3>Filtro Chebyshev<a class="headerlink" href="#filtro-chebyshev" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Apresenta maior taxa de atenuação na banda de transição do que as outras famílias de filtros.</p></li>
+<li><p>Tem-se dois tipos: I e II</p>
+<ul>
+<li><p>TIPO I: Apresenta comportamento oscilatório na banda de passagem (equiripple) e monotônico na banda de atenuação.</p></li>
+<li><p>TIPO II: Comportamento monotônico na banda de passagem e oscilatório na banda de atenuação.</p></li>
+</ul>
+</li>
+<li><p><strong>Resposta de Amplitudes: Tipo I</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[|H(j\Omega)|²=\frac{1}{1+e²C_N²\left(\frac{\omega}{\omega_p}\right)} \]</div>
+<p><span class="math notranslate nohighlight">\(\epsilon\)</span>: parâmetro controla a ondulação (ripple) na banda de passagem.</p>
+<p><span class="math notranslate nohighlight">\(C_N(x)\)</span>: Polinômio de Chebyshev de ordem N.</p>
+</section>
+</section>
+<section id="filtro-de-chebyshev">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#filtro-de-chebyshev" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>O polinômio de Chebyshev de ordem <span class="math notranslate nohighlight">\(N\)</span> é dado por</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} C_N(x) = \begin{cases}
+\displaystyle cos(Ncos^{-1}(x)), x\leq1
+\\
+\displaystyle cosh(Ncosh^{-1}(x)), x&gt;1
+\end{cases} \end{split}\]</div>
+<ul class="simple">
+<li><p>Fórmula de recursão para o cálculo de CN(x)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} C_{N+1}(x)=2xC_N(x)-C_{N-1}(x) \rightarrow \begin{cases}
+\displaystyle C_2=2\Omega_n²-1
+\\
+\displaystyle C_3=4\Omega_n³-3\Omega_n
+\\
+\displaystyle C_4=8\Omega_n^4-8\Omega_n²+1
+\\
+\displaystyle \vdots
+\end{cases} \\ \text{em que:} \ C_0(x)=1 \ \text{e} \ C_1(x)=x \end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(C_n(x)\)</span>: Varia entre <span class="math notranslate nohighlight">\(\pm\)</span> para |x| <span class="math notranslate nohighlight">\(\leq\)</span> 1. Aumenta monotonicamente para <span class="math notranslate nohighlight">\(|x|&gt;1\)</span></p>
+</section>
+<section id="id13">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="polinomios-de-chebyshev">
+<h3>Polinômios de Chebyshev<a class="headerlink" href="#polinomios-de-chebyshev" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/fig12.15.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">wp</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">e</span>  <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Chebyshev</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">W</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">w</span><span class="p">)))</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccosh</span><span class="p">(</span><span class="n">w</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">C</span>
+
+<span class="k">def</span> <span class="nf">FeldtKeller</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">H</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">FeldtKeller</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+
+<span class="n">C0</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">C1</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">C2</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">C3</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">C4</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">C0</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">C1</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">C2</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">C3</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">C4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\Omega/\Omega_P$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|C($\Omega$|)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">FeldtKeller</span><span class="p">(</span><span class="n">C0</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">FeldtKeller</span><span class="p">(</span><span class="n">C1</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">FeldtKeller</span><span class="p">(</span><span class="n">C2</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">FeldtKeller</span><span class="p">(</span><span class="n">C3</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">FeldtKeller</span><span class="p">(</span><span class="n">C4</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\Omega/\Omega_P$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|Hl($\Omega$)|&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">C0</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">C1</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">C2</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">C3</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">(</span><span class="n">C4</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$\Omega/\Omega_P$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;|H($\Omega$)|&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;|H($\\Omega$)|&#39;)
+</pre></div>
+</div>
+<img alt="_images/e9d47664c6badd1311488b8a67f79ee767a44f435bbd6f65e1feb23615ae3064.png" src="_images/e9d47664c6badd1311488b8a67f79ee767a44f435bbd6f65e1feb23615ae3064.png" />
+<img alt="_images/df583b625127c396af583c44113e164059bb82c94631d9996ac05e672b3362ff.png" src="_images/df583b625127c396af583c44113e164059bb82c94631d9996ac05e672b3362ff.png" />
+<img alt="_images/42d93490113f29c76fa7523d7a40010dc529a6c371a4a0747950e9f7a44cbcf4.png" src="_images/42d93490113f29c76fa7523d7a40010dc529a6c371a4a0747950e9f7a44cbcf4.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="resposta-de-amplitudes-para-o-filtro-de-chebyshev-tipo-i">
+<h3>Resposta de Amplitudes para o filtro de Chebyshev: Tipo I<a class="headerlink" href="#resposta-de-amplitudes-para-o-filtro-de-chebyshev-tipo-i" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/fig12.16.png" /></p>
+</section>
+</section>
+<section id="id15">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="propriedades">
+<h3>Propriedades<a class="headerlink" href="#propriedades" title="Permalink to this heading">#</a></h3>
+<p>1- Para <span class="math notranslate nohighlight">\(\Omega=0\)</span> tem-se:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |H(0)|= \begin{cases}
+\displaystyle 1, \text{N ímpar}
+\\
+\displaystyle \frac{1}{\sqrt{1+\epsilon²}}, \text{N par}
+\end{cases} \end{split}\]</div>
+<p>2- Para <span class="math notranslate nohighlight">\(\Omega = \Omega_p\)</span> , o ganho é mínimo na banda de passagem ou máxima atenuação nesta banda:</p>
+<div class="math notranslate nohighlight">
+\[ |H(\Omega_p)|=\frac{1}{\sqrt{1+\epsilon²}}, \ \ \text{qualquer N}\]</div>
+</section>
+</section>
+<section id="id16">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id17">
+<h3>Propriedades<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<p>3- A ondulação (em dB) na banda de passagem é definida como:</p>
+<div class="math notranslate nohighlight">
+\[ r=10log\left(\left|\frac{H_{max}=1}{H_{min}}\right|^2\right)=10log(1+\epsilon²) \rightarrow \epsilon²=10^{r/10}-1 \]</div>
+<p>4- O número total de máximos e mínimos na banda de passagem é determinado pela ordem do filtro.</p>
+<p>5- A banda passante é definida como a faixa de frequências em que a ondulação oscila na amplitude mínima.</p>
+<p><img alt="image.png" src="_images/fig12.17.png" /></p>
+</section>
+</section>
+<section id="comparacao-das-respostas-dos-filtros-de-butterworth-e-chebyshev">
+<h2>Comparação das respostas dos filtros de Butterworth e Chebyshev<a class="headerlink" href="#comparacao-das-respostas-dos-filtros-de-butterworth-e-chebyshev" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/fig12.22.png" /></p>
+<img src="Fig7.15.png"></section>
+<section id="id18">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="lozalizacao-dos-polos">
+<h3>Lozalização dos polos<a class="headerlink" href="#lozalizacao-dos-polos" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/fig12.18.png" /></p>
+</section>
+</section>
+<section id="id19">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id20">
+<h3>Lozalização dos polos<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Os pólos do filtro de Chebyshev (tipo I) estão localizados em uma elipse cujos eixos maior (<span class="math notranslate nohighlight">\(r_1\)</span>) e menor (<span class="math notranslate nohighlight">\(r_2\)</span>) são dados por:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ r_1=\frac{\Omega_p}{2}\left(\beta+\frac{1}{\beta}\right) \text{e}\;\; r_2=\frac{\Omega_p}{2}\left(\beta-\frac{1}{\beta}\right) \]</div>
+<ul class="simple">
+<li><p>O parâmetro <span class="math notranslate nohighlight">\(\beta\)</span> depende de <span class="math notranslate nohighlight">\(\epsilon\)</span>, e é dado por:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \beta=\left[\sqrt{1+e^{-2}}+\frac{1}{e}\right]^{1/N} \]</div>
+<ul class="simple">
+<li><p>Cálculo dos pólos:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} p_k=r_2cos\varphi_k+jr_1sen\varphi_k \\ \text{em que:} \ \varphi=\frac{\pi}{2}+\frac{2k+1}{2N}\pi, \ k=0, 1, \dots, N-1\end{split}\]</div>
+</section>
+</section>
+<section id="id21">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Para o projeto dos filtros de Chebyshev são requeridos 4 parâmetros:</p>
+<ul>
+<li><p>Frequências da banda de passagem e de atenuação: <span class="math notranslate nohighlight">\(\Omega_p\)</span> e <span class="math notranslate nohighlight">\(\Omega_s\)</span>;</p></li>
+<li><p>Ondulação (ripple) (<span class="math notranslate nohighlight">\(\delta_p\)</span>) ou atenuação máxima (banda de passagem)</p></li>
+<li><p>Atenuação mínima da banda de atenuação.</p></li>
+</ul>
+</li>
+<li><p>O parâmetro <span class="math notranslate nohighlight">\(\epsilon\)</span> é calculado através da ondulação (ripple):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\epsilon^2+1=\delta_p^{2} \]</div>
+<ul class="simple">
+<li><p>A ordem fo filtro é determinada através de:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ N=\frac{log\left(\left[\sqrt{\delta_s^2-1}+\sqrt{\delta_s^2+\epsilon²+1}\right]/2\epsilon\right)}{log\left(\Omega_s/\Omega_p+\sqrt{\left(\Omega_s/\Omega_p\right)^2-1}\right)} \]</div>
+</section>
+<section id="id22">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Ou mais usualmente,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ N= \frac{cosh^{-1} \left(\sqrt{\frac{10^{A_s/10}-1}{10^{r/10}-1}}\right)}{cosh^{-1}\left(\frac{\Omega_s}{\Omega_p}\right)}\]</div>
+<ul class="simple">
+<li><p>Com os valores de <span class="math notranslate nohighlight">\(N\)</span> e <span class="math notranslate nohighlight">\(\epsilon\)</span>, os pólos são determinados pelas equações anteriores:</p>
+<ul>
+<li><p>calcula-se <span class="math notranslate nohighlight">\(\beta\)</span>;</p></li>
+<li><p>calcula-se <span class="math notranslate nohighlight">\(r_1\)</span> e <span class="math notranslate nohighlight">\(r_2\)</span>;</p></li>
+<li><p>calcula-se os pólos <span class="math notranslate nohighlight">\(p_k\)</span> <span class="math notranslate nohighlight">\(k=0,1, 2, \dots, N-1\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id23">
+<h2>Filtro de Chebyshev<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="efeitos-dos-parametros-na-resposta-do-filtro-de-chebyshev">
+<h3>Efeitos dos parâmetros na resposta do filtro de Chebyshev<a class="headerlink" href="#efeitos-dos-parametros-na-resposta-do-filtro-de-chebyshev" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/fig12.19.png" /></p>
+</section>
+</section>
+<section id="id24">
+<h2>Filtro Chebyshev<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><strong>Exemplo:</strong> Determine a função de transferência de um filtro de Chebyshev que satisfaça as seguintes especificações: ondulação na banda de passagem r = 2 dB, <span class="math notranslate nohighlight">\(\Omega_p\)</span> = 1000<span class="math notranslate nohighlight">\(\pi\)</span> rad/s (<span class="math notranslate nohighlight">\(F_P\)</span> = 500 Hz), <span class="math notranslate nohighlight">\(\Omega_s\)</span> = 4000<span class="math notranslate nohighlight">\(\pi\)</span> rad/s (<span class="math notranslate nohighlight">\(F_s\)</span> = 2000 Hz), <span class="math notranslate nohighlight">\(A_s\)</span> = 40 dB (<span class="math notranslate nohighlight">\(\delta_{MIN}\)</span>).</p>
+<ul class="simple">
+<li><p>Cálculo de <span class="math notranslate nohighlight">\(\epsilon\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \epsilon²=10^{r/10}-1=10^{0.2}-1=0.58489 \rightarrow \epsilon=0.76478 \]</div>
+<ul class="simple">
+<li><p>Cálculo da ordem do Filtro:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \delta_s = 10^{40/20} = 10^2 \]</div>
+<div class="math notranslate nohighlight">
+\[ N= \frac{\frac{log\left(\sqrt{10^4-1}+\sqrt{10^4+0.58489+1}\right)}{2(0.76478)}}{log(4+\sqrt{16-1})} = \frac{log(130.758)}{log(7.87298)}=2.36 \]</div>
+</section>
+<section id="id25">
+<h2>Filtro Chebyshev<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="filtro-de-chebyshev-tipo-ii">
+<h3>Filtro de Chebyshev Tipo II<a class="headerlink" href="#filtro-de-chebyshev-tipo-ii" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Também chamado de filtro inverso de Chebyshev.</p>
+<ul>
+<li><p>Apresenta comportamento monotônico na banda de passagem e oscilatório na banda de atenuação.</p></li>
+</ul>
+</li>
+<li><p>Para se obter a resposta em frequência deste filtro, a variável <span class="math notranslate nohighlight">\(\Omega_n\)</span> é recolocada por <span class="math notranslate nohighlight">\(1/\Omega_n\)</span> , o que transforma a resposta para passa-altas.</p></li>
+<li><p>Subtraindo esta característica da unidade obtém o filtro passa-baixas de Chebyshev tipo II.</p></li>
+<li><p>Neste caso, o módulo ao quadrado da resposta em frequência será dado por:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |H(j\Omega_n)|^2=\frac{\epsilon^2C_N^2(1/\Omega_n)}{1+\epsilon^2C_N^2(1/\Omega_n)} \ \ \  \ \ \Omega_n=\frac{\Omega}{\Omega_s} \]</div>
+<p><span class="math notranslate nohighlight">\(\epsilon\)</span>: parâmetro controla a ondulação (ripple) na banda de atenuação. <span class="math notranslate nohighlight">\(C_N(x)\)</span>: Polinômio de Chebyshev de ordem N.</p>
+</section>
+</section>
+<section id="id26">
+<h2>Filtro Chebyshev<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="resposta-de-amplitude-para-o-filtro-de-chebyshev-tipo-ii">
+<h3>Resposta de Amplitude para o filtro de Chebyshev: Tipo II<a class="headerlink" href="#resposta-de-amplitude-para-o-filtro-de-chebyshev-tipo-ii" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/fig12.20.png" /></p>
+</section>
+</section>
+<section id="id27">
+<h2>Filtro Chebyshev<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>A função de transferência apresenta zeros e pólos.</p>
+<ul class="simple">
+<li><p>Os zeros estão localizados no eixo imaginário tal que:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ z_k=j\frac{1}{cos\varphi_k}\Omega_s \ \ \ \ \ \varphi=\frac{(2k+1)\pi}{2N}+\frac{\pi}{2} \ \ \ k=0, 1, \dots, N-1 \]</div>
+<ul class="simple">
+<li><p>Os pólos são os recíprocos daqueles do filtro convencional de Chebyshev (tipo I).</p>
+<ul>
+<li><p>Denotando os pólos do filtro inverso de Chebyshev por:
+$<span class="math notranslate nohighlight">\( p^{'}_k=\sigma^{'}_k+j\Omega^{'}_k \)</span>$</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \sigma^{'}_k=\frac{\sigma_k}{\sqrt{\sigma^{2}_k+\Omega^{2}_k}}\Omega_s \ \ \ \text{e} \ \ \ \Omega^{'}_k=\frac{\Omega_k}{\sqrt{\sigma^{2}_k+\Omega^{2}_k}}\Omega_s \]</div>
+<p><strong><span class="math notranslate nohighlight">\(\sigma_k\)</span> e <span class="math notranslate nohighlight">\(\Omega_k\)</span> são as partes real e imaginária do filtro de Chebyshev tipo I.</strong></p>
+</section>
+<section id="id28">
+<h2>Filtro Chebyshev<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="modo-de-se-especificar-o-filtro-de-chebyshev-tipo-ii">
+<h3>Modo de se especificar o filtro de Chebyshev tipo II:<a class="headerlink" href="#modo-de-se-especificar-o-filtro-de-chebyshev-tipo-ii" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Frequência da banda de passagem (<span class="math notranslate nohighlight">\(\Omega_p\)</span>) e atenuação máxima permitida nesta banda <span class="math notranslate nohighlight">\(A_p(\delta_p)\)</span>.</p></li>
+<li><p>Frequência da banda de atenuação (<span class="math notranslate nohighlight">\(\Omega_s\)</span>) e da atenuação mínima permitida nesta banda <span class="math notranslate nohighlight">\(A_s(\delta_s)\)</span>.</p></li>
+<li><p>O ganho máximo na banda de passagem é admitido ser igual a 1, tal que, <span class="math notranslate nohighlight">\(1/\delta_p&lt;|H(j\Omega)|&lt;1\)</span> para <span class="math notranslate nohighlight">\(0&lt;\Omega&lt;\Omega_p\)</span>.</p></li>
+<li><p>A ordem do filtro pode ser encontrada como o menor inteiro que satisfaz a seguinte relação:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ N \geq \frac{cosh^{-1}\left(\sqrt{\frac{10^{0.1A_s}-1}{10^{0.1A_p}-1}}\right)}{cosh^{-1}\left(\frac{\Omega_s}{\Omega_p}\right)} \]</div>
+</section>
+</section>
+<section id="id29">
+<h2>Filtro Chebyshev<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>O fator de ondulação é dado por:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \epsilon=\frac{1}{\sqrt{10^{0.1A_s}-1}} \]</div>
+<ul class="simple">
+<li><p>O filtro é projetado através do seguinte procedimento:</p>
+<ul>
+<li><p>Determina-se <span class="math notranslate nohighlight">\(\epsilon\)</span></p></li>
+<li><p>Determina-se a ordem do filtro</p></li>
+<li><p>Determina-se os zeros</p></li>
+<li><p>Calcula-se os pólos do filtro de Chebyshev tipo I. Os recíprocos serão os pólos do filtro inverso tipo II</p></li>
+<li><p>A função de transferência, com ganho na banda passante igual a 1, é determinada por:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H(s) = \frac{p^{'}_0p^{'}_1\dots}{z_0z_1\dots} \frac{(s-z_0)(s-z_1)\dots}{(s-p^{'}_0)(s-p^{'}_1)\dots} \]</div>
+</section>
+<section id="id30">
+<h2>Filtro Chebyshev<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="exercicio">
+<h3>Exercício<a class="headerlink" href="#exercicio" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Determine a função de transferência de um filtro de Chebyshev tipo II que satisfaça as seguintes especificações:</p>
+<ul>
+<li><p>atenuação máxima banda de passagem <span class="math notranslate nohighlight">\(A_p\)</span> = 0.1 dB, <span class="math notranslate nohighlight">\(\Omega_p\)</span> = 2000<span class="math notranslate nohighlight">\(\pi\)</span> rad/s (<span class="math notranslate nohighlight">\(F_p\)</span> = 1000 Hz),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Omega_s=4000\pi\)</span>rad/s (<span class="math notranslate nohighlight">\(F_s\)</span> = 2000Hz), atenuação mínima na banda de atenuação <span class="math notranslate nohighlight">\(A_s\)</span> = 20 dB.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png" src="_images/fig12.21.png" /></p>
+</section>
+</section>
+<section id="filtros-elipticos">
+<h2>Filtros Elípticos<a class="headerlink" href="#filtros-elipticos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Os filtros elípticos (ou de Cauer) apresentam resposta em frequência com ondulações tanto na banda de passagem quanto na de atenuação.</p></li>
+<li><p>A resposta em frequência é especificada do mesmo modo que nas seções anteriores.</p>
+<ul>
+<li><p>Ondulação ou variação máxima <span class="math notranslate nohighlight">\(Ap(\delta p)\)</span> na banda de passagem;</p></li>
+<li><p>Banda de transição (<span class="math notranslate nohighlight">\(\Omega_s-\Omega_p\)</span>)</p></li>
+<li><p>Ondulação ou resposta As (<span class="math notranslate nohighlight">\(\delta s\)</span>) na banda de atenuação,</p>
+<ul>
+<li><p>A ordem (N) do filtro é determinada</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Especificando as ondulações e frequências da banda de transição este projeto conduzirá a um filtro com ordem mínima.</p></li>
+</ul>
+</section>
+<section id="id31">
+<h2>Filtros Elípticos<a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>A resposta em amplitude apresenta comportamento oscilatório (equiripple) tanto na banda de passagem quanto na banda de atenuação.</p>
+<ul class="simple">
+<li><p>Ela apresenta zeros e pólos, sendo uma generalização dos filtros de Chebyshev.</p></li>
+<li><p>É caracterizada pela seguinte equação</p></li>
+</ul>
+<p>\begin{equation} |H(j\Omega)|^2=\frac{1}{1+\epsilon^2G^2_N\left(\frac{\Omega}{\Omega_p}\right)} \end{equation}</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(G(\Omega)\)</span> é uma função racional, que é uma generalização do polinômio de Chebyshev, gerada através da função elíptica Jacobiana,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> é o parâmetro relacionado com a ondulação na banda de passagem.</p></li>
+</ul>
+</section>
+<section id="resposta-de-amplitude-para-o-filtro-eliptico">
+<h2>Resposta de Amplitude para o filtro Elíptico<a class="headerlink" href="#resposta-de-amplitude-para-o-filtro-eliptico" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/fig12.23.png" /></p>
+</section>
+<section id="filtro-eliptico">
+<h2>Filtro Elíptico<a class="headerlink" href="#filtro-eliptico" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Cálculo da ordem do filtro:</p>
+<ul class="simple">
+<li><p>Determine o fator de seletividade:</p></li>
+</ul>
+<p>\begin{equation}k=\frac{\Omega_p}{\Omega_s}\end{equation}</p>
+<ul class="simple">
+<li><p>Determine o fator de discriminação:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ d^2=\frac{\delta^2_p-1}{\delta^2_s-1}=\frac{10^{0.1A_p}-1}{10^{0.1A_s}-1} \]</div>
+<ul class="simple">
+<li><p>Faça:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ q=q_0+2q^5_0+15q^9_0+150q^{13}_0 \ \ \ \ \ q_0=\frac{1}{2}.\frac{1-(1-k^2)^{1/4}}{1+(1-k^2)^{1/4}} \]</div>
+<ul class="simple">
+<li><p>Determine a ordem:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ N\geq \frac{log\left(\frac{16}{d^2}\right)}{log\left(\frac{1}{q}\right)} \]</div>
+</section>
+<section id="filtro-de-bessel">
+<h2>Filtro de Bessel<a class="headerlink" href="#filtro-de-bessel" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Os filtros de Bessel são uma classe de filtros somente com pólos, caracterizados por apresentarem fase linear (atraso de tempo constante) na banda de passagem.</p></li>
+<li><p>Eles são caracterizados pela seguinte função de transferência:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[H(s)=\frac{b_0}{B_N(s)} \ \ \ \ \text{em que:} \ b_0=B_N(0), \ \ \text{e} \ \ B_n(s) \ \text{é o polinômio de Bessel de ordem N.} \]</div>
+<ul class="simple">
+<li><p>O polinômio de Bessel de ordem N, que pode ser expresso pela seguinte equação:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ B_N(s)=\sum_{k=0}^{N}a_ks^k \ \ \ \text{em que:} \ \ \ a_k=\frac{(2N-k)!}{2^{N-k}k!(N-k)!} \]</div>
+</section>
+<section id="id32">
+<h2>Filtro de Bessel<a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Equação de Recursão para o polinômio de Bessel</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ B_N(s)=(2N-1)B_{N-1}(s))+s^2B_{N-2}(s) \]</div>
+<ul class="simple">
+<li><p>Com condições inicias <span class="math notranslate nohighlight">\(B_0(s)=1\)</span> e <span class="math notranslate nohighlight">\(B_1(s)=s+1\)</span>.</p></li>
+<li><p>Diferentemente dos filtros de Butterworth e de Chebyshev, não existe uma regra simples para se determinar as raízes de B(s), porém elas podem ser determinadas através de métodos computacionais.</p></li>
+<li><p>O filtro de Bessel tem sido empregado no projeto de filtros analógicos quando se necessita de um filtro com característica de fase linear.</p></li>
+</ul>
+</section>
+<section id="comparacao-das-respostas-dos-filtros-ordem-6">
+<h2>Comparação das respostas dos filtros - ordem 6<a class="headerlink" href="#comparacao-das-respostas-dos-filtros-ordem-6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/fig12.24.png" /></p>
+</section>
+<section id="transformacao-de-frequencias">
+<h2>Transformação de Frequências<a class="headerlink" href="#transformacao-de-frequencias" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>O estudo realizado até aqui foi concentrado nos protótipos de filtros passa-baixas.</p></li>
+<li><p>Vamos aprender nesta seção a como transformar um protótipo passa-baixas nos outros tipos de respostas em frequência dos filtros.</p>
+<ul>
+<li><p>Passa-altas – passa-banda e rejeita banda.</p></li>
+</ul>
+</li>
+<li><p>Considerações:</p>
+<ul>
+<li><p>A transformação será realizada a partir de um protótipo passa-baixas normalizado, com frequência de corte ou frequência da banda de passagem igual a 1 rad/s.</p></li>
+<li><p>Resposta em frequência do protótipo normalizado:</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H(s) \ \ \ \text{em que} \ \ \ \Omega_c \ \text{ou} \ \Omega_p = 1\ rad/s \]</div>
+</section>
+<section id="desnormalizacao">
+<h2>Desnormalização<a class="headerlink" href="#desnormalizacao" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Se é disponível um protótipo de qualquer tipo, normalizado na frequência de 1 rad/s.</p>
+<ul class="simple">
+<li><p>A normalização para uma arbitrária frequência <span class="math notranslate nohighlight">\(\Omega_0\)</span> é realizada por meio da seguinte substituição:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \Omega \rightarrow \frac{\Omega}{\Omega_p} \ \ \ \text{ou} \ \ \ s\rightarrow \frac{s}{\Omega_p} \]</div>
+<ul class="simple">
+<li><p>Em que <span class="math notranslate nohighlight">\(\Omega_p\)</span> pode ser a frequência de corte <span class="math notranslate nohighlight">\(\Omega_c\)</span> ou a frequência da banda de passagem</p></li>
+<li><p>Observe que se a atenuação máxima na banda de passagem for 3 dB, então <span class="math notranslate nohighlight">\(\Omega_p = \Omega_c\)</span> .</p></li>
+</ul>
+</section>
+<section id="transformacao-passa-baixas-para-passa-altas">
+<h2>Transformação passa-baixas para passa-altas<a class="headerlink" href="#transformacao-passa-baixas-para-passa-altas" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>A transformação passa-baixas para passa altas é realizada através das seguintes expressões:</p>
+<div class="math notranslate nohighlight">
+\[ \Omega \rightarrow \frac{\Omega_p}{\Omega} \ \ \ \text{ou} \ \ \ s \rightarrow \frac{\Omega_p}{s} \]</div>
+<p><img alt="image.png" src="_images/fig12.25.png" /></p>
+<ul class="simple">
+<li><p>Em que <span class="math notranslate nohighlight">\(\Omega_p\)</span> pode ser a frequência de corte <span class="math notranslate nohighlight">\(\Omega_c\)</span> ou a frequência da banda de passagem.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Omega_{sn}\)</span> é a frequência da banda de atenuação do filtro normalizado.</p></li>
+</ul>
+</section>
+<section id="transformacao-passa-baixas-para-passa-banda">
+<h2>Transformação passa-baixas para passa-banda<a class="headerlink" href="#transformacao-passa-baixas-para-passa-banda" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Suponha que se quer uma transformação para passa-banda com resposta plana entre <span class="math notranslate nohighlight">\(\Omega_1\)</span> e <span class="math notranslate nohighlight">\(\Omega_2\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} s \rightarrow \left(\frac{s^2+\Omega_1\Omega_2}{(\Omega_2-\Omega_1)s}\right) \\ \Omega_0=\sqrt{\Omega_1\Omega_2} \end{split}\]</div>
+<p><img alt="image.png" src="_images/fig12.26.png" /></p>
+<ul class="simple">
+<li><p>Em que <span class="math notranslate nohighlight">\(\Omega_0\)</span> é a frequência de ressonância do filtro</p></li>
+</ul>
+</section>
+<section id="transformacao-passa-baixas-para-rejeita-banda">
+<h2>Transformação passa-baixas para rejeita-banda<a class="headerlink" href="#transformacao-passa-baixas-para-rejeita-banda" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Suponha que se quer uma transformação para rejeita-passa banda com rejeição entre <span class="math notranslate nohighlight">\(\Omega_1\)</span> e <span class="math notranslate nohighlight">\(\Omega_2\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} s \rightarrow \frac{(\Omega_2-\Omega_1)s}{s^2+\Omega_1\Omega_2} \\ \Omega_0=\sqrt{\Omega_1\Omega_2} \end{split}\]</div>
+<p><img alt="image.png" src="_images/fig12.27.png" /></p>
+</section>
+<section id="transformacoes-de-um-prototipo-passa-baixas-com-frequencia-omega-p">
+<h2>Transformações de um protótipo passa-baixas com frequência <span class="math notranslate nohighlight">\(\Omega_p\)</span><a class="headerlink" href="#transformacoes-de-um-prototipo-passa-baixas-com-frequencia-omega-p" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Passa-altas:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ s \rightarrow \frac{\Omega_p\Omega^{'}_p}{s} \]</div>
+<ul class="simple">
+<li><p>Passa-banda:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ s \rightarrow \Omega_p \frac{s^2+\Omega^2_0}{(\Omega_2-\Omega_1)s} \]</div>
+<ul class="simple">
+<li><p>Rejeita-banda:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ s \rightarrow \Omega_p \frac{(\Omega_2-\Omega_1)s}{s^2+\Omega^2_0} \]</div>
+<ul class="simple">
+<li><p>Frequência de ressonância:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \Omega_0=\sqrt{\Omega_1\Omega_2} \]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula11_Diagrama_de_Bode.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Diagrama de Bode</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-sao-filtros">O que são Filtros?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicoes-preliminares">Definições preliminares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familias-de-respostas-de-filtros">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definições preliminares</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ganho-g-omega-h-j-omega-db-20log-10-h-j-omega">Ganho:  <span class="math notranslate nohighlight">\( G(\Omega) = |H(j\Omega)|_{dB}=20log_{10}|H(j\Omega)|\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#atenuacao-displaystyle-a-omega-frac-1-h-j-omega-db-20log-10-h-j-omega">Atenuação: <span class="math notranslate nohighlight">\(\displaystyle A(\Omega) = \frac{1}{|H(j\Omega)|_{dB}} = -20log_{10}|H(j\Omega)|\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-resposta-de-fase-e-expressa-em-graus-ou-radianos">A resposta de fase é expressa em graus ou radianos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-filtro-rc">Exemplo: Filtro RC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristica-em-frequencia-dos-filtros-seletivos-ideais">Característica em Frequência dos Filtros Seletivos Ideais</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#um-filtro-deixa-passar-sinais-cujas-frequencias-estao-em-determinadas-bandas-ou-faixas-banda-de-passagem-e-rejeita-ou-atenua-as-frequencias-que-estao-em-outras-bandas-bandas-de-atenuacao-ou-de-rejeicao">Um filtro deixa passar sinais cujas frequências estão em determinadas bandas ou faixas (banda de passagem) e rejeita ou atenua as frequências que estão em outras bandas (bandas de atenuação ou de rejeição).</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-forma-da-resposta-de-amplitude-a-magnitude-classifica-o-filtro-de-acordo-com-a-localizacao-das-bandas-de-passagem-e-de-rejeicao">A forma da resposta de amplitude (a magnitude) classifica o filtro de acordo com a localização das bandas de passagem e de rejeição.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#para-um-filtro-ideal-as-bandas-de-passagem-e-de-rejeicao-sao-planas-e-a-transicao-entre-elas-apresenta-uma-inclinacao-infinita">Para um filtro ideal as bandas de passagem e de rejeição são planas e a transição entre elas apresenta uma inclinação infinita.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#desse-modo-pode-se-obter-os-seguintes-tipos-de-filtros">Desse modo pode-se obter os seguintes tipos de filtros:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacao-de-um-filtro-passa-baixa">Especificação de um filtro Passa-Baixa</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-intervalo-0-omega-p-corresponde-a-banda-de-passagem-e-a-atenuacao-tem-que-ser-menor-que-a-max">O intervalo <span class="math notranslate nohighlight">\([0, \Omega_P]\)</span> corresponde a <em><strong>banda de passagem</strong></em> e a atenuação tem que ser menor que <span class="math notranslate nohighlight">\(A_{max}\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-intervalo-omega-p-omega-r-corresponde-a-banda-de-transicao-e-nada-e-especificado-para-ela">O intervalo <span class="math notranslate nohighlight">\([\Omega_P, \Omega_R]\)</span> corresponde a <em><strong>banda de transição</strong></em> e nada é especificado para ela</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#o-intervalo-omega-r-infty-corresponde-a-banda-de-rejeicao-e-aatenuacao-tem-que-ser-maior-que-a-min">O intervalo <span class="math notranslate nohighlight">\([\Omega_R, \infty [\)</span> corresponde a <em><strong>banda de rejeição</strong></em> e aatenuação tem que ser maior que <span class="math notranslate nohighlight">\(A_{min}\)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacao-de-um-filtro-passa-faixa">Especificação de um filtro Passa-Faixa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-s-so-com-polos-vai-fazer-uma-familia-de-passa-baixa-h-pb-s"><span class="math notranslate nohighlight">\(H(s)\)</span> só com polos vai fazer uma Família de Passa-Baixa, <span class="math notranslate nohighlight">\(H_{PB}(s)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-pa-s-pode-ser-interpretado-com-so-zeros-ou"><span class="math notranslate nohighlight">\(H_{PA}(s)\)</span> pode ser interpretado com só zeros ou</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-pf-s-pode-ser-como"><span class="math notranslate nohighlight">\(H_{PF}(s)\)</span> pode ser como:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-toque-do-telefone">Exemplo: toque do telefone</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soma-de-duas-senoides">Soma de duas senoides</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Famílias de Respostas de Filtros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Famílias de Respostas de Filtros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-de-transferencia">Função de Transferência</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Famílias de Respostas de Filtros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerando-o-filtro-ideal-passa-baixa">Considerando o filtro ideal Passa-Baixa</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-de-feldtkeller">Relação de Feldtkeller</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtros-butterworth">Filtros Butterworth</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esses-filtros-sao-baseados-nas-funcoes-y-x-n-com-k-omega-epsilon-frac-omega-omega-p-n">Esses filtros são baseados nas funções <span class="math notranslate nohighlight">\(y=x^N\)</span> com <span class="math notranslate nohighlight">\(K(\Omega) = \epsilon(\frac{\Omega}{\Omega_P})^N\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#familia-de-funcoes-butterworth">Família de funções Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-butterworth">Filtro butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Filtro Butterworth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Filtro butterworth</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#os-polos-do-filtro-butterworth">Os polos do filtro Butterworth</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Famílias de Respostas de Filtros</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-chebyshev">Filtro Chebyshev</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-de-chebyshev">Filtro de Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polinomios-de-chebyshev">Polinômios de Chebyshev</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-amplitudes-para-o-filtro-de-chebyshev-tipo-i">Resposta de Amplitudes para o filtro de Chebyshev: Tipo I</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades">Propriedades</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Propriedades</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-das-respostas-dos-filtros-de-butterworth-e-chebyshev">Comparação das respostas dos filtros de Butterworth e Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lozalizacao-dos-polos">Lozalização dos polos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Lozalização dos polos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Filtro de Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Filtro de Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Filtro de Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efeitos-dos-parametros-na-resposta-do-filtro-de-chebyshev">Efeitos dos parâmetros na resposta do filtro de Chebyshev</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Filtro Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-de-chebyshev-tipo-ii">Filtro de Chebyshev Tipo II</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-amplitude-para-o-filtro-de-chebyshev-tipo-ii">Resposta de Amplitude para o filtro de Chebyshev: Tipo II</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Filtro Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modo-de-se-especificar-o-filtro-de-chebyshev-tipo-ii">Modo de se especificar o filtro de Chebyshev tipo II:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Filtro Chebyshev</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Filtro Chebyshev</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercicio">Exercício</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtros-elipticos">Filtros Elípticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">Filtros Elípticos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-amplitude-para-o-filtro-eliptico">Resposta de Amplitude para o filtro Elíptico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-eliptico">Filtro Elíptico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtro-de-bessel">Filtro de Bessel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Filtro de Bessel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacao-das-respostas-dos-filtros-ordem-6">Comparação das respostas dos filtros - ordem 6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-de-frequencias">Transformação de Frequências</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desnormalizacao">Desnormalização</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-passa-baixas-para-passa-altas">Transformação passa-baixas para passa-altas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-passa-baixas-para-passa-banda">Transformação passa-baixas para passa-banda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacao-passa-baixas-para-rejeita-banda">Transformação passa-baixas para rejeita-banda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformacoes-de-um-prototipo-passa-baixas-com-frequencia-omega-p">Transformações de um protótipo passa-baixas com frequência <span class="math notranslate nohighlight">\(\Omega_p\)</span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

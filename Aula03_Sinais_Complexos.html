@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Impulso, Sinais Complexos e Amostragem &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula03_Sinais_Complexos';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Sistemas e suas classes" href="Aula04_Sistemas_Classes.html" />
+    <link rel="prev" title="Sinais Simples" href="Aula02_Sinais_Simples.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula11_Diagrama_de_Bode.html">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula03_Sinais_Complexos.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula03_Sinais_Complexos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Impulso, Sinais Complexos e Amostragem</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-de-funcoes">Definição de Funções</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes-basicas">Funções Básicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-degrau-unitario">Função degrau unitário</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-impulso-unitario">Função impulso unitário</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-da-funcao-delta-t">Interpretação da função <span class="math notranslate nohighlight">\(\delta(t)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-funcao-delta-t">Propriedades da função <span class="math notranslate nohighlight">\(\delta(t)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-complexos">Sinais Complexos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-de-euler">Relação de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-para-gerar-sinais-complexos">Circuito para gerar Sinais Complexos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-amortecidos">Sinais Amortecidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amostragem">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-em-tempo-discreto">Sinais em tempo discreto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amostragem-periodica">Amostragem periódica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sinais em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-discretos">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-sequencia">Exemplo de Sequência</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-matematica">Representação Matemática</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-sinais-em-tempo-discreto">Operações com sinais em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-sequencias">Operações com sequências</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-especiais">Sinais especiais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Sinais especiais</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="impulso-sinais-complexos-e-amostragem">
+<h1>Impulso, Sinais Complexos e Amostragem<a class="headerlink" href="#impulso-sinais-complexos-e-amostragem" title="Permalink to this heading">#</a></h1>
+<section id="definicao-de-funcoes">
+<h2>Definição de Funções<a class="headerlink" href="#definicao-de-funcoes" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Considere dois conjuntos: o conjunto <strong>X</strong> com elemento <span class="math notranslate nohighlight">\(x\)</span> e o conjunto <strong>Y</strong> com elementos <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<ul class="simple">
+<li><p>f: <strong>X</strong> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <strong>Y</strong></p></li>
+</ul>
+<p>diz-se que a função f de <strong>X</strong> em <strong>Y</strong> que relaciona cada elemento <span class="math notranslate nohighlight">\(x\)</span> em <strong>X</strong>, um único elemento <span class="math notranslate nohighlight">\(y = f(x)\)</span> em <strong>Y</strong>.</p>
+<p><img alt="image.png" src="_images/DefFuncao.png" /></p>
+<p><img alt="imagem2.png" src="_images/functions.jpg" /></p>
+<div class="math notranslate nohighlight">
+\[ t \in \!R \]</div>
+<div class="math notranslate nohighlight">
+\[ x(t) \in \!R \text{  ou  } \!C \]</div>
+</section>
+<section id="funcoes-basicas">
+<h2>Funções Básicas<a class="headerlink" href="#funcoes-basicas" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="funcao-degrau-unitario">
+<h3>Função degrau unitário<a class="headerlink" href="#funcao-degrau-unitario" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(
+u(t)=
+\begin{cases}
+\displaystyle 1, t\geq 0 \\
+\\
+\displaystyle 0, t&lt;0
+\end{cases} 
+\)</span></p>
+<p><img alt="imagem2.png" src="_images/degrau.png" /></p>
+</section>
+<section id="funcao-impulso-unitario">
+<h3>Função impulso unitário<a class="headerlink" href="#funcao-impulso-unitario" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\delta(t) = 0\)</span>, <span class="math notranslate nohighlight">\(\forall\)</span> <span class="math notranslate nohighlight">\(t \neq 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty}\delta(t)dt = 1\)</span></p>
+<p><img alt="imagem2.png" src="_images/impulso.png" /></p>
+</section>
+</section>
+<section id="interpretacao-da-funcao-delta-t">
+<h2>Interpretação da função <span class="math notranslate nohighlight">\(\delta(t)\)</span><a class="headerlink" href="#interpretacao-da-funcao-delta-t" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/InterpretacaoImpulso.png" /></p>
+</section>
+<section id="propriedades-da-funcao-delta-t">
+<h2>Propriedades da função <span class="math notranslate nohighlight">\(\delta(t)\)</span><a class="headerlink" href="#propriedades-da-funcao-delta-t" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A função impulso é par:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\delta(t)\)</span> = <span class="math notranslate nohighlight">\(\delta(-t)\)</span></p></li>
+</ul>
+</li>
+<li><p>Mudança de escala:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\delta(at)\)</span> = <span class="math notranslate nohighlight">\(\frac{1}{a}\delta(t)\)</span></p></li>
+</ul>
+</li>
+<li><p>Multiplicação por uma função:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty}x(t)\delta(t-t_{0})dt = x(t_{0})\)</span></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Multiplicação por uma função (de modo informal):</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x(t)\delta(t-t_{0}) = x(t_{0})\delta(t-t_{0})\)</span></p></li>
+</ul>
+</li>
+<li><p>Função degrau unitário como função da função impulso:
+-<span class="math notranslate nohighlight">\(u(t) = \int_{-\infty}^{t}\delta(\tau)d\tau = \int_{0}^{\infty}\delta(t-\tau)d\tau\)</span></p></li>
+<li><p>Função trem de impulsos:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\delta_{T}(t) = \sum_{k=-\infty}^{\infty}\delta(t-kT)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="sinais-complexos">
+<h2>Sinais Complexos<a class="headerlink" href="#sinais-complexos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/SinalComplexo.png" /></p>
+</section>
+<section id="relacao-de-euler">
+<h2>Relação de Euler<a class="headerlink" href="#relacao-de-euler" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ e^{j\theta} = \cos\theta + j\sin\theta  \]</div>
+<div class="math notranslate nohighlight">
+\[ e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)  \]</div>
+</section>
+<section id="circuito-para-gerar-sinais-complexos">
+<h2>Circuito para gerar Sinais Complexos<a class="headerlink" href="#circuito-para-gerar-sinais-complexos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/CircuitoSinalComplexo.png" /></p>
+</section>
+<section id="sinais-amortecidos">
+<h2>Sinais Amortecidos<a class="headerlink" href="#sinais-amortecidos" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ x(t) = e^{st} \]</div>
+<div class="math notranslate nohighlight">
+\[ s = \sigma + j\omega \to x(t) = \underbrace{e^{\sigma t}}_{exponencial}\overbrace{e^{j\omega t}}^{periódico} \]</div>
+<p><img alt="imagem2.png" src="_images/damped.png" /></p>
+</section>
+<section id="amostragem">
+<h2>Amostragem<a class="headerlink" href="#amostragem" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/amostragem.png" /></p>
+</section>
+<section id="sinais-em-tempo-discreto">
+<h2>Sinais em tempo discreto<a class="headerlink" href="#sinais-em-tempo-discreto" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="amostragem-periodica">
+<h3>Amostragem periódica<a class="headerlink" href="#amostragem-periodica" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/TempoContinuoDiscreto.png" /></p>
+</section>
+</section>
+<section id="id1">
+<h2>Sinais em tempo discreto<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Uma seqüência de números <span class="math notranslate nohighlight">\(x\)</span>, na qual o n-ésimo número da seqüência é denotado por <span class="math notranslate nohighlight">\(x[n]\)</span> pode ser descrito como: <span class="math notranslate nohighlight">\(x = x[n]\)</span>, <span class="math notranslate nohighlight">\(-\infty &lt; n &lt; \infty\)</span></p></li>
+<li><p>Em situações práticas, as seqüências são geradas a partir da amostragem periódica de um sinal contínuo no tempo. Neste caso, o valor numérico do n-ésimo número da seqüência é igual ao valor do sinal analógico <span class="math notranslate nohighlight">\(x_a(t)\)</span> no tempo <span class="math notranslate nohighlight">\(nT\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x[n] = x_a(nT), -\infty &lt; n &lt; \infty\)</span></p></li>
+</ul>
+</li>
+<li><p>O valor de <span class="math notranslate nohighlight">\(T\)</span> é conhecido como período de amostragem e 1/T é a frequência de amostragem.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Amostragem<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul>
+<li><p>A teoria da Amostragem é a base matemática para se obter um sinal <span class="math notranslate nohighlight">\(x[n]\)</span> discreto no tempo a partir de um sinal <span class="math notranslate nohighlight">\(x(t)\)</span> contínuo no tempo.</p></li>
+<li><p>A obtenção de uma sequência de amostras <span class="math notranslate nohighlight">\(x(n)\)</span> a partir de um sinal <span class="math notranslate nohighlight">\(x(t)\)</span> contínuo no tempo pode ser representada pela seguinte relação:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x[n] = x(t)|_{t=nT_a} = x(nT_a)\)</span></p></li>
+</ul>
+<p>Em que:
+- <span class="math notranslate nohighlight">\(n\)</span> é um numero inteiro;
+- <span class="math notranslate nohighlight">\(T_a\)</span> é o período de amostragem do sinal;
+- <span class="math notranslate nohighlight">\(F_a = 1/T_a\)</span> é a frequência de amostragem.</p>
+</li>
+<li><p>Na prática a operação de amostragem é executada por um conversor AD (analógico-digital) que inclui também a quantização das amplitudes das amostras.</p></li>
+</ul>
+</section>
+<section id="sinais-discretos">
+<h2>Sinais discretos<a class="headerlink" href="#sinais-discretos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="exemplo-de-sequencia">
+<h3>Exemplo de Sequência<a class="headerlink" href="#exemplo-de-sequencia" title="Permalink to this heading">#</a></h3>
+<p><img alt="image.png" src="_images/ExSinalTempoDiscreto.png" /></p>
+</section>
+</section>
+<section id="representacao-matematica">
+<h2>Representação Matemática<a class="headerlink" href="#representacao-matematica" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="image.png" src="_images/Amostragem.png" /></p>
+<ul class="simple">
+<li><p>O sinal <span class="math notranslate nohighlight">\(s(t)\)</span> é um trem de impulsos periódicos tal que:
+<span class="math notranslate nohighlight">\(s(t) = \sum_{-\infty}^{\infty}\delta(t-nT_a)\)</span></p></li>
+<li><p>Como o sinal amostrado é o produto de s(t) por x(t), então:
+<span class="math notranslate nohighlight">\(x_a(t) = x(nT_a) = x(t)s(t) = \sum_{-\infty}^{\infty}x(t)\delta(t-nT_a)\)</span></p></li>
+</ul>
+</section>
+<section id="operacoes-com-sinais-em-tempo-discreto">
+<h2>Operações com sinais em tempo discreto<a class="headerlink" href="#operacoes-com-sinais-em-tempo-discreto" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<ul>
+<li><p>O produto e a soma de 2 seqüências <span class="math notranslate nohighlight">\(x[n]\)</span> e <span class="math notranslate nohighlight">\(y[n]\)</span> são definidos amostra por amostra.</p></li>
+<li><p>A multiplicação de <span class="math notranslate nohighlight">\(x[n]\)</span> e <span class="math notranslate nohighlight">\(\alpha\)</span> é definida como a multiplicação de todos os elementos de <span class="math notranslate nohighlight">\(x[n]\)</span> por <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+<li><p>A sequência <span class="math notranslate nohighlight">\(y[n]\)</span> é dita atrasada com relação a <span class="math notranslate nohighlight">\(x[n]\)</span> se:
+\begin{equation}
+y[n] = x[n-n_0]
+\end{equation}
+<span class="math notranslate nohighlight">\(n_0 &gt; 0\)</span> ATRASO</p>
+<p><span class="math notranslate nohighlight">\(n_0 &lt; 0\)</span> AVANÇO</p>
+<p><span class="math notranslate nohighlight">\(n_0\)</span> é um valor inteiro</p>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2>Sinais discretos<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="operacoes-com-sequencias">
+<h3>Operações com sequências<a class="headerlink" href="#operacoes-com-sequencias" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Reversão no tempo $<span class="math notranslate nohighlight">\(y[n] = x[-n]\)</span>$</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>Sinais discretos<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="sinais-especiais">
+<h3>Sinais especiais<a class="headerlink" href="#sinais-especiais" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Impulso unitário: <span class="math notranslate nohighlight">\(\delta[n]\)</span></p></li>
+</ul>
+<p>\begin{equation}
+\delta[n] =
+\begin{cases}
+\displaystyle 0, n \neq 0 \
+\
+\displaystyle 1, n = 0
+\end{cases}
+\end{equation}</p>
+<ul class="simple">
+<li><p>Degrau unitário: <span class="math notranslate nohighlight">\(u[n]\)</span></p></li>
+</ul>
+<p>\begin{equation}
+u[n] =
+\begin{cases}
+\displaystyle 0, n &lt; 0 \
+\
+\displaystyle 1, n \geq 0
+\end{cases}
+\end{equation}</p>
+</section>
+</section>
+<section id="id5">
+<h2>Sinais discretos<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id6">
+<h3>Sinais especiais<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Exponencial: <span class="math notranslate nohighlight">\(x[n] = A\alpha^n\)</span></p></li>
+<li><p>Senoidal: <span class="math notranslate nohighlight">\(x[n] = Acos(\omega n + \phi)\)</span></p></li>
+</ul>
+<p>Onde <span class="math notranslate nohighlight">\(\omega\)</span> e <span class="math notranslate nohighlight">\(\phi\)</span> são valores reais e <span class="math notranslate nohighlight">\(n\)</span> é inteiro.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula02_Sinais_Simples.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sinais Simples</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula04_Sistemas_Classes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sistemas e suas classes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicao-de-funcoes">Definição de Funções</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcoes-basicas">Funções Básicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-degrau-unitario">Função degrau unitário</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcao-impulso-unitario">Função impulso unitário</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacao-da-funcao-delta-t">Interpretação da função <span class="math notranslate nohighlight">\(\delta(t)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propriedades-da-funcao-delta-t">Propriedades da função <span class="math notranslate nohighlight">\(\delta(t)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-complexos">Sinais Complexos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacao-de-euler">Relação de Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circuito-para-gerar-sinais-complexos">Circuito para gerar Sinais Complexos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-amortecidos">Sinais Amortecidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amostragem">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-em-tempo-discreto">Sinais em tempo discreto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amostragem-periodica">Amostragem periódica</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sinais em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Amostragem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-discretos">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-de-sequencia">Exemplo de Sequência</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacao-matematica">Representação Matemática</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-sinais-em-tempo-discreto">Operações com sinais em tempo discreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operacoes-com-sequencias">Operações com sequências</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sinais-especiais">Sinais especiais</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sinais discretos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Sinais especiais</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

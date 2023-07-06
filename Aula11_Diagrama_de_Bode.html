@@ -1,0 +1,1195 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Diagrama de Bode &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Aula11_Diagrama_de_Bode';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Noção de Filtragem" href="Aula12_Nocoes_de_Filtros.html" />
+    <link rel="prev" title="Apliacação de TFourier" href="Aula10_Aplicacao_TF.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Notas de Aula - Sinais e Sistemas (SEL0383-604)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Aula01_Conceitos_Iniciais.html">Conceitos Introdutórios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula02_Sinais_Simples.html">Sinais Simples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula03_Sinais_Complexos.html">Impulso, Sinais Complexos e Amostragem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula04_Sistemas_Classes.html">Sistemas e suas classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula05_Sistemas_LIT.html">Sistemas Lineares e Invariantes no tempo - LTI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula06_EDO.html">Equações Diferenciais Lineares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula07_Laplace.html">Transformada de Laplace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula08_Fourier.html">A transformada de Fourier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula09_Funcoes_Especiais.html">Transformada de Fourier de Funções especiais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aula10_Aplicacao_TF.html">Apliacação de TFourier</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diagrama de Bode</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Aula12_Nocoes_de_Filtros.html">Noção de Filtragem</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAula11_Diagrama_de_Bode.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Aula11_Diagrama_de_Bode.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diagrama de Bode</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Diagrama de Bode</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-sistemas-lit">Resposta de sistemas LIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Resposta de sistemas LIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Introdução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Resposta de sistemas LIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-calcular-a-resposta-de-frequencia-para-o-sistema-h-s">Exemplo: Calcular a resposta de frequência para o sistema <span class="math notranslate nohighlight">\(H(s)\)</span>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-s-frac-s-1-s-1-5j-s-1-5j-fazendo-s-to-j-omega"><span class="math notranslate nohighlight">\( H(s)=\frac{s+1}{(s+1-5j)(s+1+5j)}\)</span> fazendo <span class="math notranslate nohighlight">\(s \to j\omega \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neste-caso-se-determina-h-j-omega-e-fase-angle-h-j-omega-para-alguns-valores-de-omega">Neste caso se determina <span class="math notranslate nohighlight">\(|H(j\omega)|\)</span> e fase <span class="math notranslate nohighlight">\(\angle H(j\omega)\)</span> para alguns valores de <span class="math notranslate nohighlight">\(\omega\)</span>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-magnitude-e-fase">Gráficos de Magnitude e Fase</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-modulo">Diagrama de Módulo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-modulo-interpretacao">Diagrama de Módulo: Interpretação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Diagrama de Módulo: interpretação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-modulo-reescrevendo-a-equacao">Diagrama de Módulo: Reescrevendo a equação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Diagrama de Módulo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alguns-pontos-especiais">Alguns pontos especiais:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Diagrama de Módulo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Diagrama de Bode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagramas-mais-precisos">Diagramas mais precisos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Diagramas mais precisos</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#diagramas-para-o-angulo">Diagramas para o ângulo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Diagramas para o ângulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Diagramas para o ângulo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Exemplo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#polos-e-zeros-complexos">Polos e Zeros complexos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comportamento-dos-polos-e-zeros-complexos">Comportamento dos polos e zeros complexos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrmas-de-amplitude">Diagrmas de amplitude</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Exemplo</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diagrama-de-bode">
+<h1>Diagrama de Bode<a class="headerlink" href="#diagrama-de-bode" title="Permalink to this heading">#</a></h1>
+<section id="resposta-de-sistemas-lit">
+<h2>Resposta de sistemas LIT<a class="headerlink" href="#resposta-de-sistemas-lit" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="introducao">
+<h3>Introdução<a class="headerlink" href="#introducao" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/fig11.1.png" /></p>
+<ul class="simple">
+<li><p>Considerando sistemas cuja entrada e saída estejam relacionadas com uma EDO linear tem-se:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H(s) = \frac{Y(s)}{X(s)} = \frac{N(s)}{D(s)}\]</div>
+<p>Onde: N(s) é um polinômio de grau M e D(s) é um polinômio de grau N.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Resposta de sistemas LIT<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id2">
+<h3>Introdução<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Reescrevendo a equação anterior:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H(s)=\frac{Y(s)}{X(s)}=\frac{N(s)}{D(s)}=\frac{\prod_{i=1}^{M}(s-z_i)}{\prod_{i=1}^{N}(s-p_i)}=\frac{\prod_{i=1}^{M}|a_i|e^{j\angle a_i}}{\prod_{i=1}^{N}|b_i|e^{j\angle b_i}}\]</div>
+<p>Onde:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(z_i\)</span> são os zeros da função de transferência e <span class="math notranslate nohighlight">\(p_i\)</span> são os polos da função de transferência;</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_i = s - z_i\)</span> e <span class="math notranslate nohighlight">\( b_i = s - p_i\)</span></p></li>
+</ol>
+</section>
+</section>
+<section id="id3">
+<h2>Resposta de sistemas LIT<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="exemplo-calcular-a-resposta-de-frequencia-para-o-sistema-h-s">
+<h3>Exemplo: Calcular a resposta de frequência para o sistema <span class="math notranslate nohighlight">\(H(s)\)</span>.<a class="headerlink" href="#exemplo-calcular-a-resposta-de-frequencia-para-o-sistema-h-s" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="h-s-frac-s-1-s-1-5j-s-1-5j-fazendo-s-to-j-omega">
+<h3><span class="math notranslate nohighlight">\( H(s)=\frac{s+1}{(s+1-5j)(s+1+5j)}\)</span> fazendo <span class="math notranslate nohighlight">\(s \to j\omega \)</span><a class="headerlink" href="#h-s-frac-s-1-s-1-5j-s-1-5j-fazendo-s-to-j-omega" title="Permalink to this heading">#</a></h3>
+<p>\begin{align}
+H(j\omega) &amp; = &amp; \frac{j\omega+1}{(j\omega+1-5j)(j\omega+1+5j)}\
+&amp; = &amp; \frac{1+j\omega}{(1+j\omega)^2+5^2}\
+&amp; = &amp; \frac{1+j\omega}{26-\omega²+2j\omega}
+\end{align}</p>
+</section>
+<section id="neste-caso-se-determina-h-j-omega-e-fase-angle-h-j-omega-para-alguns-valores-de-omega">
+<h3>Neste caso se determina <span class="math notranslate nohighlight">\(|H(j\omega)|\)</span> e fase <span class="math notranslate nohighlight">\(\angle H(j\omega)\)</span> para alguns valores de <span class="math notranslate nohighlight">\(\omega\)</span>.<a class="headerlink" href="#neste-caso-se-determina-h-j-omega-e-fase-angle-h-j-omega-para-alguns-valores-de-omega" title="Permalink to this heading">#</a></h3>
+<p>Fazendo as contas para <span class="math notranslate nohighlight">\(|H(j\omega)|\)</span> e <span class="math notranslate nohighlight">\(\angle H(j\omega)\)</span>:</p>
+<p><img alt="fig4.1.png" src="_images/fig11.2.png" /></p>
+</section>
+</section>
+<section id="id4">
+<h2>Diagrama de Bode<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="graficos-de-magnitude-e-fase">
+<h3>Gráficos de Magnitude e Fase<a class="headerlink" href="#graficos-de-magnitude-e-fase" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>O diagrama de Bode é uma técnica gráfica que fornece uma aproximação da resposta de H(s).</p></li>
+<li><p>Consiste de dois diagramas separados:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(|H(j\omega)|\)</span> x <span class="math notranslate nohighlight">\(\omega\)</span> (<strong>módulo</strong>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\angle H(j\omega)\)</span> x <span class="math notranslate nohighlight">\(\omega\)</span> (<strong>fase</strong>)</p></li>
+</ul>
+</li>
+<li><p>Os desenhos são feitos em gráficos log-log</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>Diagrama de Bode<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="diagrama-de-modulo">
+<h3>Diagrama de Módulo<a class="headerlink" href="#diagrama-de-modulo" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Calculando o módulo</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |H(j\omega)|=\frac{|Y(j\omega)|}{|X(j\omega)|}=\frac{\prod_{i=1}^{M}|j\omega-z_i|}{\prod_{i=1}^{N}|j\omega-p_i|}=\frac{\prod_{i=1}^{M}|a_i|}{\prod_{i=1}^{N}|b_i|}=\frac{|a_1\dots a_M|}{|b_1\dots b_N|} \]</div>
+<ul class="simple">
+<li><p>No exemplo anterior:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |H(j\omega)|=\frac{|j\omega+1|}{|j\omega+1-5j||j\omega+1+5j|} \]</div>
+<p>Onde <span class="math notranslate nohighlight">\(|H(j\omega)|\)</span> é o módulo da diferença do vetor <span class="math notranslate nohighlight">\(j\omega\)</span> ao vetor -1.</p>
+</section>
+</section>
+<section id="id6">
+<h2>Diagrama de Bode<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="diagrama-de-modulo-interpretacao">
+<h3>Diagrama de Módulo: Interpretação<a class="headerlink" href="#diagrama-de-modulo-interpretacao" title="Permalink to this heading">#</a></h3>
+<p><img alt="fig4.1.png" src="_images/DiagPoloZeros.png" /></p>
+</section>
+</section>
+<section id="id7">
+<h2>Diagrama de Bode<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id8">
+<h3>Diagrama de Módulo: interpretação<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A determinação do módulo de <span class="math notranslate nohighlight">\(H(j\omega)\)</span> é dado pelo:</p>
+<ul>
+<li><p>produto das distâncias de <span class="math notranslate nohighlight">\(j\omega\)</span> aos zeros;</p></li>
+<li><p>dividido pelo produto das distâncias de <span class="math notranslate nohighlight">\(j\omega\)</span> aos polos</p></li>
+</ul>
+</li>
+<li><p>Considerando o <span class="math notranslate nohighlight">\(|H(s)|\)</span> em dB os produtos passam para somas.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |H(j\omega)|_{dB}=\sum_{i=1}^{M}|j\omega-z_i|_{dB}-\sum_{i=1}^{N}|j\omega-p_i|_{dB} \]</div>
+</section>
+</section>
+<section id="id9">
+<h2>Diagrama de Bode<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="diagrama-de-modulo-reescrevendo-a-equacao">
+<h3>Diagrama de Módulo: Reescrevendo a equação<a class="headerlink" href="#diagrama-de-modulo-reescrevendo-a-equacao" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ |H(j\omega)|=\frac{|Y(j\omega)|}{|X(j\omega)|}=
+\frac{\prod_{i=1}^M|j\omega-z_i|}{\prod_{i=1}^N|j\omega-p_i|}= 
+\frac{\prod_{i=1}^M|z_i|}{\prod_{i=1}^N |p_i|} 
+\frac{\prod_{i=1}^M|\frac{j\omega}{z_i}-1|}{\prod_{i=1}^{N}\left|\frac{j\omega}{p_i}-1\right|} 
+\]</div>
+<div class="math notranslate nohighlight">
+\[|H(s)|=K\frac{\prod_{i=1}^{M}\left|\frac{j\omega}{z_i}-1\right|}{\prod_{i=1}^{N}\left|\frac{j\omega}{p_i}-1\right|} \ \ \ \text{onde} \ \ \ K=\frac{\prod_{i=1}^{M}|z_i|}{\prod_{i=1}^{N}|p_i|} \]</div>
+</section>
+</section>
+<section id="id10">
+<h2>Diagrama de Bode<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id11">
+<h3>Diagrama de Módulo<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Passando o módulo para logaritmo</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |H(j\omega)|_{dB}=20log_{10}K+\sum_{i=1}^{M}20log_{10}\left|\frac{j\omega}{\omega_{z_i}}-1\right|-\sum_{i=1}^{N}20log_{10}\left|\frac{j\omega}{\omega_{p_i}}-1\right| \]</div>
+<ul class="simple">
+<li><p>Analisando apenas uma parcela:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ |Q(j\omega)|_{dB}=20log_{10}\left|j\frac{\omega}{\omega_q}-1\right| \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\displaystyle \omega \ll \omega_Q \ \ \frac{j\omega}{\omega_p}\approx 0 \rightarrow 20log_{10}|-1|=0
+\\
+\displaystyle \omega \gg \omega_Q \ \ \frac{j\omega}{\omega_p} \gg 1 \rightarrow 20log_{10}\left|\frac{\omega}{\omega_p}\right| \equiv 20log_{10}|\omega|-20log_{10}|\omega_p| 
+\end{cases} 
+\end{split}\]</div>
+</section>
+<section id="alguns-pontos-especiais">
+<h3>Alguns pontos especiais:<a class="headerlink" href="#alguns-pontos-especiais" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\omega = \omega_p/2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega = \omega_p \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega = \omega_p 2\)</span></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.010299956639812
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2>Diagrama de Bode<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="id13">
+<h3>Diagrama de Módulo<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Analisando as equações</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\displaystyle \omega \ll \omega_Q \ \ \frac{j\omega}{\omega_p}\approx 0 \rightarrow 20log_{10}|-1|=0
+\\
+\displaystyle \omega \gg \omega_Q \ \ \frac{j\omega}{\omega_p} \gg 1 \rightarrow 20log_{10}\left|\frac{\omega}{\omega_p}\right| \equiv 20log_{10}|\omega|-20log_{10}|\omega_p| 
+\end{cases} 
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} 20log|\omega|-20log|\omega_Q| \equiv mx+h = \begin{cases}
+\displaystyle m = 20
+\\
+\displaystyle h= -20log_{10}|\omega_Q|
+\\
+\displaystyle x = log_{10}|\omega|
+\end{cases} \end{split}\]</div>
+<p>Em um gráfico log x log e a direita de <span class="math notranslate nohighlight">\(\omega_p\)</span>, essa contribuição será linear</p>
+</section>
+</section>
+<section id="id14">
+<h2>Diagrama de Bode<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.4.png" /></p>
+</section>
+<section id="id15">
+<h2>Diagrama de Bode<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.5.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">assintota</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">tipo</span><span class="p">):</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">W</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">freq</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">:</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">if</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;polo&#39;</span><span class="p">:</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">-</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">resp</span>
+        
+<span class="k">def</span> <span class="nf">soma</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l1</span><span class="p">)):</span>
+        <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">l2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>     
+    <span class="k">return</span> <span class="n">L</span>
+    
+<span class="n">Num</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>             <span class="c1"># 1</span>
+<span class="n">Den</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>   <span class="c1"># S^2 + 101s + 100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Numerador:   &#39;</span><span class="p">,</span> <span class="n">Num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Denominador: &#39;</span><span class="p">,</span> <span class="n">Den</span><span class="p">)</span>
+
+
+<span class="n">zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">Num</span><span class="p">)</span>
+<span class="n">polos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">Den</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Zeros: &#39;</span><span class="p">,</span> <span class="n">zeros</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Polos: &#39;</span><span class="p">,</span> <span class="n">polos</span><span class="p">)</span>
+
+
+<span class="n">zeros</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">zero</span><span class="p">)</span> <span class="k">for</span> <span class="n">zero</span> <span class="ow">in</span> <span class="n">zeros</span><span class="p">]</span>
+<span class="n">zeros</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="n">polos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">polo</span><span class="p">)</span> <span class="k">for</span> <span class="n">polo</span> <span class="ow">in</span> <span class="n">polos</span><span class="p">]</span>
+<span class="n">polos</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="n">k</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">for</span> <span class="n">zero</span> <span class="ow">in</span> <span class="n">zeros</span><span class="p">:</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">zero</span>
+<span class="k">for</span> <span class="n">polo</span> <span class="ow">in</span> <span class="n">polos</span><span class="p">:</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="n">polo</span>
+<span class="n">KdB</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;KdB = &#39;</span><span class="p">,</span> <span class="n">KdB</span><span class="p">)</span>
+
+<span class="c1">#</span>
+
+<span class="n">sys</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">TransferFunction</span><span class="p">(</span><span class="n">Num</span><span class="p">,</span> <span class="n">Den</span><span class="p">)</span> <span class="c1"># 1/(s+1)        10/(s+1)(s+10)</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">phase</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">bode</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">mag</span><span class="o">-</span><span class="n">KdB</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span>    <span class="c1"># Bode magnitude plot</span>
+<span class="k">for</span> <span class="n">polo</span> <span class="ow">in</span> <span class="n">polos</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">polo</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">zero</span> <span class="ow">in</span> <span class="n">zeros</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    
+<span class="c1">#assintote0 = assintota(w, zeros[0], &#39;zero&#39;)</span>
+    
+<span class="n">assintote1</span> <span class="o">=</span> <span class="n">assintota</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">polos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;polo&#39;</span><span class="p">)</span>
+<span class="c1">#plt.semilogx(w, assintote)    </span>
+
+<span class="n">assintote2</span> <span class="o">=</span> <span class="n">assintota</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">polos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;polo&#39;</span><span class="p">)</span>
+
+<span class="n">assin</span> <span class="o">=</span> <span class="n">soma</span><span class="p">(</span><span class="n">assintote1</span><span class="p">,</span> <span class="n">assintote2</span><span class="p">)</span>
+<span class="c1">#assin = soma(assin, assintote0)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assin</span><span class="p">)</span>
+
+<span class="c1">#plt.semilogx(w, assintote0, color=&#39;purple&#39;, alpha=0.3)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assintote1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assintote2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$|H(j\omega)|_</span><span class="si">{dB}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="c1">#plt.ylim((-21,21))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">phase</span><span class="p">)</span>  <span class="c1"># Bode phase plot</span>
+<span class="c1">#plt.ylim((-90, 10))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\angle |H(j\omega)|$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerador:    [1]
+Denominador:  [1, 101, 100]
+Zeros:  []
+Polos:  [-100.   -1.]
+KdB =  -40.0
+</pre></div>
+</div>
+<img alt="_images/06aa85db7dc936813db97ffc54b52c893feaec7c1baf7f0333d021c3c3a00a15.png" src="_images/06aa85db7dc936813db97ffc54b52c893feaec7c1baf7f0333d021c3c3a00a15.png" />
+<img alt="_images/e393a7554acf6e1c5f539f714b4b8c480f6a1277efdfbb9eecc36bf042dbe287.png" src="_images/e393a7554acf6e1c5f539f714b4b8c480f6a1277efdfbb9eecc36bf042dbe287.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">assintota</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">tipo</span><span class="p">):</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">W</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">freq</span> <span class="o">&lt;</span> <span class="n">q</span><span class="p">:</span>
+            <span class="n">resp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">if</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;polo&#39;</span><span class="p">:</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">resp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="o">-</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">resp</span>
+        
+<span class="k">def</span> <span class="nf">soma</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l1</span><span class="p">)):</span>
+        <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">l2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>     
+    <span class="k">return</span> <span class="n">L</span>
+    
+<span class="n">Num</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>          <span class="c1"># 1</span>
+<span class="n">Den</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>   <span class="c1"># S^2 + 101s + 100</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Numerador:   &#39;</span><span class="p">,</span> <span class="n">Num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Denominador: &#39;</span><span class="p">,</span> <span class="n">Den</span><span class="p">)</span>
+
+
+<span class="n">zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">Num</span><span class="p">)</span>
+<span class="n">polos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roots</span><span class="p">(</span><span class="n">Den</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Zeros: &#39;</span><span class="p">,</span> <span class="n">zeros</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Polos: &#39;</span><span class="p">,</span> <span class="n">polos</span><span class="p">)</span>
+
+
+<span class="n">zeros</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">zero</span><span class="p">)</span> <span class="k">for</span> <span class="n">zero</span> <span class="ow">in</span> <span class="n">zeros</span><span class="p">]</span>
+<span class="n">zeros</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="n">polos</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">polo</span><span class="p">)</span> <span class="k">for</span> <span class="n">polo</span> <span class="ow">in</span> <span class="n">polos</span><span class="p">]</span>
+<span class="n">polos</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="n">k</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">for</span> <span class="n">zero</span> <span class="ow">in</span> <span class="n">zeros</span><span class="p">:</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">zero</span>
+<span class="k">for</span> <span class="n">polo</span> <span class="ow">in</span> <span class="n">polos</span><span class="p">:</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="n">polo</span>
+<span class="n">KdB</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;KdB = &#39;</span><span class="p">,</span> <span class="n">KdB</span><span class="p">)</span>
+
+<span class="n">sys</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">TransferFunction</span><span class="p">(</span><span class="n">Num</span><span class="p">,</span> <span class="n">Den</span><span class="p">)</span> <span class="c1"># 1/(s+1)        10/(s+1)(s+10)</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">mag</span><span class="p">,</span> <span class="n">phase</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">bode</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">mag</span><span class="o">-</span><span class="n">KdB</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span>    <span class="c1"># Bode magnitude plot</span>
+<span class="k">for</span> <span class="n">polo</span> <span class="ow">in</span> <span class="n">polos</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">polo</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">zero</span> <span class="ow">in</span> <span class="n">zeros</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    
+<span class="n">assintote0</span> <span class="o">=</span> <span class="n">assintota</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">zeros</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;zero&#39;</span><span class="p">)</span>
+    
+<span class="n">assintote1</span> <span class="o">=</span> <span class="n">assintota</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">polos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;polo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assintote0</span><span class="p">)</span>    
+
+<span class="n">assintote2</span> <span class="o">=</span> <span class="n">assintota</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">polos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;polo&#39;</span><span class="p">)</span>
+
+<span class="n">assin</span> <span class="o">=</span> <span class="n">soma</span><span class="p">(</span><span class="n">assintote1</span><span class="p">,</span> <span class="n">assintote2</span><span class="p">)</span>
+<span class="n">assin</span> <span class="o">=</span> <span class="n">soma</span><span class="p">(</span><span class="n">assin</span><span class="p">,</span> <span class="n">assintote0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assin</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assintote0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assintote1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">assintote2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$|H(j\omega)|_</span><span class="si">{dB}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="c1">#plt.ylim((-21,21))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">phase</span><span class="p">)</span>  <span class="c1"># Bode phase plot</span>
+<span class="c1">#plt.ylim((-90, 10))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\angle |H(j\omega)|$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerador:    [1, 1]
+Denominador:  [1, 110, 1000]
+Zeros:  [-1.]
+Polos:  [-100.  -10.]
+KdB =  -60.0
+</pre></div>
+</div>
+<img alt="_images/caf327944275c084a9b85b6e898588f2d61ddea9e379fce239e13dffca7262b3.png" src="_images/caf327944275c084a9b85b6e898588f2d61ddea9e379fce239e13dffca7262b3.png" />
+<img alt="_images/259442d458b1475ca513768a9a85e440f3d6e63a78ece6eb901018a9b4d946c1.png" src="_images/259442d458b1475ca513768a9a85e440f3d6e63a78ece6eb901018a9b4d946c1.png" />
+</div>
+</div>
+<section id="diagramas-mais-precisos">
+<h3>Diagramas mais precisos<a class="headerlink" href="#diagramas-mais-precisos" title="Permalink to this heading">#</a></h3>
+<hr class="docutils" />
+<p>Os gráficos com linhas retas podem ser feitos de forma mais precisa realizando a correção dos valores de amplitude perto das frequências dos polos e zeros.</p>
+<p>A partir da metade da frequência dos polos (ou zeros) e no dobro da sua frequência os valores reais em dB são:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\omega}{\omega_q} = \frac{1}{2} \rightarrow A_{dB} = \pm 20log_{10}|1-j/2| = \pm 1dB \]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\omega}{\omega_q} = 1 \rightarrow A_{dB} = \pm 20log_{10}|1-j| = \pm 3dB \]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\omega}{\omega_q} = 2 \rightarrow A_{dB} = \pm 20log_{10}|1-j2| = \pm 6dB \]</div>
+<p>Nessas equações os sinais + corresponde aos zeros de primeira ordem e o sinal - para o polo de primeira ordem</p>
+</section>
+</section>
+<section id="id16">
+<h2>Diagramas mais precisos<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.9.png" /></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="diagramas-para-o-angulo">
+<h1>Diagramas para o ângulo<a class="headerlink" href="#diagramas-para-o-angulo" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>O ângulo da fase para a constante K é zero.</p></li>
+<li><p>O ângulo da fase para um polo ou zero de primeira ordem na origem é constante igual a <span class="math notranslate nohighlight">\(\pm 90º\)</span>.</p></li>
+<li><p>Para polos ou zeros fora da origem:</p>
+<ul>
+<li><p>Para freqüências menores que 1/10<span class="math notranslate nohighlight">\(\omega_q\)</span> o ângulo de fase é considerado zero.</p></li>
+<li><p>Para freqüências menores que 10<span class="math notranslate nohighlight">\(\omega_q\)</span> o ângulo de fase é considerado <span class="math notranslate nohighlight">\(\pm 90º\)</span>.</p></li>
+<li><p>Entre essas frequências o diagrama é uma linha reta que vai de 0º a <span class="math notranslate nohighlight">\(\pm 90º\)</span> com inclinação de <span class="math notranslate nohighlight">\(\pm 45º\)</span>/década.</p></li>
+</ul>
+</li>
+</ul>
+<section id="id17">
+<h2>Diagramas para o ângulo<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.10.png" /></p>
+</section>
+<section id="id18">
+<h2>Diagramas para o ângulo<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="exemplo">
+<h3>Exemplo<a class="headerlink" href="#exemplo" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ H(j\omega) = \frac{0.11j\omega}{\left(1+j\frac{\omega}{10}\right)\left(1+j\frac{\omega}{100}\right)}\]</div>
+<div class="math notranslate nohighlight">
+\[ H(j\omega) =0.11 \frac{|j\omega|}{\left|1+j\frac{\omega}{10}\right|\left|1+j\frac{\omega}{100}\right|}\angle(\Psi_1-\beta_1-\beta_2)\]</div>
+<p><span class="math notranslate nohighlight">\(\Theta(\omega)=\Psi_1-\beta_1-\beta_2\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Psi_1=90º\)</span></p>
+<p><span class="math notranslate nohighlight">\(\beta_1=tan^{-1}(\omega/10)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\beta_2 = tan^{-1}(\omega/100)\)</span></p>
+</section>
+<section id="id19">
+<h3>Exemplo<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.11.png" /></p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="polos-e-zeros-complexos">
+<h1>Polos e Zeros complexos<a class="headerlink" href="#polos-e-zeros-complexos" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.12.png" /></p>
+<div class="math notranslate nohighlight">
+\[ H(s)=\frac{K}{(s+\alpha-j\beta)(s+\alpha+j\beta)}=\frac{K}{s²+2\alpha s+\alpha²+\beta²} \]</div>
+<div class="math notranslate nohighlight">
+\[\text{Fazendo $\omega_n²=\alpha²+\beta²$ e $\zeta\omega_n=\alpha$} \rightarrow \frac{K}{s²+2\zeta\omega_ns+\omega_n²} \]</div>
+<p>Qual a interpreteção para <span class="math notranslate nohighlight">\(\omega_n\)</span> e <span class="math notranslate nohighlight">\(\zeta\)</span>?</p>
+<div class="math notranslate nohighlight">
+\[ H(s)=\frac{K/\omega_n}{1+(s/\omega_n)²+2\zeta(s/\omega_n)} \ \text{fazendo} \ s=j\omega, \  K_0=K/\omega_n, \  u=\omega/\omega_n \]</div>
+<div class="math notranslate nohighlight">
+\[ H(j\omega) = \frac{K_0}{1-u^2+j2\zeta u} \]</div>
+<div class="math notranslate nohighlight">
+\[ A_{dB}(u)=20log_{10}K_0-20log_{10}|(1-u²)+j2\zeta u| \ \ \ \text{e} \ \ \ \theta(u)=-tan^{-1}\frac{2\zeta u}{1-u²} \]</div>
+<section id="comportamento-dos-polos-e-zeros-complexos">
+<h2>Comportamento dos polos e zeros complexos<a class="headerlink" href="#comportamento-dos-polos-e-zeros-complexos" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.13.png" /></p>
+</section>
+<section id="diagrmas-de-amplitude">
+<h2>Diagrmas de amplitude<a class="headerlink" href="#diagrmas-de-amplitude" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<div class="math notranslate nohighlight">
+\[ -20log_{10}|(1-u²)+j2\zeta u|= -20log_{10} \sqrt{(1-u²)²+4u²\zeta²} \]</div>
+<div class="math notranslate nohighlight">
+\[ -10log_{10}[u⁴+2u²(2\zeta²-1)+1] \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u=\frac{\omega}{\omega_n}\)</span>, <span class="math notranslate nohighlight">\(u\rightarrow 0\)</span> se <span class="math notranslate nohighlight">\(\omega\rightarrow 0\)</span> e <span class="math notranslate nohighlight">\(u\rightarrow \infty\)</span> se <span class="math notranslate nohighlight">\(\omega\rightarrow \infty\)</span></p></li>
+<li><p>se <span class="math notranslate nohighlight">\(u\rightarrow 0\)</span>, <span class="math notranslate nohighlight">\(-10log_{10}[u⁴+2u²(2\zeta²-1)+1]\rightarrow 0\)</span></p></li>
+<li><p>se <span class="math notranslate nohighlight">\(u\rightarrow \infty\)</span>, <span class="math notranslate nohighlight">\(-10log_{10}[u⁴+2u²(2\zeta²-1)+1]\rightarrow -40log_{10}u\)</span></p></li>
+</ul>
+<p>O diagrama de amplitude consiste de duas retas.</p>
+<p>Para <span class="math notranslate nohighlight">\(\omega&lt;\omega_n\)</span>, a linha reta está sobre o eixo-x em 0 dB. Para <span class="math notranslate nohighlight">\(\omega&gt;\omega_n\)</span>, a linha reta possui inclinação de -40 dB/década.</p>
+<p>Essas duas linhas se encontram em <span class="math notranslate nohighlight">\(\omega=\omega_n\)</span>.</p>
+<p><img alt="fig4.1.png" src="_images/fig11.14.png" /></p>
+<p><img alt="fig4.1.png" src="_images/fig11.15.png" /></p>
+</section>
+<section id="id20">
+<h2>Exemplo<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h2>
+<hr class="docutils" />
+<p><img alt="fig4.1.png" src="_images/fig11.6.png" /></p>
+<div class="math notranslate nohighlight">
+\[ H(s)=\frac{\frac{1}{LC}}{s²+\frac{R}{L}s+\frac{1}{LC}}=\frac{2500}{s²+20s+2500} \]</div>
+<div class="math notranslate nohighlight">
+\[ w_n²=2500 \rightarrow \omega_n=50rad/s. \ K_0=2500/\omega_n²=1.\ \zeta=\frac{20}{2\omega_n}=0.2 \]</div>
+<div class="math notranslate nohighlight">
+\[ A_{dB}(25)=-10log_{10}(0.2²+0.5625)=2.2dB \]</div>
+<div class="math notranslate nohighlight">
+\[
+\omega_p=50\sqrt{1-2(0.2)²}=0.96 rad/s
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+A_{dB}(47.96)=-10log_{10}[4(0.2)²(1-0.2²)]=8.14dB
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+A_{dB}(50)=-10log_{10}(2(0.2))=2.96 dB
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\omega_0 = \sqrt{2}(47.96)=67.82 rad/s
+\]</div>
+<p><img alt="fig4.1.png" src="_images/fig11.7.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Aula10_Aplicacao_TF.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Apliacação de TFourier</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Aula12_Nocoes_de_Filtros.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Noção de Filtragem</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Diagrama de Bode</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resposta-de-sistemas-lit">Resposta de sistemas LIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Resposta de sistemas LIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Introdução</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Resposta de sistemas LIT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo-calcular-a-resposta-de-frequencia-para-o-sistema-h-s">Exemplo: Calcular a resposta de frequência para o sistema <span class="math notranslate nohighlight">\(H(s)\)</span>.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h-s-frac-s-1-s-1-5j-s-1-5j-fazendo-s-to-j-omega"><span class="math notranslate nohighlight">\( H(s)=\frac{s+1}{(s+1-5j)(s+1+5j)}\)</span> fazendo <span class="math notranslate nohighlight">\(s \to j\omega \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neste-caso-se-determina-h-j-omega-e-fase-angle-h-j-omega-para-alguns-valores-de-omega">Neste caso se determina <span class="math notranslate nohighlight">\(|H(j\omega)|\)</span> e fase <span class="math notranslate nohighlight">\(\angle H(j\omega)\)</span> para alguns valores de <span class="math notranslate nohighlight">\(\omega\)</span>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-magnitude-e-fase">Gráficos de Magnitude e Fase</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-modulo">Diagrama de Módulo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-modulo-interpretacao">Diagrama de Módulo: Interpretação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Diagrama de Módulo: interpretação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrama-de-modulo-reescrevendo-a-equacao">Diagrama de Módulo: Reescrevendo a equação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Diagrama de Módulo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alguns-pontos-especiais">Alguns pontos especiais:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Diagrama de Módulo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Diagrama de Bode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Diagrama de Bode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagramas-mais-precisos">Diagramas mais precisos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Diagramas mais precisos</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#diagramas-para-o-angulo">Diagramas para o ângulo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Diagramas para o ângulo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Diagramas para o ângulo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemplo">Exemplo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Exemplo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#polos-e-zeros-complexos">Polos e Zeros complexos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comportamento-dos-polos-e-zeros-complexos">Comportamento dos polos e zeros complexos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrmas-de-amplitude">Diagrmas de amplitude</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Exemplo</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
